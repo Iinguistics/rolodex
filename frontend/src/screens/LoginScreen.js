@@ -6,7 +6,6 @@ import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 
-
 const LoginScreen = ({ location, history, userInfo }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
