@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Iinguistics/react-nodejs-mongodb-template.git"
+    "url": "git+https://github.com/Iinguistics/spybook.git"
   },
   "author": "James Goytia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Iinguistics/react-nodejs-mongodb-template/issues"
+    "url": "https://github.com/Iinguistics/spybook/issues"
   },
-  "homepage": "https://github.com/Iinguistics/react-nodejs-mongodb-template#readme",
+  "homepage": "https://github.com/Iinguistics/spybook#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
