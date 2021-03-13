@@ -1,2 +1,2 @@
-# Tool for twitch streamers..more to come
+# Tool for twitch streamers to help them grow their channel's...
 

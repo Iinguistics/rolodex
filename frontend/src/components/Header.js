@@ -3,7 +3,15 @@ import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FaUserAlt } from 'react-icons/fa';
 
-const Header = ({ userInfo, history }) => {
+const Header = ({ history }) => {
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(()=>{
+       setUserInfo(
+        localStorage.getItem('userInfo') ? JSON.parse
+        (localStorage.getItem('userInfo')) : null
+       );
+    },[])
     
      
     const logoutHandler = ()=>{
@@ -11,6 +19,8 @@ const Header = ({ userInfo, history }) => {
         history.push('/');
         window.location.reload();
      }
+
+     
    
     const adminView = ()=>{
         if(userInfo.isAdmin){
@@ -19,7 +29,6 @@ const Header = ({ userInfo, history }) => {
           <LinkContainer to="/admin/userlist">
           <NavDropdown.Item>View Users</NavDropdown.Item>
           </LinkContainer>
-
             </Fragment>
           )
         }
@@ -30,13 +39,11 @@ const Header = ({ userInfo, history }) => {
       const renderUserInfo = ()=>{
         if(userInfo){
           return(
-          <NavDropdown  title={ userInfo.name } id="username">
-           <LinkContainer to="/dashboard">
-           <Nav.Link className="space-gray ml-3">Profile</Nav.Link>
-         </LinkContainer>
+           <>
            {adminView()}
-           <NavDropdown.Item onClick={()=> logoutHandler()}>Logout</NavDropdown.Item>
-          </NavDropdown>
+           <NavDropdown.Item className="text-white" onClick={()=> history.push(`/dashboard/${userInfo._id}`)}>Profile</NavDropdown.Item>
+           <NavDropdown.Item className="text-white" onClick={()=> logoutHandler()}>Logout</NavDropdown.Item>
+           </>
           )
         }else{
           return(

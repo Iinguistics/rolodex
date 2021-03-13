@@ -6,7 +6,7 @@ import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 
-const LoginScreen = ({ location, history, userInfo }) => {
+const LoginScreen = ({ location, history, userInfo}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -14,6 +14,7 @@ const LoginScreen = ({ location, history, userInfo }) => {
     //const redirect = location.search ? location.search.split('=')[1]: '/'
 
     useEffect(()=>{
+
         if(userInfo){
             history.push('/')
         }
@@ -35,10 +36,14 @@ const LoginScreen = ({ location, history, userInfo }) => {
             localStorage.setItem('userInfo', JSON.stringify(data));
 
             setLoading(false);
+             console.log(data);
 
-            history.push('/dashboard');
+          
+            
+            history.push(`/dashboard/${data._id}`);
             window.location.reload();
-           
+          
+            
         }catch(error){
          setLoading(false);
          setError(error.message);
