@@ -7,10 +7,11 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 
-const Dashboard = ({ userInfo, history }) => {
+const ProfileScreen = ({ userInfo, history }) => {
     const [error, setError] = useState("");
     const [user, setUser] = useState(null);
-
+    const [createdViewer, setCreatedViewer] = useState({});
+    const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
 
 
 
@@ -37,7 +38,28 @@ const Dashboard = ({ userInfo, history }) => {
             history.push('/login');
         }
 
-    }, [userInfo, history]);
+        if(createdViewerSuccess){
+            history.push(`/profile/viewer/edit/${createdViewer._id}`)
+        }
+
+    }, [userInfo, history, createdViewerSuccess]);
+
+
+    const createViewerHandler = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+            const { data } = await axios.post('/api/viewers', config)
+            setCreatedViewer(data);
+
+        }catch(error){
+            setError(error.message);
+        }
+    }
 
    
 
@@ -90,4 +112,4 @@ const Dashboard = ({ userInfo, history }) => {
     )
 }
 
-export default Dashboard
+export default ProfileScreen;

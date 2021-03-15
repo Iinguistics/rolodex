@@ -40,7 +40,7 @@ const LoginScreen = ({ location, history, userInfo}) => {
 
           
             
-            history.push(`/dashboard/${data._id}`);
+            history.push('/profile');
             window.location.reload();
           
             

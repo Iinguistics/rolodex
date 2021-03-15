@@ -12,7 +12,7 @@ const HomeScreen = ({ userInfo }) => {
 
     return (
         <div className="my-5">
-            {userInfo ? <> <h3>Currently logged in under {userInfo.name}</h3><br /><h3>Go to my<Link to={`/dashboard/${userInfo._id}`}> Profile</Link></h3> </>
+            {userInfo ? <> <h3>Currently logged in under {userInfo.name}</h3><br /><h3>Go to my<Link to={'/profile'}> Profile</Link></h3> </>
             
             : ""}
             

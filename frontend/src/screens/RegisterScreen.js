@@ -48,7 +48,7 @@ const RegisterScreen = ({ location, history, userInfo }) => {
                 localStorage.setItem('userInfo', JSON.stringify(data));
     
     
-                history.push('/dashboard');
+                history.push('/profile');
                 window.location.reload();
                
             }catch(error){

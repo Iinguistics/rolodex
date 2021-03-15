@@ -8,7 +8,7 @@ import Create from './Create';
 import Product from './Product';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import DashboardScreen from '../screens/DashboardScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 
 function App({ history }) {
@@ -35,7 +35,7 @@ function App({ history }) {
         <Route path="/" exact component={()=> <HomeScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/login"  component={()=> <LoginScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/register"  component={()=> <RegisterScreen  userInfo={userInfo} history={history} />} />
-        <Route path= "/dashboard/:id"  component={()=> <DashboardScreen  userInfo={userInfo} history={history} />} />
+        <Route path= "/profile"  component={()=> <ProfileScreen  userInfo={userInfo} history={history} />} />
         <Route path="/create" exact component={Create} />
         <Route path="/product/:id"  component={Product} />
         </ToastProvider>
