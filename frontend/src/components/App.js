@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { ToastProvider } from 'react-toast-notifications';
 import Header from './Header';
-import HomeScreen from './HomeScreen';
+import HomeScreen from '../screens/HomeScreen';
 import Create from './Create';
 import Product from './Product';
 import LoginScreen from '../screens/LoginScreen';

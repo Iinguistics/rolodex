@@ -2,6 +2,26 @@ const asyncHandler = require('express-async-handler');
 const Viewer = require('../models/viewerModel');
 
 
+// Fetch all viewers    
+//@route  GET /api/viewers
+const getViewers = asyncHandler(async(req,res)=>{
+    const pageSize = 9;
+    const page =  Number(req.query.pageNumber) || 1
+    const keyword = req.query.keyword ? {
+        name:{
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+    const count = await Product.countDocuments({ ...keyword });
+
+
+    const viewers = await Viewer.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1));
+    res.json({ viewers, page, pages: Math.ceil(count / pageSize) });
+});
+
+
 
 // Create a viewer
 //@route  POST api/viewers
@@ -67,4 +87,4 @@ const editViewer = asyncHandler(async(req,res)=>{
 
 
 
- module.exports = { createViewer, getViewerById, editViewer }
+ module.exports = { getViewers, createViewer, getViewerById, editViewer }

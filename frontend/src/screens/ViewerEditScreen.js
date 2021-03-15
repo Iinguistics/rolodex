@@ -28,6 +28,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
 
     const fetchViewer = async()=>{
+        
         if(!viewer.name || viewer._id !== match.params.id){
             try{
                 const config = {
@@ -39,6 +40,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
                 const { data } = await axios.get(`/api/viewers/${match.params.id}`, config)
 
                 setViewer(data);
+
 
             }catch(error){
                 setFetchViewerError(error.message);
@@ -58,15 +60,12 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     }
 
     useEffect(()=>{
-        // if(!userInfo){
-        //  history.push('/login');
-        // }
-        console.log(match.params.id)
-        
-        
-        fetchViewer();
+        if(!userInfo){
+         history.push('/login');
+        }
+    
+            fetchViewer();
 
-        
 
     },[viewer, history, match.params.id])
 
@@ -116,10 +115,10 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         <Link to='/profile' className="btn-primary btn my-5">
             Go Back
         </Link>
-        {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}</Message> }
-        {fetchViewerError && <Message variant="danger">{fetchViewerError}</Message> }
+        {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}edit view error</Message> }
+        {fetchViewerError && <Message variant="danger">{fetchViewerError}viewererror</Message> }
         <FormContainer>
-        <h1>Edit Viewer</h1>
+        <h1>Update Viewer</h1>
 
         <Form onSubmit={submitHandler}>
 
@@ -134,6 +133,8 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
             <Form.Label>Rating</Form.Label>
             <Form.Control type="number" placeholder="Rating"
              value={rating} 
+             max="5"
+             min="0"
              onChange={(e)=> setRating(e.target.value)} />
         </Form.Group>
 
@@ -146,7 +147,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
         <Form.Group controlId="personalityType">
             <Form.Label>Personality Type</Form.Label>
-            <Form.Control type="number" placeholder="Choose a type"
+            <Form.Control type="string" placeholder="Choose a type"
              value={personalityType} 
              onChange={(e)=> setPersonalityType(e.target.value)} />
         </Form.Group>

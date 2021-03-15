@@ -11,14 +11,19 @@ const LoginScreen = ({ location, history, userInfo}) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false);
     //const redirect = location.search ? location.search.split('=')[1]: '/'
 
     useEffect(()=>{
 
         if(userInfo){
-            history.push('/')
+            history.push('/profile');
         }
-    }, [userInfo, history])
+        if(loginSuccess){
+            window.location.reload();
+            //history.push('/profile');
+        }
+    }, [userInfo, history, loginSuccess]);
 
    
     const submitHandler = async(e)=>{
@@ -35,20 +40,13 @@ const LoginScreen = ({ location, history, userInfo}) => {
 
             localStorage.setItem('userInfo', JSON.stringify(data));
 
-            setLoading(false);
-             console.log(data);
-
-          
-            
-            history.push('/profile');
-            window.location.reload();
-          
+            setLoginSuccess(true);
+             //console.log(data);
             
         }catch(error){
          setLoading(false);
          setError(error.message);
         }
-
     }
 
     

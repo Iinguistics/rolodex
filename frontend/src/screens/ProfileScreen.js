@@ -7,32 +7,15 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 
-const ProfileScreen = ({ userInfo, history, match }) => {
+const ProfileScreen = ({ userInfo, history }) => {
     const [error, setError] = useState("");
-    const [user, setUser] = useState(null);
+    //const [user, setUser] = useState(null);
     const [createdViewer, setCreatedViewer] = useState({});
     const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
 
 
     useEffect(()=>{
        
-        const fetchUser = async()=>{
-            try{
-                const config = {
-                    headers:{
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${userInfo.token}`
-                    }
-                }
-                const { data } = await axios.get('/api/users/profile', config)
-                setUser(data);
-
-            }catch(error){
-                setError(error.message);
-            }
-        }
-        fetchUser();
-        
         if(!userInfo){
             history.push('/login');
         }
@@ -71,7 +54,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         <div className="my-5">
             <div>
                 <h1>Dashboard</h1>
-                <h2 className="my-4">Welcome {user && user.name}</h2>
+                <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
             </div>
             
             {error && <Message variant="danger">{error}</Message> }

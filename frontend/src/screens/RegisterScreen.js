@@ -14,15 +14,21 @@ const RegisterScreen = ({ location, history, userInfo }) => {
     const [verifyPassword, setVerifyPassword] = useState("");
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState("");
+    const [registerSuccess, setRegisterSuccess] = useState(false);
+
 
     
  
 
      useEffect(()=>{
         if(userInfo){
-            history.push('/')
+            history.push('/profile');
         }
-    }, [userInfo, history])
+
+        if(registerSuccess){
+            window.location.reload();
+        }
+    }, [userInfo, history, registerSuccess])
 
 
     const renderPasswordError = ()=>{
@@ -46,10 +52,7 @@ const RegisterScreen = ({ location, history, userInfo }) => {
                 const { data } = await axios.post('/api/users/register', {name, email, password}, config)
     
                 localStorage.setItem('userInfo', JSON.stringify(data));
-    
-    
-                history.push('/profile');
-                window.location.reload();
+                setRegisterSuccess(true);
                
             }catch(error){
              setError(error.message);
