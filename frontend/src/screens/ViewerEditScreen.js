@@ -21,9 +21,6 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [fetchViewerError, setFetchViewerError] = useState("");
     const [fetchEditViewerError, setFetchEditViewerError] = useState("");
 
-    //const [userInfo, setUserInfo] = useState("");
-
-
     const { addToast } = useToasts();
 
 
