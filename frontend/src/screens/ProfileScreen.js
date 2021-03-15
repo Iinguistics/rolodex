@@ -7,12 +7,11 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 
-const ProfileScreen = ({ userInfo, history }) => {
+const ProfileScreen = ({ userInfo, history, match }) => {
     const [error, setError] = useState("");
     const [user, setUser] = useState(null);
     const [createdViewer, setCreatedViewer] = useState({});
     const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
-
 
 
     useEffect(()=>{
@@ -42,10 +41,11 @@ const ProfileScreen = ({ userInfo, history }) => {
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
         }
 
-    }, [userInfo, history, createdViewerSuccess]);
+    }, [userInfo, history, createdViewerSuccess, createdViewer]);
 
 
     const createViewerHandler = async()=>{
+        //console.log(userInfo.token)
         try{
             const config = {
                 headers:{
@@ -53,8 +53,9 @@ const ProfileScreen = ({ userInfo, history }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-            const { data } = await axios.post('/api/viewers', config)
+            const { data } = await axios.post('/api/viewers', {}, config)
             setCreatedViewer(data);
+            setCreatedViewerSuccess(true);
 
         }catch(error){
             setError(error.message);
@@ -73,7 +74,7 @@ const ProfileScreen = ({ userInfo, history }) => {
                 <h2 className="my-4">Welcome {user && user.name}</h2>
             </div>
             
-            
+            {error && <Message variant="danger">{error}</Message> }
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
                 <Card style={{ width: '18rem' }}>

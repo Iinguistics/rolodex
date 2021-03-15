@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-const ViewerEditScreen = ({ userInfo, history }) => {
+const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [name, setName] = useState("");
     const [rating, setRating] = useState(Number);
     const [followingSince, setFollowingSince] = useState("");
@@ -17,25 +17,96 @@ const ViewerEditScreen = ({ userInfo, history }) => {
     const [location, setLocation] = useState("");
     const [age, setAge] = useState("");
     const [notes, setNotes] = useState("");
-    const [editUserError, setEditUserError] = useState("");
+    const [viewer, setViewer] = useState({});
+    const [fetchViewerError, setFetchViewerError] = useState("");
+    const [fetchEditViewerError, setFetchEditViewerError] = useState("");
+
+    //const [userInfo, setUserInfo] = useState("");
 
 
-    useEffect(()=>{
-        if(!userInfo){
-         history.push('/login');
+    const { addToast } = useToasts();
+
+
+    
+
+
+    const fetchViewer = async()=>{
+        if(!viewer.name || viewer._id !== match.params.id){
+            try{
+                const config = {
+                    headers:{
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userInfo.token}`
+                    }
+                }
+                const { data } = await axios.get(`/api/viewers/${match.params.id}`, config)
+
+                setViewer(data);
+
+            }catch(error){
+                setFetchViewerError(error.message);
+            }
+        
+
+        }else{
+            setName(viewer.name);
+            setRating(viewer.rating);
+            setFollowingSince(viewer.followingSince);
+            setPersonalityType(viewer.personalityType);
+            setLocation(viewer.location);
+            setAge(viewer.age);
+            setNotes(viewer.notes);
         }
 
+    }
+
+    useEffect(()=>{
+        // if(!userInfo){
+        //  history.push('/login');
+        // }
+        console.log(match.params.id)
+        
+        
+        fetchViewer();
+
+        
+
+    },[viewer, history, match.params.id])
 
 
+    const fetchEditViewer = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+            const { data } = await axios.put(`/api/viewers/edit/${viewer._id}`, { name, rating, followingSince, personalityType, location, age, notes }, config)
+            setViewer(data);
 
-    },[]);
+        }catch(error){
+            setFetchEditViewerError(error.message);
+        }
+    }
 
 
     const submitHandler = (e)=>{
         e.preventDefault();
-        
-
-
+        if(viewer){
+          fetchEditViewer();
+          setTimeout(()=>{
+           fetchViewer();
+        }, 1000)
+            setTimeout(()=>{
+                if(!fetchEditViewerError){
+                    addToast(`${viewer.name} has been updated`, {
+                        appearance: 'success'
+                    });
+                    history.push('/profile');
+                    }
+            }, 2000)
+        }
     }
 
 
@@ -45,10 +116,11 @@ const ViewerEditScreen = ({ userInfo, history }) => {
 
     return (
         <Fragment>
-        <Link to='/admin/productlist' className="btn btn-light my-5">
+        <Link to='/profile' className="btn-primary btn my-5">
             Go Back
         </Link>
-        {editUserError && <Message variant="danger">{editUserError}</Message> }
+        {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}</Message> }
+        {fetchViewerError && <Message variant="danger">{fetchViewerError}</Message> }
         <FormContainer>
         <h1>Edit Viewer</h1>
 
@@ -94,7 +166,7 @@ const ViewerEditScreen = ({ userInfo, history }) => {
             <Form.Label>Age</Form.Label>
             <Form.Control type="text" placeholder="Age"
              value={age} 
-             onChange={(e)=> setLocation(e.target.value)} />
+             onChange={(e)=> setAge(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="notes">
