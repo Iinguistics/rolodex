@@ -9,6 +9,7 @@ import Product from './Product';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import ViewerEditScreen from '../screens/ViewerEditScreen';
 
 
 function App({ history }) {
@@ -36,6 +37,7 @@ function App({ history }) {
         <Route path= "/login"  component={()=> <LoginScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/register"  component={()=> <RegisterScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/profile"  component={()=> <ProfileScreen  userInfo={userInfo} history={history} />} />
+        <Route path= "/profile/viewer/edit/:id"  component={()=> <ViewerEditScreen  userInfo={userInfo} history={history} />} />
         <Route path="/create" exact component={Create} />
         <Route path="/product/:id"  component={Product} />
         </ToastProvider>
