@@ -22,11 +22,11 @@ const viewerSchema = mongoose.Schema({
         required: true
     },
     location:{
-        state: { type: String, required: true },
-        country: { type: String, required: true },
+        type: String,
+        required: true
     },
     age:{
-        type: Number,
+        type: String,
         required: true
     },
     notes:{

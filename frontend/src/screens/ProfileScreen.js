@@ -100,7 +100,7 @@ const ProfileScreen = ({ userInfo, history }) => {
                 Add viewer's to your spybook. You can refer back to your book so you 
                 can learn more about your viewer's & grow your channel.
                 </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn">+ Viewer</Card.Link>
+                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
               </Card.Body>
             </Card>
                 </Col>
