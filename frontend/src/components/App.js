@@ -43,6 +43,24 @@ function App({ history, match }) {
             <ProfileScreen {...props} userInfo={userInfo} />
           )}
         />
+        <Route
+          path='/search/:keyword' exact
+          render={(props) => (
+            <ProfileScreen {...props} userInfo={userInfo} />
+          )}
+        />
+        <Route
+          path='/page/:pageNumber' exact
+          render={(props) => (
+            <ProfileScreen {...props} userInfo={userInfo} />
+          )}
+        />
+        <Route
+          path='/search/:keyword/page/:pageNumber' exact
+          render={(props) => (
+            <ProfileScreen {...props} userInfo={userInfo} />
+          )}
+        />
         
 
         <Route

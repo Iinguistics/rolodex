@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Viewer = require('../models/viewerModel');
 
 
-// Fetch all viewers    
+// Fetch logged in users viewers    
 //@route  GET /api/viewers
 const getViewers = asyncHandler(async(req,res)=>{
     const pageSize = 9;
@@ -14,11 +14,13 @@ const getViewers = asyncHandler(async(req,res)=>{
         }
     } : {}
 
-    const count = await Product.countDocuments({ ...keyword });
+    const count = await Viewer.countDocuments({ ...keyword });
 
 
-    const viewers = await Viewer.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1));
+    const viewers = await Viewer.find({user: req.user._id, ...keyword}).limit(pageSize).skip(pageSize * (page - 1));
     res.json({ viewers, page, pages: Math.ceil(count / pageSize) });
+    // const viewers = await Viewer.find({user: req.user._id});
+    // res.json({ viewers });
 });
 
 
