@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
+import Paginate from '../components/Paginate';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
@@ -18,6 +19,13 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [listViewersError, setListViewersError] = useState("");
     const [listViewers, setListViewers] = useState([]);
     const [fetchViewersSuccess, setFetchViewerSucces] = useState(false);
+    const [pages, setPages] = useState(Number);
+    const [page, setPage] = useState(Number);
+
+
+    const keyword = match.params.keyword;
+
+    const pageNumber = match.params.pageNumber || 1;
     
     const fetchViewers = async(keyword = '', pageNumber = '')=>{
         try{
@@ -30,7 +38,9 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             }
         
             const { data } = await axios.get(`/api/viewers?keyword=${keyword}&pageNumber=${pageNumber}`, config);
-            setListViewers(data);
+            setListViewers(data.viewers);
+            setPages(data.pages);
+            setPage(data.page);
             setFetchViewerSucces(true);
         }catch (error){
           setListViewersError(error.message)
@@ -70,6 +80,30 @@ const ProfileScreen = ({ userInfo, history, match }) => {
 
         }catch(error){
             setCreateViewerError(error.message);
+        }
+    }
+
+
+    const renderViewers = ()=>{
+        if(listViewers){
+            return listViewers.map((viewer)=>{
+                return(
+                    
+                        <Col className="mb-5" sm>
+                         <Card style={{ width: '18rem' }}>
+                          <Card.Body>
+                           <Card.Title>{viewer.name}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
+                             <Card.Text>
+                               {viewer.notes}
+                          </Card.Text>
+                        <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                
+                )
+            })
         }
     }
 
@@ -126,56 +160,12 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                      <h5 className ="mt-3">Viewer's currently in your book <FaBook /></h5> 
                 </Col>
             </Row>
-
-
-
-
+            
             <Row className="mt-5">
-                <Col className="mb-5" sm>
-                <Card style={{ width: '18rem' }}>
-              <Card.Body>
-                <Card.Title>Add Viewer's to your book</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
-                <Card.Text>
-                Add viewer's to your spybook. You can refer back to your book so you 
-                can learn more about your viewer's & grow your channel.
-                </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
-              </Card.Body>
-            </Card>
-                </Col>
-
-                <Col className="mb-5" sm >
-                <Card style={{ width: '18rem' }}>
-              <Card.Body>
-                <Card.Title>Add Viewer's to your book</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
-                <Card.Text>
-                Add viewer's to your spybook. You can refer back to your book so you 
-                can learn more about your viewer's & grow your channel.
-                </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
-              </Card.Body>
-            </Card>
-                </Col>
-
-                <Col className="mb-5" sm>
-                <Card style={{ width: '18rem' }}>
-              <Card.Body>
-                <Card.Title>Add Viewer's to your book</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
-                <Card.Text>
-                Add viewer's to your spybook. You can refer back to your book so you 
-                can learn more about your viewer's & grow your channel.
-                </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
-              </Card.Body>
-            </Card>
-                </Col>
-
+              {renderViewers()}
             </Row>
 
-            
+            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
            
         </div>
     )
