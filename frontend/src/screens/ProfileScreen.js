@@ -9,7 +9,7 @@ import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
-import { FaBook } from 'react-icons/fa';
+import { FaBook, FaUserAlt } from 'react-icons/fa';
 
 const ProfileScreen = ({ userInfo, history, match }) => {
     const [createViewerError, setCreateViewerError] = useState("");
@@ -19,8 +19,8 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [listViewersError, setListViewersError] = useState("");
     const [listViewers, setListViewers] = useState([]);
     const [fetchViewersSuccess, setFetchViewerSucces] = useState(false);
-    const [pages, setPages] = useState(Number);
-    const [page, setPage] = useState(Number);
+    const [pages, setPages] = useState();
+    const [page, setPage] = useState();
 
 
     const keyword = match.params.keyword;
@@ -54,7 +54,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             history.push('/login');
         }
 
-        fetchViewers();
+        fetchViewers(keyword, pageNumber);
         console.log(listViewers);
 
         if(createdViewerSuccess){
@@ -62,11 +62,10 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         }
 
 
-    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess]);
+    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber]);
 
 
     const createViewerHandler = async()=>{
-        //console.log(userInfo.token)
         try{
             const config = {
                 headers:{
@@ -88,12 +87,11 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         if(listViewers){
             return listViewers.map((viewer)=>{
                 return(
-                    
                         <Col className="mb-5" sm>
-                         <Card style={{ width: '18rem' }}>
+                         <Card style={{ width: '18rem', height: '14rem'}}>
                           <Card.Body>
                            <Card.Title>{viewer.name}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
                              <Card.Text>
                                {viewer.notes}
                           </Card.Text>
@@ -108,9 +106,6 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     }
 
    
-
-
-
 
     return (
         <div className="my-5">
@@ -135,12 +130,11 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                 <Card.Link href="#" type="submit" className="btn-primary btn">View Captures</Card.Link>
              </Card.Body>
             </Card>
-
-                </Col>
+          </Col>
    
-                <Col sm={6}>
+               <Col sm={6}>
                 <Card style={{ width: '18rem' }}>
-              <Card.Body>
+                <Card.Body>
                 <Card.Title>Add Viewer's to your book</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
                 <Card.Text>
@@ -149,9 +143,9 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                 </Card.Text>
                 <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
               </Card.Body>
-            </Card>
-                </Col>
-            </Row>
+             </Card>
+            </Col>
+          </Row>
 
 
             <Row className="mt-5">
