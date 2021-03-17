@@ -109,8 +109,6 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
 
 
-  console.log(personalityType);
-
 
     return (
         <Fragment>
