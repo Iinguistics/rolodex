@@ -22,6 +22,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [fetchViewerError, setFetchViewerError] = useState("");
     const [fetchEditViewerError, setFetchEditViewerError] = useState("");
     const [personalityDescription, setPersonalityDescription] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { addToast } = useToasts();
 
@@ -101,6 +102,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         e.preventDefault();
         if(viewer){
           fetchEditViewer();
+          setLoading(true);
           setTimeout(()=>{
             fetchViewer();
          }, 1000)
@@ -200,6 +202,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
              onChange={(e)=> setAge(e.target.value)} />
         </Form.Group>
 
+
         <Form.Group controlId="notes">
             <Form.Label>Notes</Form.Label>
             <Form.Control type="text" as="textarea" rows={4} placeholder="Notes"
@@ -207,13 +210,14 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
              onChange={(e)=> setNotes(e.target.value)} />
         </Form.Group>
 
-       
 
          <Button variant="primary" type="submit" id="user-update">
             Update
         </Button>
         </Form>
-        
+
+        {loading &&  <Loader />}
+
     </FormContainer>
 
       <Element name="test1" className="element" >
