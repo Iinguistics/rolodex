@@ -63,8 +63,9 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         if(!userInfo){
          history.push('/login');
         }
-    
-            fetchViewer();
+            
+         fetchViewer();
+            
 
 
     },[viewer, history, match.params.id])
@@ -92,11 +93,11 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         if(viewer){
           fetchEditViewer();
           setTimeout(()=>{
-           fetchViewer();
-        }, 1000)
+            fetchViewer();
+         }, 1000)
             setTimeout(()=>{
                 if(!fetchEditViewerError){
-                    addToast(`${viewer.name} has been updated`, {
+                    addToast(`${name} has been updated`, {
                         appearance: 'success'
                     });
                     history.push('/profile');
@@ -108,6 +109,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
 
 
+  console.log(personalityType);
 
 
     return (
@@ -147,9 +149,27 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
         <Form.Group controlId="personalityType">
             <Form.Label>Personality Type</Form.Label>
-            <Form.Control type="string" placeholder="Choose a type"
+            <Form.Control as="select" placeholder="Choose a type"
              value={personalityType} 
-             onChange={(e)=> setPersonalityType(e.target.value)} />
+             onChange={(e)=> setPersonalityType(e.target.value)} >
+             <option>Uknown</option>
+             <option>Architect - INTJ</option>
+             <option>Logician - INTP</option>
+             <option>Commander - ENTJ</option>
+             <option>Debater - ENTP</option>
+             <option>Advocate - INFJ</option>
+             <option>Mediator - INFP</option>
+             <option>Protagonist - ENFJ</option>
+             <option>Campaigner - ENFP</option>
+             <option>Logistician - ISTJ</option>
+             <option>Defender - ISFJ</option>
+             <option>Executive - ESTJ</option>
+             <option>Consul - ESFJ</option>
+             <option>Virtuoso - ISTP</option>
+             <option>Adventurer - ISFP</option>
+             <option>Entrepreneur - ESTP</option>
+             <option>Entertainer - ESFP</option>
+            </Form.Control>
         </Form.Group>
 
 

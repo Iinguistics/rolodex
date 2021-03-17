@@ -93,7 +93,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                            <Card.Title>{viewer.name}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
                              <Card.Text>
-                               {viewer.notes}
+                               {viewer.personalityType}
                           </Card.Text>
                         <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
                       </Card.Body>

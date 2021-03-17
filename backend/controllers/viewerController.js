@@ -31,13 +31,13 @@ const getViewers = asyncHandler(async(req,res)=>{
 const createViewer = asyncHandler(async(req,res)=>{
     const viewer = new Viewer({
         user: req.user._id,
-        name: 'New viewer',
+        name: 'Uknown',
         rating: 0,
         followingSince: Date.now(),
-        personalityType: 'INFJ-A',
-        location: "London, UK",
+        personalityType: 'Uknown',
+        location: "Uknown",
         age: "Uknown",
-        notes: 'Likes long walks on the beach & reads fiction...'
+        notes: 'Uknown'
         
     });
     
@@ -70,7 +70,7 @@ const editViewer = asyncHandler(async(req,res)=>{
     viewer.name = req.body.name || viewer.name
     viewer.rating = req.body.rating || viewer.rating
     viewer.followingSince = req.body.followingSince || viewer.followingSince
-    viewer.personalityTypery = req.body.personalityTypery || viewer.personalityTypery
+    viewer.personalityType = req.body.personalityType || viewer.personalityType
     viewer.location= req.body.location || viewer.location
     viewer.age = req.body.age || viewer.agee
     viewer.notes = req.body.notes || viewer.notes
