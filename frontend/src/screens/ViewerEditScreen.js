@@ -1,12 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
+import { Link, Element } from 'react-scroll'
 import GoBackButton from '../components/GoBackButton';
+import PersonalityDescriptions from '../components/PersonalityDescriptions';
 
 
 const ViewerEditScreen = ({ history, match, userInfo }) => {
@@ -20,8 +21,16 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
     const [fetchEditViewerError, setFetchEditViewerError] = useState("");
+    const [personalityDescription, setPersonalityDescription] = useState(false);
 
     const { addToast } = useToasts();
+
+
+    const showPersonalityDesctiptions = ()=>{
+        if(personalityDescription){
+            return <PersonalityDescriptions />
+        }
+    }
 
 
     
@@ -144,7 +153,15 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         </Form.Group>
 
         <Form.Group controlId="personalityType">
-            <Form.Label>Personality Type</Form.Label> <Link >View descriptions</Link>
+            <Form.Label>Personality Type</Form.Label>  
+            <Link 
+            activeClass="active" to="test1" spy={true} smooth={true} 
+            offset={50} duration={500} delay={200} 
+            isDynamic={true} onClick={()=> setPersonalityDescription(true)}
+            className="text-info ml-3"
+            > 
+               View descriptions
+              </Link>
             <Form.Control as="select" placeholder="Choose a type"
              value={personalityType} 
              onChange={(e)=> setPersonalityType(e.target.value)} >
@@ -198,6 +215,10 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         </Form>
         
     </FormContainer>
+
+      <Element name="test1" className="element" >
+            {showPersonalityDesctiptions()}
+        </Element>
     </Fragment>
 
     )
