@@ -6,7 +6,7 @@ import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
-
+import GoBackButton from '../components/GoBackButton';
 
 
 const ViewerEditScreen = ({ history, match, userInfo }) => {
@@ -112,9 +112,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
     return (
         <Fragment>
-        <Link to='/profile' className="btn-primary btn my-5">
-            Go Back
-        </Link>
+        <GoBackButton />
         {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}edit view error</Message> }
         {fetchViewerError && <Message variant="danger">{fetchViewerError}viewererror</Message> }
         <FormContainer>

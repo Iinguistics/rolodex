@@ -87,7 +87,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         if(listViewers){
             return listViewers.map((viewer)=>{
                 return(
-                        <Col className="mb-5" sm>
+                        <Col className="mb-5" sm key={viewer._id}>
                          <Card style={{ width: '18rem', height: '14rem'}}>
                           <Card.Body>
                            <Card.Title>{viewer.name}</Card.Title>
