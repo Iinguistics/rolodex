@@ -144,7 +144,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         </Form.Group>
 
         <Form.Group controlId="personalityType">
-            <Form.Label>Personality Type</Form.Label>
+            <Form.Label>Personality Type</Form.Label> <Link >View descriptions</Link>
             <Form.Control as="select" placeholder="Choose a type"
              value={personalityType} 
              onChange={(e)=> setPersonalityType(e.target.value)} >
