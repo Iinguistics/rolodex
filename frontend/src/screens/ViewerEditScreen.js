@@ -5,7 +5,7 @@ import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
-import { Link, Element } from 'react-scroll'
+import { Link, Element } from 'react-scroll';
 import GoBackButton from '../components/GoBackButton';
 import PersonalityDescriptions from '../components/PersonalityDescriptions';
 

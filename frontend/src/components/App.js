@@ -11,6 +11,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 
+import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
 function App({ history, match }) {
   const [userInfo, setUserInfo] = useState(null);
@@ -72,6 +73,9 @@ function App({ history, match }) {
 
         <Route path="/create" exact component={Create} />
         <Route path="/product/:id"  component={Product} />
+
+        <Route path="/test" exact component={PersonalityDescriptions} />
+
         </ToastProvider>
       </Container>
       </main>
