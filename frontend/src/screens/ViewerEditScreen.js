@@ -175,7 +175,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
         <Form.Group controlId="location">
             <Form.Label>Location</Form.Label>
-            <Form.Control type="text" placeholder="Location"
+            <Form.Control type="text" placeholder="Location e.g. London, UK"
              value={location} 
              onChange={(e)=> setLocation(e.target.value)} />
         </Form.Group>
