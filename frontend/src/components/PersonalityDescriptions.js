@@ -3,11 +3,13 @@ import { Jumbotron, Button, Row, Col, Card, Container, CardGroup, CardDeck } fro
 import { Link, Element } from 'react-scroll';
 import Architect from '../components/personalityDescriptions/Architect';
 import Logician from '../components/personalityDescriptions/Logician';
-
+import Commander from '../components/personalityDescriptions/Commander';
 
 const PersonalityDescriptions = () => {
     const [architectDescription, setArchitectDescription] = useState(false);
     const [logicianDescription, setLogicianDescription] = useState(false);
+    const [commanderDescription, setCommanderDescription] = useState(false);
+
 
 
 
@@ -85,6 +87,15 @@ const PersonalityDescriptions = () => {
                         Bold, imaginative & strong-willed leaders, always finding a way, or making one themselves.
                     </Card.Text>
                     </Card.Body>
+                    <Link 
+                    activeClass="active" to="commander" spy={true} smooth={true} 
+                    offset={-70} duration={500} delay={200} 
+                    isDynamic={true} 
+                    onClick={()=> setCommanderDescription(true)}
+                    className="text-info ml-3 "
+                    > 
+                    <input type="submit" value="Full Description" className="btn-primary btn rounded" />
+                    </Link>
                     <Card.Footer>
                     <small className="text-muted">Elon Musk, Michelle Obama, Vladimir Putin</small>
                     </Card.Footer>
@@ -114,6 +125,9 @@ const PersonalityDescriptions = () => {
         </Element>
         <Element name="logician" className="my-5 full-description" >
            {logicianDescription && <Logician />}
+        </Element>
+        <Element name="commander" className="my-5 full-description" >
+           {commanderDescription && <Commander />}
         </Element>
 
         </div>
