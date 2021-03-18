@@ -4,11 +4,15 @@ import { Link, Element } from 'react-scroll';
 import Architect from '../components/personalityDescriptions/Architect';
 import Logician from '../components/personalityDescriptions/Logician';
 import Commander from '../components/personalityDescriptions/Commander';
+import Debater from '../components/personalityDescriptions/Debater';
+
 
 const PersonalityDescriptions = () => {
     const [architectDescription, setArchitectDescription] = useState(false);
     const [logicianDescription, setLogicianDescription] = useState(false);
     const [commanderDescription, setCommanderDescription] = useState(false);
+    const [debaterDescription, setDebaterDescription] = useState(false);
+
 
 
 
@@ -53,7 +57,7 @@ const PersonalityDescriptions = () => {
                     <input type="submit" value="Full Description" className="btn-primary btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Elon Musk, Michelle Obama, Vladimir Putin, ...</small>
+                    <small className="text-muted">Elon Musk, Michelle Obama, Vladimir Putin</small>
                     </Card.Footer>
                 </Card>
 
@@ -75,7 +79,7 @@ const PersonalityDescriptions = () => {
                     <input type="submit" value="Full Description" className="btn-primary btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Bill Gates, Albert Einstein, Isaac Newton, ...</small>
+                    <small className="text-muted">Bill Gates, Albert Einstein, Isaac Newton</small>
                     </Card.Footer>
                 </Card>
 
@@ -97,7 +101,7 @@ const PersonalityDescriptions = () => {
                     <input type="submit" value="Full Description" className="btn-primary btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Elon Musk, Michelle Obama, Vladimir Putin</small>
+                    <small className="text-muted">Steve Jobs, Gordon Ramsay, Franklin D. Roosevelt</small>
                     </Card.Footer>
                 </Card>
                 
@@ -110,8 +114,17 @@ const PersonalityDescriptions = () => {
                         Smart & curious thinkers who cannot resist an intellectual challenge.
                     </Card.Text>
                     </Card.Body>
+                    <Link 
+                    activeClass="active" to="debater" spy={true} smooth={true} 
+                    offset={-70} duration={500} delay={200} 
+                    isDynamic={true} 
+                    onClick={()=> setDebaterDescription(true)}
+                    className="text-info ml-3 "
+                    > 
+                    <input type="submit" value="Full Description" className="btn-primary btn rounded" />
+                    </Link>
                     <Card.Footer>
-                    <small className="text-muted">Elon Musk, Michelle Obama, Vladimir Putin</small>
+                    <small className="text-muted">Mark Twain, Tom Hanks, Thomas Edison</small>
                     </Card.Footer>
                 </Card>
                 </CardDeck>
@@ -128,6 +141,9 @@ const PersonalityDescriptions = () => {
         </Element>
         <Element name="commander" className="my-5 full-description" >
            {commanderDescription && <Commander />}
+        </Element>
+        <Element name="debater" className="my-5 full-description" >
+           {debaterDescription && <Debater />}
         </Element>
 
         </div>
