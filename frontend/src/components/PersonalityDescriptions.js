@@ -2,7 +2,7 @@ import React from 'react';
 import Analysts from '../components/mainPersonalityTypes/Analysts';
 import Diplomats from '../components/mainPersonalityTypes/Diplomats';
 import Sentinels from '../components/mainPersonalityTypes/Sentinels';
-
+import Explorers from '../components/mainPersonalityTypes/Explorers';
 
 const PersonalityDescriptions = () => {
  
@@ -12,9 +12,7 @@ const PersonalityDescriptions = () => {
            <Analysts />
            <Diplomats />
            <Sentinels />
-
-        
-
+           <Explorers />
         </div>
     )
 }
