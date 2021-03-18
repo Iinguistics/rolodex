@@ -1,11 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import { Jumbotron, Card, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Defender from '../personalityDescriptions/sentinels/Defender';
 import Executive from '../personalityDescriptions/sentinels/Executive';
 import Consul from '../personalityDescriptions/sentinels/Consul';
 import Virtuoso from '../personalityDescriptions/explorers/Virtuoso';
-
+import Adventurer from '../personalityDescriptions/explorers/Adventurer';
 
 const Explorers = () => {
     const [virtuosoDescription, setVirtuosoDescription] = useState(false);
@@ -118,8 +117,8 @@ const Explorers = () => {
         <Element name="virtuoso" className="my-5 full-description" >
            {virtuosoDescription && <Virtuoso />}
         </Element>
-        <Element name="defender" className="my-5 full-description" >
-           {adventurerDescription && <Defender />}
+        <Element name="adventurer" className="my-5 full-description" >
+           {adventurerDescription && <Adventurer />}
         </Element>
         <Element name="executive" className="my-5 full-description" >
            {executiveDescription && <Executive />}
