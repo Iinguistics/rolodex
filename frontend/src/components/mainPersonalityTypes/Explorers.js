@@ -62,7 +62,7 @@ const Explorers = () => {
                     <input type="submit" value="Full Description" className="btn-warning btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Beyonce, Aretha Franklin, Vin Diesel</small>
+                    <small className="text-muted">Lana Del Rey, Kevin Costner, Britney Spears</small>
                     </Card.Footer>
                 </Card>
 
@@ -79,7 +79,7 @@ const Explorers = () => {
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
                     onClick={()=> setExecutiveDescription(true)}
-                    className="text-info ml-3 "
+                    className="ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-warning btn rounded" />
                     </Link>
@@ -102,12 +102,12 @@ const Explorers = () => {
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
                     onClick={()=> setConsulDescription(true)}
-                    className="text-info ml-3 "
+                    className="ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-warning btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Taylor Swift, Bill Clinton, Jennifer Garner</small>
+                    <small className="text-muted"></small>
                     </Card.Footer>
                 </Card>
                 </CardDeck>
@@ -119,7 +119,7 @@ const Explorers = () => {
            {virtuosoDescription && <Virtuoso />}
         </Element>
         <Element name="defender" className="my-5 full-description" >
-           {defenderDescription && <Defender />}
+           {adventurerDescription && <Defender />}
         </Element>
         <Element name="executive" className="my-5 full-description" >
            {executiveDescription && <Executive />}
