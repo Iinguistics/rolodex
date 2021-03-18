@@ -1,17 +1,17 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Jumbotron, Button, Row, Col, Card, Container, CardGroup, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Debater from '../personalityDescriptions/analysts/Debater';
 import Advocate from '../personalityDescriptions/diplomats/Advocate';
 import Mediator from '../personalityDescriptions/diplomats/Mediator';
 import Protagonist from '../personalityDescriptions/diplomats/Protagonist';
+import Campaigner from '../personalityDescriptions/diplomats/Campaigner';
 
 
 const Diplomats = () => {
     const [advocateDescription, setAdvocateDescription] = useState(false);
     const [mediatorDescription, setMediatorDescription] = useState(false);
     const [protagonistDescription, setProtagonistDescription] = useState(false);
-    const [debaterDescription, setDebaterDescription] = useState(false);
+    const [campaignerDescription, setCampaignerDescription] = useState(false);
 
 
 
@@ -90,24 +90,24 @@ const Diplomats = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Debater</Card.Header>
+                    <Card.Header>Campaigner</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENTP</Card.Title>
+                    <Card.Title>ENFP</Card.Title>
                     <Card.Text>
-                        Smart & curious thinkers who cannot resist an intellectual challenge.
+                        Enthusiastic, creative & sociable free spirits, who can always find a reason to smile.
                     </Card.Text>
                     </Card.Body>
                     <Link 
-                    activeClass="active" to="debater" spy={true} smooth={true} 
+                    activeClass="active" to="campaigner" spy={true} smooth={true} 
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
-                    onClick={()=> setDebaterDescription(true)}
+                    onClick={()=> setCampaignerDescription(true)}
                     className="text-info ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-success btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Mark Twain, Tom Hanks, Thomas Edison</small>
+                    <small className="text-muted">Robin Williams, Will Smith, Meg Ryan</small>
                     </Card.Footer>
                 </Card>
                 </CardDeck>
@@ -124,8 +124,8 @@ const Diplomats = () => {
         <Element name="protagonist" className="my-5 full-description" >
            {protagonistDescription && <Protagonist />}
         </Element>
-        <Element name="debater" className="my-5 full-description" >
-           {debaterDescription && <Debater />}
+        <Element name="campaigner" className="my-5 full-description" >
+           {campaignerDescription && <Campaigner />}
         </Element>
 
         </Fragment>
