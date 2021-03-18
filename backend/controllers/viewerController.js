@@ -5,7 +5,7 @@ const Viewer = require('../models/viewerModel');
 // Fetch logged in users viewers    
 //@route  GET /api/viewers
 const getViewers = asyncHandler(async(req,res)=>{
-    const pageSize = 9;
+    const pageSize = 15;
     const page =  Number(req.query.pageNumber) || 1
     const keyword = req.query.keyword ? {
         name:{
