@@ -157,7 +157,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         <Form.Group controlId="personalityType">
             <Form.Label>Personality Type</Form.Label>  
             <Link 
-            activeClass="active" to="test1" spy={true} smooth={true} 
+            activeClass="active" to="personalityDesctiptions" spy={true} smooth={true} 
             offset={50} duration={500} delay={200} 
             isDynamic={true} onClick={()=> setPersonalityDescription(true)}
             className="text-info ml-3 scroll-link"
@@ -220,7 +220,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
     </FormContainer>
 
-      <Element name="test1" className="element" >
+      <Element name="personalityDesctiptions" >
             {showPersonalityDesctiptions()}
         </Element>
     </Fragment>

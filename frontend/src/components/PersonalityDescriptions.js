@@ -17,25 +17,12 @@ const PersonalityDescriptions = () => {
 
 
 
-    // const showPersonalityDesctiptions = ()=>{
-    //     if(architectDescription){
-    //         return <Architect />
-    //     }
-    // }
-
-
-
-    
-
-
-
-
 
 
     return (
         <div className="container my-5">
            <Element name="analysts">
-           <Jumbotron>
+           <Jumbotron className="card border-primary">
            <h1>Analysts</h1>
             
            <CardDeck className="mt-5">
