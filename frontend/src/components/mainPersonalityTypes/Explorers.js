@@ -1,15 +1,15 @@
 import React, { useState, Fragment } from 'react';
 import { Jumbotron, Card, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Executive from '../personalityDescriptions/sentinels/Executive';
 import Consul from '../personalityDescriptions/sentinels/Consul';
 import Virtuoso from '../personalityDescriptions/explorers/Virtuoso';
 import Adventurer from '../personalityDescriptions/explorers/Adventurer';
+import Entrepreneur from '../personalityDescriptions/explorers/Entrepreneur';
 
 const Explorers = () => {
     const [virtuosoDescription, setVirtuosoDescription] = useState(false);
     const [adventurerDescription, setAdventurerDescription] = useState(false);
-    const [executiveDescription, setExecutiveDescription] = useState(false);
+    const [entrepreneurDescription, setEntrepreneurDescription] = useState(false);
     const [consulDescription, setConsulDescription] = useState(false);
 
 
@@ -66,24 +66,24 @@ const Explorers = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Executive</Card.Header>
+                    <Card.Header>Entrepreneur</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESTJ</Card.Title>
+                    <Card.Title>ESTP</Card.Title>
                     <Card.Text>
-                        Excellent administrators, unsurpassed at managing things or people.
+                       Smart, energetic & very perceptive people, who truly enjoy living on the edge.
                     </Card.Text>
                     </Card.Body>
                     <Link 
-                    activeClass="active" to="executive" spy={true} smooth={true} 
+                    activeClass="active" to="entrepreneur" spy={true} smooth={true} 
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
-                    onClick={()=> setExecutiveDescription(true)}
+                    onClick={()=> setEntrepreneurDescription(true)}
                     className="ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-warning btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Lyndon B. Johnson, James Monroe, Laura Linney</small>
+                    <small className="text-muted">Ernest Hemingway, Madonna, Bruce Willis</small>
                     </Card.Footer>
                 </Card>
                 
@@ -120,8 +120,8 @@ const Explorers = () => {
         <Element name="adventurer" className="my-5 full-description" >
            {adventurerDescription && <Adventurer />}
         </Element>
-        <Element name="executive" className="my-5 full-description" >
-           {executiveDescription && <Executive />}
+        <Element name="entrepreneur" className="my-5 full-description" >
+           {entrepreneurDescription && <Entrepreneur />}
         </Element>
         <Element name="consul" className="my-5 full-description" >
            {consulDescription && <Consul />}
