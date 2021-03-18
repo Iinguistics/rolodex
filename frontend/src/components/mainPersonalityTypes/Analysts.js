@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Jumbotron, Button, Row, Col, Card, Container, CardGroup, CardDeck } from 'react-bootstrap';
+import React, { useState, Fragment } from 'react';
+import { Jumbotron, Card, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
 import Architect from '../personalityDescriptions/analysts/Architect';
 import Logician from '../personalityDescriptions/analysts/Logician';
