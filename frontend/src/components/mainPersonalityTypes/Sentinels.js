@@ -1,20 +1,17 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Jumbotron, Button, Row, Col, Card, Container, CardGroup, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Mediator from '../personalityDescriptions/diplomats/Mediator';
-import Protagonist from '../personalityDescriptions/diplomats/Protagonist';
-import Campaigner from '../personalityDescriptions/diplomats/Campaigner';
-import Logician from '../personalityDescriptions/sentinels/Logistician';
 import Logistician from '../personalityDescriptions/sentinels/Logistician';
 import Defender from '../personalityDescriptions/sentinels/Defender';
-
+import Executive from '../personalityDescriptions/sentinels/Executive';
+import Consul from '../personalityDescriptions/sentinels/Consul';
 
 
 const Sentinels = () => {
     const [logisticianDescription, setLogisticianDescription] = useState(false);
-    const [campaignerDescription, setCampaignerDescription] = useState(false);
-    const [protagonistDescription, setProtagonistDescription] = useState(false);
     const [defenderDescription, setDefenderDescription] = useState(false);
+    const [executiveDescription, setExecutiveDescription] = useState(false);
+    const [consulDescription, setConsulDescription] = useState(false);
 
 
 
@@ -70,47 +67,47 @@ const Sentinels = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Protagonist</Card.Header>
+                    <Card.Header>Executive</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENJF</Card.Title>
+                    <Card.Title>ESTJ</Card.Title>
                     <Card.Text>
-                        Charismatic & inspiring leaders, able to mesmerize their listeners.
+                        Excellent administrators, unsurpassed at managing things or people.
                     </Card.Text>
                     </Card.Body>
                     <Link 
-                    activeClass="active" to="protagonist" spy={true} smooth={true} 
+                    activeClass="active" to="executive" spy={true} smooth={true} 
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
-                    onClick={()=> setProtagonistDescription(true)}
+                    onClick={()=> setExecutiveDescription(true)}
                     className="text-info ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-info btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Barack Obamam, Oprah Winfrey, Ben Affleck</small>
+                    <small className="text-muted">Lyndon B. Johnson, James Monroe, Laura Linney</small>
                     </Card.Footer>
                 </Card>
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Campaigner</Card.Header>
+                    <Card.Header>Consul</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENFP</Card.Title>
+                    <Card.Title>ESFJ</Card.Title>
                     <Card.Text>
-                        Enthusiastic, creative & sociable free spirits, who can always find a reason to smile.
+                       Extraordinarily caring, social & popular people, always eager to help.
                     </Card.Text>
                     </Card.Body>
                     <Link 
-                    activeClass="active" to="campaigner" spy={true} smooth={true} 
+                    activeClass="active" to="consul" spy={true} smooth={true} 
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
-                    onClick={()=> setCampaignerDescription(true)}
+                    onClick={()=> setConsulDescription(true)}
                     className="text-info ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-info btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted">Robin Williams, Will Smith, Meg Ryan</small>
+                    <small className="text-muted">Taylor Swift, Bill Clinton, Jennifer Garner</small>
                     </Card.Footer>
                 </Card>
                 </CardDeck>
@@ -124,8 +121,11 @@ const Sentinels = () => {
         <Element name="defender" className="my-5 full-description" >
            {defenderDescription && <Defender />}
         </Element>
-        <Element name="protagonist" className="my-5 full-description" >
-           {protagonistDescription && <Protagonist />}
+        <Element name="executive" className="my-5 full-description" >
+           {executiveDescription && <Executive />}
+        </Element>
+        <Element name="consul" className="my-5 full-description" >
+           {consulDescription && <Consul />}
         </Element>
        
 
