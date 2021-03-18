@@ -115,7 +115,7 @@ const Analysts = () => {
         </Element>
 
 
-     <Element name="architect" className="my-5 full-description" >
+        <Element name="architect" className="my-5 full-description" >
            {architectDescription && <Architect />}
         </Element>
         <Element name="logician" className="my-5 full-description" >
