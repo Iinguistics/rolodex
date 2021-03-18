@@ -160,7 +160,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
             activeClass="active" to="test1" spy={true} smooth={true} 
             offset={50} duration={500} delay={200} 
             isDynamic={true} onClick={()=> setPersonalityDescription(true)}
-            className="text-info ml-3"
+            className="text-info ml-3 scroll-link"
             > 
                View descriptions
               </Link>

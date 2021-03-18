@@ -12,8 +12,32 @@ code {
     monospace;
 }
 
+input, textarea{
+  caret-color: blue;
+}
+
+p{
+  font-size: 16px;
+}
+
 
 .personality-description-cards{
   background-color: #333;
   border-radius: 6px;
+}
+
+
+.scroll-link:hover{
+   cursor: pointer;
+}
+
+
+.full-description p{
+  font-size: 19px;
+  line-height: 32px;
+}
+
+
+.up-arrow:hover{
+  cursor: pointer;
 }
