@@ -1,16 +1,16 @@
 import React, { useState, Fragment } from 'react';
 import { Jumbotron, Card, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Consul from '../personalityDescriptions/sentinels/Consul';
 import Virtuoso from '../personalityDescriptions/explorers/Virtuoso';
 import Adventurer from '../personalityDescriptions/explorers/Adventurer';
 import Entrepreneur from '../personalityDescriptions/explorers/Entrepreneur';
+import Entertainer from '../personalityDescriptions/explorers/Entertainer';
 
 const Explorers = () => {
     const [virtuosoDescription, setVirtuosoDescription] = useState(false);
     const [adventurerDescription, setAdventurerDescription] = useState(false);
     const [entrepreneurDescription, setEntrepreneurDescription] = useState(false);
-    const [consulDescription, setConsulDescription] = useState(false);
+    const [entertainerDescription, setEntertainerDescription] = useState(false);
 
 
 
@@ -89,24 +89,24 @@ const Explorers = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Consul</Card.Header>
+                    <Card.Header>Entertainer</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESFJ</Card.Title>
+                    <Card.Title>ESFP</Card.Title>
                     <Card.Text>
                        Extraordinarily caring, social & popular people, always eager to help.
                     </Card.Text>
                     </Card.Body>
                     <Link 
-                    activeClass="active" to="consul" spy={true} smooth={true} 
+                    activeClass="active" to="entertainer" spy={true} smooth={true} 
                     offset={-70} duration={500} delay={200} 
                     isDynamic={true} 
-                    onClick={()=> setConsulDescription(true)}
+                    onClick={()=> setEntertainerDescription(true)}
                     className="ml-3 "
                     > 
                     <input type="submit" value="Full Description" className="btn-warning btn rounded" />
                     </Link>
                     <Card.Footer>
-                    <small className="text-muted"></small>
+                    <small className="text-muted">Elton John, Adam Levine, Miley Cyrus</small>
                     </Card.Footer>
                 </Card>
                 </CardDeck>
@@ -123,8 +123,8 @@ const Explorers = () => {
         <Element name="entrepreneur" className="my-5 full-description" >
            {entrepreneurDescription && <Entrepreneur />}
         </Element>
-        <Element name="consul" className="my-5 full-description" >
-           {consulDescription && <Consul />}
+        <Element name="entertainer" className="my-5 full-description" >
+           {entertainerDescription && <Entertainer />}
         </Element>
        
 
