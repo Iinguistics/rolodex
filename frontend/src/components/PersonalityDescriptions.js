@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Button, Row, Col, Card, Container, CardGroup, CardDeck } from 'react-bootstrap';
 import { Link, Element } from 'react-scroll';
-import Architect from '../components/personalityDescriptions/Architect';
-import Logician from '../components/personalityDescriptions/Logician';
-import Commander from '../components/personalityDescriptions/Commander';
-import Debater from '../components/personalityDescriptions/Debater';
+import Architect from '../components/personalityDescriptions/analysts/Architect';
+import Logician from '../components/personalityDescriptions/analysts/Logician';
+import Commander from '../components/personalityDescriptions/analysts/Commander';
+import Debater from '../components/personalityDescriptions/analysts/Debater';
 
 
 const PersonalityDescriptions = () => {
