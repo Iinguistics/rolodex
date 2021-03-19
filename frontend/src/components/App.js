@@ -10,6 +10,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
+import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 
 import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
@@ -68,6 +69,13 @@ function App({ history, match }) {
           path='/profile/viewer/edit/:id'
           render={(props) => (
             <ViewerEditScreen {...props} userInfo={userInfo} />
+          )}
+        />
+
+        <Route
+          path='/profile/viewer/detail/:id'
+          render={(props) => (
+            <ViewerDetailScreen {...props} userInfo={userInfo} />
           )}
         />
 

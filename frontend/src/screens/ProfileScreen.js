@@ -91,7 +91,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             return listViewers.map((viewer)=>{
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
-                         <Link to="/" className="no-underline">
+                         <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
                             <Card style={{ width: '17rem', height: '12rem'}} className="card-border">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>

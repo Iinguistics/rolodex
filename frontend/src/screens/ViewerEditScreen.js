@@ -76,8 +76,6 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
             
          fetchViewer();
             
-
-
     },[viewer, history, match.params.id])
 
 
