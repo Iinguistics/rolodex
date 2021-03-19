@@ -34,7 +34,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     }
 
 
-    
+    console.log(followingSince);
 
 
     const fetchViewer = async()=>{
@@ -89,6 +89,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
+           
             const { data } = await axios.put(`/api/viewers/edit/${viewer._id}`, { name, rating, followingSince, personalityType, location, age, notes }, config)
             setViewer(data);
 

@@ -15,7 +15,8 @@ const viewerSchema = mongoose.Schema({
         required: true
     },
     followingSince:{
-        type: Date
+        type: String,
+        required: true
     },
     personalityType:{
         type: String,

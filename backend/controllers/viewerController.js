@@ -33,7 +33,7 @@ const createViewer = asyncHandler(async(req,res)=>{
         user: req.user._id,
         name: 'Uknown',
         rating: 0,
-        followingSince: Date.now(),
+        followingSince: 'Uknown',
         personalityType: 'Uknown',
         location: "Uknown",
         age: "Uknown",
