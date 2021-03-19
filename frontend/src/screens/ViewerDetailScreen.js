@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import GoBackButton from '../components/GoBackButton';
-import { Table } from 'react-bootstrap';
+import { Table, Card } from 'react-bootstrap';
+import { FaPencilAlt, FaEdit } from 'react-icons/fa';
 
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
@@ -60,13 +62,14 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             
     },[viewer, history, match.params.id])
 
-   console.log(viewer.followingSince)
-
 
 
     return (
             <div className="my-5">
-                <GoBackButton />
+                <GoBackButton /> <br />
+                <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mb-4">
+                    Edit Details <FaEdit className="ml-1"/>
+                </Link>
              <h2>{viewer.name} Details</h2>
 
              <Table striped bordered hover responsive variant="dark" className="my-3">
@@ -105,7 +108,14 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             </tbody>
             </Table>
 
-         
+            <Card className="personality-description-cards" text="light" >
+                    <Card.Header>Notes <FaPencilAlt className="ml-1"/></Card.Header>
+                    <Card.Body>
+                    <Card.Text>
+                     {viewer.notes}
+                    </Card.Text>
+                    </Card.Body>
+            </Card>
              
             </div>
             
