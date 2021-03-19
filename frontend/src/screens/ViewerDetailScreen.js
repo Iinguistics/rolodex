@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import GoBackButton from '../components/GoBackButton';
 
 
 
@@ -63,14 +64,12 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
 
 
     return (
-        <Fragment>
             <div className="my-5">
-            detail test
-            {name}
-            {rating}
+                <GoBackButton />
+             <h2>{viewer.name} Details</h2>
+             
             </div>
             
-        </Fragment>
     )
 }
 
