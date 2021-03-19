@@ -140,7 +140,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         </Form.Group>
 
         <Form.Group controlId="rating">
-            <Form.Label>Rating</Form.Label>
+            <Form.Label>Rating (1-5)</Form.Label>
             <Form.Control type="number" placeholder="Rating"
              value={rating} 
              max="5"
@@ -207,7 +207,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
         <Form.Group controlId="notes">
             <Form.Label>Notes</Form.Label>
-            <Form.Control type="text" as="textarea" rows={4} placeholder="Notes"
+            <Form.Control type="text" as="textarea" rows={5} placeholder="Notes"
              value={notes} 
              onChange={(e)=> setNotes(e.target.value)} />
         </Form.Group>

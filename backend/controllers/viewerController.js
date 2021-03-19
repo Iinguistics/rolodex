@@ -49,7 +49,7 @@ const createViewer = asyncHandler(async(req,res)=>{
 
 
  // Fetch single viewer  
-//@route  GET /api/viewer/:id
+//@route  GET /api/viewers/:id
 const getViewerById = asyncHandler(async(req,res)=>{
     const viewer = await Viewer.findById(req.params.id);
 
