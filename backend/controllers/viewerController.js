@@ -15,10 +15,12 @@ const getViewers = asyncHandler(async(req,res)=>{
     } : {}
 
     const count = await Viewer.countDocuments({ ...keyword });
+    const totalViewers = await Viewer.find({user: req.user._id });
+    const totalLength = totalViewers.length;
 
 
     const viewers = await Viewer.find({user: req.user._id, ...keyword}).limit(pageSize).skip(pageSize * (page - 1));
-    res.json({ viewers, page, pages: Math.ceil(count / pageSize) });
+    res.json({ viewers, totalLength, page, pages: Math.ceil(count / pageSize) });
     // const viewers = await Viewer.find({user: req.user._id});
     // res.json({ viewers });
 });

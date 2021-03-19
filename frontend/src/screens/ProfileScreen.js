@@ -22,6 +22,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [fetchViewersSuccess, setFetchViewerSucces] = useState(false);
     const [pages, setPages] = useState();
     const [page, setPage] = useState();
+    const [totalAddedViewers, setTotalAddedViewers] = useState();
 
 
     const keyword = match.params.keyword;
@@ -42,12 +43,13 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             setListViewers(data.viewers);
             setPages(data.pages);
             setPage(data.page);
+            setTotalAddedViewers(data.totalLength);
             setFetchViewerSucces(true);
         }catch (error){
           setListViewersError(error.message)
         }
     }
-
+      console.log(totalAddedViewers)
 
     useEffect(()=>{
        
@@ -90,7 +92,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
                          <Link to="/" className="no-underline">
-                            <Card style={{ width: '17rem', height: '12rem'}}>
+                            <Card style={{ width: '17rem', height: '12rem'}} className="card-border">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
@@ -156,8 +158,13 @@ const ProfileScreen = ({ userInfo, history, match }) => {
 
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
-                <Route render={({ history })=> <SearchBox history = {history} />} />
-                     <h5 className ="mt-3">Viewer's currently in your book <FaBook /></h5> 
+                { totalAddedViewers > 0 ? ( 
+                    <>
+                    <Route render={({ history })=> <SearchBox history = {history} />} />
+                    <h5 className ="mt-3">{totalAddedViewers} Viewer's currently in your book <FaBook /></h5> 
+                    </>
+                ) : <h5 className ="mt-3">You have no viewers currently in your book. <FaBook /></h5>
+                }
                 </Col>
             </Row>
             

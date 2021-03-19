@@ -49,9 +49,13 @@ p{
 }
 .no-underline:hover{
   color: #444444;
+
 }
 .no-underline:hover .viewer-name{
   color: #3F729B;
   transition: 0.3s;
-  font-style: italic;
+}
+.card-border:hover{
+  border-color: #3F729B;
+
 }
