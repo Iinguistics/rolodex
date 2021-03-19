@@ -93,7 +93,7 @@ const Explorers = () => {
                     <Card.Body>
                     <Card.Title>ESFP</Card.Title>
                     <Card.Text>
-                       Extraordinarily caring, social & popular people, always eager to help.
+                       Spontaneous, energetic & enthusiastic people. Life is never boring around them.
                     </Card.Text>
                     </Card.Body>
                     <Link 
