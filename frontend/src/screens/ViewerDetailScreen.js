@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GoBackButton from '../components/GoBackButton';
-
+import { Table } from 'react-bootstrap';
 
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
@@ -51,6 +51,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
     }
 
     useEffect(()=>{
+
         if(!userInfo){
          history.push('/login');
         }
@@ -59,7 +60,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             
     },[viewer, history, match.params.id])
 
-
+   console.log(viewer.followingSince)
 
 
 
@@ -67,6 +68,44 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             <div className="my-5">
                 <GoBackButton />
              <h2>{viewer.name} Details</h2>
+
+             <Table striped bordered hover responsive variant="dark" className="my-3">
+            
+            <tbody>
+                <tr>
+                <td>Username</td>
+                <td>{viewer.name}</td>
+                </tr>
+
+                <tr>
+                <td>Rating</td>
+                <td>{viewer.rating}</td>
+                </tr>
+
+                <tr>
+                <td>Following Since</td>
+                <td>{viewer.followingSince}</td>
+                </tr>
+
+                <tr>
+                <td>Personality Type</td>
+                <td>{viewer.personalityType}</td>
+                </tr>
+
+                <tr>
+                <td>Location</td>
+                <td>{viewer.location}</td>
+                </tr>
+
+                <tr>
+                <td>Age</td>
+                <td>{viewer.age}</td>
+                </tr>
+               
+            </tbody>
+            </Table>
+
+         
              
             </div>
             

@@ -49,7 +49,6 @@ const ProfileScreen = ({ userInfo, history, match }) => {
           setListViewersError(error.message)
         }
     }
-      console.log(totalAddedViewers)
 
     useEffect(()=>{
        
@@ -58,7 +57,6 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         }
 
         fetchViewers(keyword, pageNumber);
-        console.log(listViewers);
 
         if(createdViewerSuccess){
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
