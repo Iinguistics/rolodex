@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
 import Paginate from '../components/Paginate';
+import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
@@ -88,16 +89,21 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             return listViewers.map((viewer)=>{
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
-                         <Card style={{ width: '18rem', height: '14rem'}}>
-                          <Card.Body>
-                           <Card.Title>{viewer.name}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
-                             <Card.Text>
-                              Personality: {viewer.personalityType}
-                          </Card.Text>
-                        <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
-                      </Card.Body>
-                    </Card>
+                         <Link to="/" className="no-underline">
+                            <Card style={{ width: '17rem', height: '12rem'}}>
+                            <Card.Body>
+                            <Card.Title className="viewer-name">{viewer.name}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
+                                <Card.Text>
+                                Personality: {viewer.personalityType}
+                            </Card.Text>
+                            <Card.Text>
+                                Following Since: {viewer.followingSince}
+                            </Card.Text>
+                        </Card.Body>
+                        </Card>
+                         </Link>
+                         
                   </Col>
                 
                 )

@@ -168,6 +168,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
              value={personalityType} 
              onChange={(e)=> setPersonalityType(e.target.value)} >
              <option>Uknown</option>
+             <option>Troll</option>
              <option>Architect - INTJ</option>
              <option>Logician - INTP</option>
              <option>Commander - ENTJ</option>
