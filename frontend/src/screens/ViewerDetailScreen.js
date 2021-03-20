@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Table, Card } from 'react-bootstrap';
 import { FaPencilAlt, FaEdit } from 'react-icons/fa';
 import GoBack from '../components/GoBack';
+import { AiFillStar } from 'react-icons/ai';
+
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const [name, setName] = useState("");
@@ -61,6 +63,43 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
     },[viewer, history, match.params.id])
 
 
+    const renderStars = ()=>{
+        if(rating === 0){
+            return;
+        }else if(rating === 1){
+            return <AiFillStar />
+        }
+        else if(rating === 2){
+            return (
+                <>
+             <AiFillStar /><AiFillStar /> 
+               </>
+            )
+        }
+        else if(rating === 3){
+            return (
+                <>
+             <AiFillStar /><AiFillStar /><AiFillStar /> 
+               </>
+            )
+        }
+        else if(rating === 4){
+            return (
+                <>
+             <AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar />
+               </>
+            )
+        }
+        else if(rating === 5){
+            return (
+                <>
+              <AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar /> 
+               </>
+            )
+        }
+    }
+
+
     return (
             <div className="my-5">
                 <GoBack /><br />
@@ -79,7 +118,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
 
                 <tr>
                 <td>Rating</td>
-                <td>{viewer.rating}</td>
+                <td>{viewer.rating} {renderStars()}</td>
                 </tr>
 
                 <tr>

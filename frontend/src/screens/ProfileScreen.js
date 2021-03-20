@@ -93,7 +93,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                             <Card style={{ width: '17rem', height: '12rem'}} className="card-border">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating}</Card.Subtitle>
+                                <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating} </Card.Subtitle>
                                 <Card.Text>
                                 Personality: {viewer.personalityType}
                             </Card.Text>
@@ -111,7 +111,6 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         }
     }
 
-   console.log(userInfo.token);
 
     return (
         <div className="my-5">
