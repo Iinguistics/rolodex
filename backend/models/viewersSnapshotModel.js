@@ -22,5 +22,5 @@ const viewerSnapshotSchema = mongoose.Schema({
     timestamps: true
 });
 
-const viewerSnapshot = mongoose.model('viewerSnapshot', viewerSnapshotSchema);
-module.exports = viewerSnapshot;
+const ViewerSnapshot = mongoose.model('ViewerSnapshot', viewerSnapshotSchema);
+module.exports = ViewerSnapshot;

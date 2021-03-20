@@ -111,7 +111,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         }
     }
 
-   
+   console.log(userInfo.token);
 
     return (
         <div className="my-5">
