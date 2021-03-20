@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import GoBackButton from '../components/GoBackButton';
 import { Table, Card } from 'react-bootstrap';
 import { FaPencilAlt, FaEdit } from 'react-icons/fa';
-
+import GoBack from '../components/GoBack';
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const [name, setName] = useState("");
@@ -17,7 +16,6 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
     const [loading, setLoading] = useState(false);
-
 
 
     const fetchViewer = async()=>{
@@ -63,10 +61,9 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
     },[viewer, history, match.params.id])
 
 
-
     return (
             <div className="my-5">
-                <GoBackButton /> <br />
+                <GoBack /><br />
                 <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mb-4">
                     Edit Details <FaEdit className="ml-1"/>
                 </Link>

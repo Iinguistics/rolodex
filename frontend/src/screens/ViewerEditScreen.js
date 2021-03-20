@@ -6,9 +6,8 @@ import FormContainer from '../components/FormContainer';
 import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
 import { Link, Element } from 'react-scroll';
-import GoBackButton from '../components/GoBackButton';
 import PersonalityDescriptions from '../components/PersonalityDescriptions';
-
+import GoBack from '../components/GoBack';
 
 const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [name, setName] = useState("");
@@ -122,7 +121,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
 
     return (
         <Fragment>
-        <GoBackButton />
+        <GoBack />
         {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}edit view error</Message> }
         {fetchViewerError && <Message variant="danger">{fetchViewerError}viewererror</Message> }
         <FormContainer>
