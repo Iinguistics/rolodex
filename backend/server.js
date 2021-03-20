@@ -24,7 +24,7 @@ app.get("/", (req,res)=>{
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/viewers', viewerRoutes);
-app.use('/api/snapshot', viewerSnapshotRoutes);
+app.use('/api/viewers/snapshot', viewerSnapshotRoutes);
 
 
 app.use(notFound);
