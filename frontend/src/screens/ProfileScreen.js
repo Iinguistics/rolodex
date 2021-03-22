@@ -14,7 +14,7 @@ import { FaBook, FaUserAlt } from 'react-icons/fa';
 import snapshotURL from '../snapshotURL';
 
 
-const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
+const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [createViewerError, setCreateViewerError] = useState("");
     //const [user, setUser] = useState(null);
     const [createdViewer, setCreatedViewer] = useState({});
@@ -55,15 +55,15 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
     }
 
 
-    //fetch user info from twitch API
-    const fetchUserTwitchInfo = async()=>{
-        const { data } = await axios.get('/api/test');
-        localStorage.setItem('userTwitchInfo', JSON.stringify(data));
+    //fetch user data from twitch API
+    const fetchUserTwitchData = async()=>{
+        const { data } = await axios.post('/api/test', { token:userTwitchToken });
+        //localStorage.setItem('userTwitchToken', JSON.stringify(twitchToken));
          setUserTwitchData(data);
         // window.location.reload();
     }
 
-     console.log(userTwitchInfo)
+     console.log(userTwitchData);
 
     useEffect(()=>{
        
@@ -71,8 +71,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
             history.push('/login');
         }
 
-        if(!userTwitchInfo){
-            fetchUserTwitchInfo();
+        if(!userTwitchData){
+            fetchUserTwitchData();
         }
 
         fetchViewers(keyword, pageNumber);
@@ -135,11 +135,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
-                {userTwitchInfo && (
+                {userTwitchData && (
                     <>
-                    <Image src="https://static-cdn.jtvnw.net/previews-ttv/live_user_contv-{width}x{height}.jpg"  />
-                    <h5>Currently streaming {userTwitchInfo.data[0].game_name}</h5>
-                    <h5>Current viewer count: {userTwitchInfo.data[0].viewer_count}</h5>
+                    
+                    <h5>Currently streaming {userTwitchData.data[0].game_name}</h5>
+                    <h5>Title: {userTwitchData.data[0].title}</h5>
+                    <h5>Current viewer count: {userTwitchData.data[0].viewer_count}</h5>
                     </>
                 )}
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { ToastProvider } from 'react-toast-notifications';
+import axios from 'axios';
 import Header from './Header';
 import HomeScreen from '../screens/HomeScreen';
 import Create from './Create';
@@ -11,12 +12,16 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
-
 import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
 function App({ history, match }) {
   const [userInfo, setUserInfo] = useState(null);
-  const [userTwitchInfo, setUserTwitchInfo] = useState(null);
+  const [userTwitchToken, setUserTwitchToken] = useState(null);
+
+  const fetchTwitchToken = async()=>{
+    const { data } = await axios.get('/api/test/token');
+    localStorage.setItem('userTwitchToken', JSON.stringify(data));
+  }
 
 
   useEffect(()=>{
@@ -25,10 +30,14 @@ function App({ history, match }) {
         localStorage.getItem('userInfo') ? JSON.parse
         (localStorage.getItem('userInfo')) : null
        );
+       
+       
+       fetchTwitchToken();
 
-       setUserTwitchInfo(
-        localStorage.getItem('userTwitchInfo') ? JSON.parse
-        (localStorage.getItem('userTwitchInfo')) : null
+
+       setUserTwitchToken(
+        localStorage.getItem('userTwitchToken') ? JSON.parse
+        (localStorage.getItem('userTwitchToken')) : null
        );
      
         
@@ -49,25 +58,25 @@ function App({ history, match }) {
         <Route
           path='/profile' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchToken={userTwitchToken}/>
           )}
         />
         <Route
           path='/profile/search/:keyword' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchToken={userTwitchToken}/>
           )}
         />
         <Route
           path='/profile/page/:pageNumber' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchToken={userTwitchToken}/>
           )}
         />
         <Route
           path='/profile/search/:keyword/page/:pageNumber' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchToken={userTwitchToken}/>
           )}
         />
         
