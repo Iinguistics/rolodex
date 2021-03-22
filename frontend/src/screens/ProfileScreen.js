@@ -11,12 +11,10 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 import { FaBook, FaUserAlt } from 'react-icons/fa';
-import snapshotURL from '../snapshotURL';
 
 
 const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [createViewerError, setCreateViewerError] = useState("");
-    //const [user, setUser] = useState(null);
     const [createdViewer, setCreatedViewer] = useState({});
     const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
     const [listViewersError, setListViewersError] = useState("");
@@ -27,15 +25,13 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [userTwitchData, setUserTwitchData] = useState(null);
 
-
-
-
     const keyword = match.params.keyword;
 
     const pageNumber = match.params.pageNumber || 1;
     
     //fetch viewers from db
     const fetchViewers = async(keyword = '', pageNumber = '')=>{
+        
         try{
             const config = {
                 headers:{
@@ -57,10 +53,10 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
     //fetch user data from twitch API
     const fetchUserTwitchData = async()=>{
-        const { data } = await axios.post('/api/test', { token:userTwitchToken });
-        //localStorage.setItem('userTwitchToken', JSON.stringify(twitchToken));
-         setUserTwitchData(data);
-        // window.location.reload();
+        if(userInfo){
+            const { data } = await axios.post('/api/test', { token:userTwitchToken, name:userInfo.name });
+             setUserTwitchData(data);
+        }
     }
 
      console.log(userTwitchData);
@@ -71,9 +67,10 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             history.push('/login');
         }
 
-        if(!userTwitchData){
-            fetchUserTwitchData();
-        }
+        // if(!userTwitchData){
+        //     fetchUserTwitchData();
+        // }
+        fetchUserTwitchData();
 
         fetchViewers(keyword, pageNumber);
 
@@ -81,7 +78,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
         }
 
-    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber]);
+    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber ]);
 
      
 
@@ -111,7 +108,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
                          <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
-                            <Card style={{ width: '17rem', height: '12rem'}} className="card-border">
+                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating} </Card.Subtitle>
@@ -131,14 +128,14 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }
 
     return (
-        <div className="my-5">
+        <div className="my-5 container">
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
                 {userTwitchData && (
                     <>
                     
-                    <h5>Currently streaming {userTwitchData.data[0].game_name}</h5>
+                    <h5>Currently streaming: {userTwitchData.data[0].game_name}</h5>
                     <h5>Title: {userTwitchData.data[0].title}</h5>
                     <h5>Current viewer count: {userTwitchData.data[0].viewer_count}</h5>
                     </>
@@ -195,8 +192,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             <Row className="mt-5">
               {renderViewers()}
             </Row>
-
-            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
+             
+             { totalAddedViewers > 15 &&  <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} /> }
            
         </div>
     )

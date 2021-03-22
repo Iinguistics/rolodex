@@ -64,7 +64,6 @@ const RegisterScreen = ({ location, history, userInfo }) => {
     
 
 
-
     return (
         <FormContainer>
             <h1 className="my-5">Register</h1>

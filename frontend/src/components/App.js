@@ -14,7 +14,7 @@ import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
-function App({ history, match }) {
+function App({ history }) {
   const [userInfo, setUserInfo] = useState(null);
   const [userTwitchToken, setUserTwitchToken] = useState(null);
 
@@ -23,6 +23,7 @@ function App({ history, match }) {
     localStorage.setItem('userTwitchToken', JSON.stringify(data));
   }
 
+  //localStorage.clear();
 
   useEffect(()=>{
 
@@ -31,14 +32,15 @@ function App({ history, match }) {
         (localStorage.getItem('userInfo')) : null
        );
        
-       
-       fetchTwitchToken();
-
 
        setUserTwitchToken(
         localStorage.getItem('userTwitchToken') ? JSON.parse
         (localStorage.getItem('userTwitchToken')) : null
        );
+
+       if(!userTwitchToken){
+        fetchTwitchToken();
+       }
      
         
   }, [])
