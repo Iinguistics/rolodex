@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
 import Paginate from '../components/Paginate';
 import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card, Image } from 'react-bootstrap';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
@@ -11,8 +11,10 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 import { FaBook, FaUserAlt } from 'react-icons/fa';
+import snapshotURL from '../snapshotURL';
 
-const ProfileScreen = ({ userInfo, history, match }) => {
+
+const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
     const [createViewerError, setCreateViewerError] = useState("");
     //const [user, setUser] = useState(null);
     const [createdViewer, setCreatedViewer] = useState({});
@@ -23,22 +25,24 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [pages, setPages] = useState();
     const [page, setPage] = useState();
     const [totalAddedViewers, setTotalAddedViewers] = useState();
+    const [userTwitchData, setUserTwitchData] = useState(null);
+
+
 
 
     const keyword = match.params.keyword;
 
     const pageNumber = match.params.pageNumber || 1;
     
+    //fetch viewers from db
     const fetchViewers = async(keyword = '', pageNumber = '')=>{
         try{
-
             const config = {
                 headers:{
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-        
             const { data } = await axios.get(`/api/viewers?keyword=${keyword}&pageNumber=${pageNumber}`, config);
             setListViewers(data.viewers);
             setPages(data.pages);
@@ -50,10 +54,25 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         }
     }
 
+
+    //fetch user info from twitch API
+    const fetchUserTwitchInfo = async()=>{
+        const { data } = await axios.get('/api/test');
+        localStorage.setItem('userTwitchInfo', JSON.stringify(data));
+         setUserTwitchData(data);
+        // window.location.reload();
+    }
+
+     console.log(userTwitchInfo)
+
     useEffect(()=>{
        
         if(!userInfo){
             history.push('/login');
+        }
+
+        if(!userTwitchInfo){
+            fetchUserTwitchInfo();
         }
 
         fetchViewers(keyword, pageNumber);
@@ -62,8 +81,10 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
         }
 
-
     }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber]);
+
+     
+
 
 
     const createViewerHandler = async()=>{
@@ -103,22 +124,28 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                         </Card.Body>
                         </Card>
                          </Link>
-                         
                   </Col>
-                
                 )
             })
         }
     }
-
+    console.log(userTwitchData)
 
     return (
         <div className="my-5">
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
+                {userTwitchInfo && (
+                    <>
+                    <Image src="https://static-cdn.jtvnw.net/previews-ttv/live_user_contv-{width}x{height}.jpg"  />
+                    <h5>Currently streaming {userTwitchInfo.data[0].game_name}</h5>
+                    <h5>Current viewer count: {userTwitchInfo.data[0].viewer_count}</h5>
+                    </>
+                )}
+
+                
             </div>
-            
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
             <Row className="mt-5">

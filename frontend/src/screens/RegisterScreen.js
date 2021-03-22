@@ -39,6 +39,7 @@ const RegisterScreen = ({ location, history, userInfo }) => {
    
     const submitHandler = async(e)=>{
         e.preventDefault();
+        setName(name.toLowerCase());
         if(password !== verifyPassword){
             setPasswordError(true);
         }else{
@@ -72,8 +73,8 @@ const RegisterScreen = ({ location, history, userInfo }) => {
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name"
+                    <Form.Label>Twitch Username</Form.Label>
+                    <Form.Control type="text" placeholder="Enter username"
                      value={name} 
                      onChange={(e)=> setName(e.target.value)} />
                 </Form.Group>

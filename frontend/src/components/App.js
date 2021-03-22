@@ -16,12 +16,19 @@ import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
 function App({ history, match }) {
   const [userInfo, setUserInfo] = useState(null);
+  const [userTwitchInfo, setUserTwitchInfo] = useState(null);
+
 
   useEffect(()=>{
 
        setUserInfo(
         localStorage.getItem('userInfo') ? JSON.parse
         (localStorage.getItem('userInfo')) : null
+       );
+
+       setUserTwitchInfo(
+        localStorage.getItem('userTwitchInfo') ? JSON.parse
+        (localStorage.getItem('userTwitchInfo')) : null
        );
      
         
@@ -42,25 +49,25 @@ function App({ history, match }) {
         <Route
           path='/profile' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} />
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
           )}
         />
         <Route
           path='/profile/search/:keyword' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} />
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
           )}
         />
         <Route
           path='/profile/page/:pageNumber' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} />
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
           )}
         />
         <Route
           path='/profile/search/:keyword/page/:pageNumber' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} />
+            <ProfileScreen {...props} userInfo={userInfo} userTwitchInfo={userTwitchInfo}/>
           )}
         />
         

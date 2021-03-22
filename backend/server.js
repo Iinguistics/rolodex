@@ -7,6 +7,8 @@ const viewerSnapshotRoutes = require('./routes/viewerSnapshotRoutes');
 const userRoutes = require('./routes/userRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleWare');
 
+const testRoutes = require('./routes/testRoutes');
+
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/viewers', viewerRoutes);
 app.use('/api/viewers/snapshot', viewerSnapshotRoutes);
+
+app.use('/api/test', testRoutes);
 
 
 app.use(notFound);
