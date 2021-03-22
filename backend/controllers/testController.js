@@ -13,7 +13,6 @@ const test = asyncHandler(async(req,res)=>{
     
 
         //get token
-       //const { data } = await axios.post('https://id.twitch.tv/oauth2/token?client_id=kthwwyu7sve3fmnmgzimpsrfkibix4&client_secret=zebn8qsvhxeuwezkyrqbzvwe3q49k3&grant_type=client_credentials');
        const tokenData = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`);
        //tokenData.data.access_token
 

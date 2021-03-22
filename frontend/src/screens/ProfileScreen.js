@@ -129,7 +129,6 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchInfo }) => {
             })
         }
     }
-    console.log(userTwitchData)
 
     return (
         <div className="my-5">
