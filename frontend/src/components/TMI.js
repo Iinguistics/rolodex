@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import tmi from 'tmi.js';
 
 
 const TMI = ({ channel }) => {
     const [message, setMessage] = useState("");
     const [tag, setTag] = useState("");
-    
 
-    const client = new tmi.Client({
-        connection: { reconnect: true, secure: true },
-        channels: [ channel ],
-    });
+    const fetchChat = ()=>{
+        const client = new tmi.Client({
+            connection: { reconnect: true, secure: true },
+            channels: [ channel ],
+        });
+        
+        client.connect();
     
-    client.connect();
+        client.on('message', (channel, tags, message, self) => {
+            setTag(tags['display-name']);
+            setMessage(message);   
+            //console.log('ran');
+        });
+    }
 
-    client.on('message', (channel, tags, message, self) => {
-        setTag(tags['display-name']);
-        setMessage(message);   
-    });
+
+    useEffect(()=>{
+        fetchChat();
+
+    },[])
+    
+    // not putting in useEffect could cause the app to crash?
+    // const client = new tmi.Client({
+    //     connection: { reconnect: true, secure: true },
+    //     channels: [ channel ],
+    // });
+    
+    // client.connect();
+
+    // client.on('message', (channel, tags, message, self) => {
+    //     setTag(tags['display-name']);
+    //     setMessage(message);   
+    // });
 
     
     const renderMessage = ()=>{
