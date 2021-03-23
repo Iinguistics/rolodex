@@ -127,7 +127,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             })
         }
     }
-
+    console.log(userInfo.token)
     return (
         <div className="my-5 container">
             <div>
@@ -151,11 +151,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Col className="mb-5" sm={6}>
                 <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                <Card.Title>Save all current viewer's</Card.Title>
+                <Card.Title>Save your current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
-                Click save to capture all your current viewer's from your twitch channel.
-                You can view all your captures by clicking the view captures.
+                Click save to capture your current viewer count from your twitch channel.
+                You can view all your captures charted out by clicking the view captures, so you 
+                can track your progress.
                 </Card.Text>
                 <Card.Link type="submit" className="btn-primary btn">Save</Card.Link>
                 <Card.Link href="#" type="submit" className="btn-primary btn">View Captures</Card.Link>

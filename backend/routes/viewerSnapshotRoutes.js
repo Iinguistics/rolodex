@@ -7,7 +7,7 @@ const { protect, admin } = require('../middleware/authMiddleWare');
 
 
 //router.get("/", protect, getViewers);
-router.get("/",  protect, createSnapshot);
+router.post("/",  protect, createSnapshot);
 
 
 

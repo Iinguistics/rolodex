@@ -9,14 +9,7 @@ const viewerSnapshotSchema = mongoose.Schema({
     chatter_count:{
        type: Number,
        required: true
-    },
-    vips: [String],
-    moderators: [String],
-    staff: [String],
-    admins: [String],
-    global_mods: [String],
-    viewers: [String],
-
+    }
  
 }, {
     timestamps: true
