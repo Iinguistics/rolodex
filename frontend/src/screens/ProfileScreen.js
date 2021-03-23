@@ -11,6 +11,7 @@ import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 import { FaBook, FaUserAlt } from 'react-icons/fa';
+import TMI from '../components/TMI';
 
 
 const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
@@ -138,6 +139,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                     <h5>Currently streaming: {userTwitchData.data[0].game_name}</h5>
                     <h5>Title: {userTwitchData.data[0].title}</h5>
                     <h5>Current viewer count: {userTwitchData.data[0].viewer_count}</h5>
+                    <TMI channel = {userInfo.name}/>
                     </>
                 )}
 

@@ -13,6 +13,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
+import TMI from '../components/TMI';
+
 
 function App({ history }) {
   const [userInfo, setUserInfo] = useState(null);
@@ -100,7 +102,7 @@ function App({ history }) {
         <Route path="/create" exact component={Create} />
         <Route path="/product/:id"  component={Product} />
 
-        <Route path="/test" exact component={PersonalityDescriptions} />
+        <Route path="/test" exact component={TMI} />
 
         </ToastProvider>
       </Container>
