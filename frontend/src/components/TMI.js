@@ -4,6 +4,8 @@ import tmi from 'tmi.js';
 
 const TMI = ({ channel }) => {
     const [message, setMessage] = useState("");
+    const [tag, setTag] = useState("");
+    
 
     const client = new tmi.Client({
         connection: { reconnect: true, secure: true },
@@ -13,12 +15,17 @@ const TMI = ({ channel }) => {
     client.connect();
 
     client.on('message', (channel, tags, message, self) => {
-        setMessage(`${tags['display-name']}: ${message}`)         
+        setTag(tags['display-name']);
+        setMessage(message);   
     });
 
     
     const renderMessage = ()=>{
-        return <p className="text-light m-auto ">{ message }</p>
+        return (
+            <>
+         <p className="text-info d-inline">{tag}: {' '}</p> <p className="text-light m-auto d-inline">{message}</p>
+           </>
+        )
     }
     
 
