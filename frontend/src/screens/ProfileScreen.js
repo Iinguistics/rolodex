@@ -12,6 +12,8 @@ import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
 import { FaBook, FaUserAlt } from 'react-icons/fa';
 import TMI from '../components/TMI';
+import { useToasts } from 'react-toast-notifications';
+
 
 
 const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
@@ -25,6 +27,10 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [page, setPage] = useState();
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [userTwitchData, setUserTwitchData] = useState(null);
+    const [createSnapshotError, setCreateSnapshotError] = useState("");
+
+
+    const { addToast } = useToasts();
 
     const keyword = match.params.keyword;
 
@@ -103,6 +109,27 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }
 
 
+    const createViewerSnapshot = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+             await axios.post('/api/viewers/snapshot', {count: userTwitchData.data[0].viewer_count}, config)
+            addToast('Viewer count has been captured', {
+                appearance: 'success'
+            });
+           
+
+        }catch(error){
+            setCreateSnapshotError(error.message);
+        }
+
+    }
+
+
     const renderViewers = ()=>{
         if(listViewers){
             return listViewers.map((viewer)=>{
@@ -127,7 +154,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             })
         }
     }
-    console.log(userInfo.token)
+
     return (
         <div className="my-5 container">
             <div>
@@ -147,6 +174,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             </div>
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
+            {createSnapshotError && <Message variant="danger">{createSnapshotError}</Message> }
+            
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
                 <Card style={{ width: '18rem' }}>
@@ -158,7 +187,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 You can view all your captures charted out by clicking the view captures, so you 
                 can track your progress.
                 </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn">Save</Card.Link>
+                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>
                 <Card.Link href="#" type="submit" className="btn-primary btn">View Captures</Card.Link>
              </Card.Body>
             </Card>
