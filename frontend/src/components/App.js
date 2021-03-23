@@ -12,8 +12,10 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
-import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
+import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
 import TMI from '../components/TMI';
+import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
+
 
 
 function App({ history }) {
@@ -96,6 +98,13 @@ function App({ history }) {
           path='/profile/viewer/detail/:id'
           render={(props) => (
             <ViewerDetailScreen {...props} userInfo={userInfo} />
+          )}
+        />
+
+        <Route
+          path='/profile/viewer/captures'
+          render={(props) => (
+            <ViewerCaptureScreen {...props} userInfo={userInfo} />
           )}
         />
 

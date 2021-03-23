@@ -8,6 +8,8 @@ const axios = require('axios');
 //@access Have to be logged in
 const test = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
+
+    //const testChannel = 'contv'
      
         //get token
        //const tokenData = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`);
@@ -28,6 +30,7 @@ const test = asyncHandler(async(req,res)=>{
         const { data } = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${name}`, config);
 
         res.status(200).json(data);
+        console.log(data);
         
          }catch(error){
             

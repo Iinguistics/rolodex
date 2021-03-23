@@ -26,7 +26,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [pages, setPages] = useState();
     const [page, setPage] = useState();
     const [totalAddedViewers, setTotalAddedViewers] = useState();
-    const [userTwitchData, setUserTwitchData] = useState(null);
+    const [userTwitchData, setUserTwitchData] = useState([]);
     const [createSnapshotError, setCreateSnapshotError] = useState("");
 
 
@@ -62,7 +62,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const fetchUserTwitchData = async()=>{
         if(userInfo){
             const { data } = await axios.post('/api/test', { token:userTwitchToken, name:userInfo.name });
-             setUserTwitchData(data);
+             setUserTwitchData(data.data);
         }
     }
 
@@ -155,22 +155,30 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }
     }
 
+    const renderUserTwitchData = ()=>{
+     
+        if(userTwitchData[0]){
+           return (
+            <>
+            <h5>Currently streaming: {userTwitchData[0].game_name}</h5>
+            <h5>Title: {userTwitchData[0].title}</h5>
+            <h5>Current viewer count: {userTwitchData[0].viewer_count}</h5>
+            <TMI channel = {userInfo.name}/>
+            </>
+        )
+        }else{
+           return <h5>Not currently streaming</h5>
+        }
+    }
+
+
+
     return (
         <div className="my-5 container">
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
-                {userTwitchData && (
-                    <>
-                    
-                    <h5>Currently streaming: {userTwitchData.data[0].game_name}</h5>
-                    <h5>Title: {userTwitchData.data[0].title}</h5>
-                    <h5>Current viewer count: {userTwitchData.data[0].viewer_count}</h5>
-                    <TMI channel = {userInfo.name}/>
-                    </>
-                )}
-
-                
+                {renderUserTwitchData()}
             </div>
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
@@ -183,11 +191,11 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Card.Title>Save your current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
-                Click save to capture your current viewer count from your twitch channel.
+                Click save to capture your current viewer count from your twitch channel.(Must be live).
                 You can view all your captures charted out by clicking the view captures, so you 
                 can track your progress.
                 </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>
+               {userTwitchData[0] && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
                 <Card.Link href="#" type="submit" className="btn-primary btn">View Captures</Card.Link>
              </Card.Body>
             </Card>
