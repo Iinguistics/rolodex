@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Scatter, Bar } from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
-import { setRandomFallback } from 'bcryptjs';
 
 
 const CaptureChart = ({ userInfo, history }) => {
@@ -49,28 +48,51 @@ const CaptureChart = ({ userInfo, history }) => {
     
     console.log(captureData)
 
+    const testObjFunc = ()=>{
+        const myObj = {}
+        for(let i = 0; i < 3; i++){
+           
+        return { x: captureData[i].createdAt, y: captureData[i].chatter_count }
+        }
+    }
+
+    const testArrFunc = ()=>{
+        const myArr = [];
+        for(let i = 0; i < captureData.length; i++){
+            let dateToArr = captureData[i].createdAt.split("");
+            dateToArr.splice(10,14);
+            const newDate = dateToArr.join("");
+
+        myArr.push({ x: newDate, y: captureData[i].chatter_count })
+        }
+        return myArr;
+    }
+
+
+
+
     const rand = () => Math.round(Math.random() * 20 - 10)
 
     const data = {
     datasets: [
         {
-        label: 'Viewers',
-        data: [
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-            { x: rand(), y: rand() },
-        ],
+        label: 'Captures',
+        // data: [
+        //     // { x: 'Sep 4 2015', y: 25 },
+        //     // { x: captureData[1].createdAt, y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        //     { x: rand(), y: rand() },
+        // ],
+        data: testArrFunc(),
         backgroundColor: 'rgba(255, 99, 132, 1)',
         },
     ],
@@ -90,7 +112,14 @@ const CaptureChart = ({ userInfo, history }) => {
         xAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Dates'
+              labelString: 'Dates',
+              
+            },
+            type: 'time',
+            time: {
+                displayFormats: {
+                    quarter: 'MMM YYYY'
+                }
             }
           }],
     },
@@ -105,7 +134,7 @@ const CaptureChart = ({ userInfo, history }) => {
     return (
         <div>
             {captureDataError && <Message variant="danger">{captureDataError}</Message> }
-            testing
+         
 
             <Scatter
                 data={data}
