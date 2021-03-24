@@ -4,8 +4,8 @@ const axios = require('axios');
 
 
 
-// Fetch logged in users viewers    
-//@route  GET /api/viewers/sanpshot
+// Fetch logged in users snapshots/viewer count captures    
+//@route  GET /api/sanpshot
 const getSnapshots = asyncHandler(async(req,res)=>{
 
     const snapshots = await ViewerSnapshot.find({ user: req.user._id });
@@ -16,7 +16,7 @@ const getSnapshots = asyncHandler(async(req,res)=>{
 
 
 // Create new snapshot 
-//@route  POST api/viewers/snapshot
+//@route  POST api/snapshot
 //@access Have to be logged in
 const createSnapshot = asyncHandler(async(req,res)=>{
    const { count } = req.body;
