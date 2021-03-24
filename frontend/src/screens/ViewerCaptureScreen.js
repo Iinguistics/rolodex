@@ -2,7 +2,7 @@ import React from 'react'
 
 const ViewerCaptureScreen = () => {
     return (
-        <div>
+        <div className="my-5">
             snapshot
         </div>
     )
