@@ -14,7 +14,6 @@ import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
 import TMI from '../components/TMI';
-import  PersonalityDescriptions   from '../components/PersonalityDescriptions';
 
 
 

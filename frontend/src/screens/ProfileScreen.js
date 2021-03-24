@@ -117,7 +117,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-             await axios.post('/api/viewers/snapshot', {count: userTwitchData.data[0].viewer_count}, config)
+             await axios.post('/api/viewers/snapshot', {count: userTwitchData[0].viewer_count}, config)
             addToast('Viewer count has been captured', {
                 appearance: 'success'
             });
