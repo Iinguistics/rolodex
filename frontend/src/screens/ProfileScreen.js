@@ -191,9 +191,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Card.Title>Save your current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
-                Click save to capture your current viewer count from your twitch channel.(Must be live).
-                You can view all your captures charted out by clicking the view captures, so you 
-                can track your progress.
+                Click save to capture your current viewer count from your twitch channel (Must be live).
+                You can view all your captures charted out by clicking the view captures.
                 </Card.Text>
                {userTwitchData[0] && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
                 <Card.Link href="#" type="submit" className="btn-primary btn">View Captures</Card.Link>
