@@ -9,6 +9,8 @@ const CaptureChart = ({ userInfo, history }) => {
     const [captureDataError, setCaptureDataError] = useState("");
     const [dateArr, setDateArr] = useState([]);
     const [viewRaw, setViewRaw] = useState(false);
+    const [averageViewers, setAverageViewers] = useState(0);
+
 
 
 
@@ -37,9 +39,7 @@ const CaptureChart = ({ userInfo, history }) => {
     const fetchDates = ()=>{
         const myArr = [];
         for(let i = 0; i < captureData.length; i++){
-            let dateToArr = captureData[i].createdAt.split("");
-            dateToArr.splice(10,14);
-            const newDate = dateToArr.join("");
+        const newDate =  dateSplicer(captureData[i].createdAt);
         myArr.push(newDate);
         setDateArr(myArr);
         }
@@ -53,29 +53,31 @@ const CaptureChart = ({ userInfo, history }) => {
         }
 
         fetchCaptures();
-        
         fetchDates();
-
-
+        
     }, []);
+
+    useEffect(()=>{
+        fetchAverageViewers();
+        }, [captureData]);
 
    
 
-    
-    console.log(captureData)
+    const dateSplicer = (date)=>{
+        let dateToArr = date.split("");
+        dateToArr.splice(10,14);
+        const newDate = dateToArr.join("");
+        return newDate;
+    }
    
     const testArrFunc = ()=>{
         const myArr = [];
         for(let i = 0; i < captureData.length; i++){
-            let dateToArr = captureData[i].createdAt.split("");
-            dateToArr.splice(10,14);
-            const newDate = dateToArr.join("");
-
+        const newDate =  dateSplicer(captureData[i].createdAt);
         myArr.push({ x: newDate, y: captureData[i].chatter_count })
         }
         return myArr;
     }
-
 
     
     
@@ -91,14 +93,7 @@ const CaptureChart = ({ userInfo, history }) => {
     }
 
     const options = {
-        // chart: {
-        //     type: 'scatter',
-        //     zoom: {
-        //       enabled: true,
-        //       type: 'xy'
-        //     }
-        // },
-
+        
     scales: {
         yAxes: [{
             ticks: {
@@ -115,15 +110,6 @@ const CaptureChart = ({ userInfo, history }) => {
               labelString: 'All Captures',
               
             },
-            // xaxis: {
-            //     type: 'datetime',
-            //     tickAmount: 10,
-            //   },
-            //   tooltip: {
-            //     x: {
-            //       format: 'dd MMM yyyy'
-            //     },
-            // },
 
             type: 'time',
             time: {
@@ -132,46 +118,49 @@ const CaptureChart = ({ userInfo, history }) => {
                 }
             },
             
-            // fill: {
-            //     type: 'gradient',
-            //     gradient: {
-            //       shadeIntensity: 1,
-            //       opacityFrom: 0.7,
-            //       opacityTo: 0.9,
-            //       stops: [0, 100]
-            //     }
-            // },
-
             ticks: {
                 callback: function(label, index, labels) {
                      for(let i = 0;  i<dateArr.length; i++){
                          if(dateArr[i] !== dateArr[i + 1]){
-                            console.log(dateArr[i])
                             return
                          }
                         
                      }
                     }
-                }
-                   
-           
+                }   
           }],
     },
     }
     
- console.log(dateArr);
+ console.log(captureData);
 
    const toggleRaw = ()=>{
        setViewRaw(!viewRaw)
    }
-   
 
-   const dateSplicer = (date)=>{
-    let dateToArr = date.split("");
-    dateToArr.splice(10,14);
-    const newDate = dateToArr.join("");
-    return newDate;
-}
+   const fetchAverageViewers = ()=>{
+       let runningValue = 0;
+       for(let item of captureData){
+           console.log(item.chatter_count)
+           runningValue += item.chatter_count
+       }
+       setAverageViewers(Math.floor(runningValue / captureData.length))
+
+
+    // if(captureData.length !== 0){
+    //     captureData.chatter_count.reduce((a,b)=>{
+    //         console.log(a + b)
+    //     })
+
+    // }
+   
+   }
+
+    
+    console.log(averageViewers)
+
+   
+   
 
        
 
@@ -187,12 +176,16 @@ const CaptureChart = ({ userInfo, history }) => {
                 options={options}
             />
 
+            <ListGroup horizontal>
+            <ListGroup.Item>Total Captures: {captureData.length}</ListGroup.Item>
+            <ListGroup.Item>ListGroup</ListGroup.Item>
+            </ListGroup>
+
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw" : "view raw"} onClick={()=> toggleRaw()}/>
          
           <ListGroup>
           {viewRaw && captureData.map((item)=>{
-              return  <ListGroup.Item className="text-success">Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
-               
+              return  <ListGroup.Item key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
           })}
           </ListGroup>
         </div>
