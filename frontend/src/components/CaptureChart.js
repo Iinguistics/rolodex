@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Scatter, Bar } from 'react-chartjs-2';
+import { Scatter } from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
 import { ListGroup } from 'react-bootstrap';
+
 
 const CaptureChart = ({ userInfo, history }) => {
     const [captureData, setCaptureData] = useState([]);
@@ -85,9 +86,9 @@ const CaptureChart = ({ userInfo, history }) => {
     const data = {
     datasets: [
         {
-        label: 'Captures',
+        label: 'Captures Y-M-D',
         data: testArrFunc(),
-        backgroundColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: '#000',
         },
     ],
     }
@@ -129,10 +130,9 @@ const CaptureChart = ({ userInfo, history }) => {
                     }
                 }   
           }],
-    },
+      },
     }
     
- console.log(captureData);
 
    const toggleRaw = ()=>{
        setViewRaw(!viewRaw)
@@ -144,24 +144,18 @@ const CaptureChart = ({ userInfo, history }) => {
        }
        let runningValue = 0;
        for(let item of captureData){
-           console.log(item.chatter_count)
            runningValue += item.chatter_count
        }
        setAverageViewers(Math.floor(runningValue / captureData.length))
    }
 
     
-    console.log(averageViewers)
-
-   
-   
 
        
 
     return (
         <div className="my-5">
             {captureDataError && <Message variant="danger">{captureDataError}</Message> }
-         
 
             <Scatter
                 data={data}
@@ -171,15 +165,19 @@ const CaptureChart = ({ userInfo, history }) => {
             />
 
             <ListGroup horizontal className="my-5">
-            <ListGroup.Item>Total Captures: {captureData.length}</ListGroup.Item>
-            <ListGroup.Item>Average Viewers: {averageViewers}</ListGroup.Item>
+            <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>
+            <ListGroup.Item className="text-white">Average Viewers: {averageViewers}</ListGroup.Item>
             </ListGroup>
 
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
          
           <ListGroup>
-          {viewRaw && captureData.map((item)=>{
-              return  <ListGroup.Item key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
+          {viewRaw &&  captureData.map((item)=>{
+              return (
+                  <>
+                   <ListGroup.Item key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
+                   </>
+              )
           })}
           </ListGroup>
         </div>
