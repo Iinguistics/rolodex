@@ -139,21 +139,15 @@ const CaptureChart = ({ userInfo, history }) => {
    }
 
    const fetchAverageViewers = ()=>{
+       if(captureData.length === 0){
+           return
+       }
        let runningValue = 0;
        for(let item of captureData){
            console.log(item.chatter_count)
            runningValue += item.chatter_count
        }
        setAverageViewers(Math.floor(runningValue / captureData.length))
-
-
-    // if(captureData.length !== 0){
-    //     captureData.chatter_count.reduce((a,b)=>{
-    //         console.log(a + b)
-    //     })
-
-    // }
-   
    }
 
     
@@ -176,12 +170,12 @@ const CaptureChart = ({ userInfo, history }) => {
                 options={options}
             />
 
-            <ListGroup horizontal>
+            <ListGroup horizontal className="my-5">
             <ListGroup.Item>Total Captures: {captureData.length}</ListGroup.Item>
-            <ListGroup.Item>ListGroup</ListGroup.Item>
+            <ListGroup.Item>Average Viewers: {averageViewers}</ListGroup.Item>
             </ListGroup>
 
-          <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw" : "view raw"} onClick={()=> toggleRaw()}/>
+          <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
          
           <ListGroup>
           {viewRaw && captureData.map((item)=>{
