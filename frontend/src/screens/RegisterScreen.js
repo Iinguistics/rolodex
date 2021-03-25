@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
@@ -18,8 +17,6 @@ const RegisterScreen = ({ location, history, userInfo }) => {
 
 
     
- 
-
      useEffect(()=>{
         if(userInfo){
             history.push('/profile');
