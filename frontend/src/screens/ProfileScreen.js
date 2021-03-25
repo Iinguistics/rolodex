@@ -117,7 +117,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-             await axios.post('/api/viewers/snapshot', {count: userTwitchData[0].viewer_count}, config)
+             await axios.post('/api/snapshot', {count: userTwitchData[0].viewer_count}, config)
             addToast('Viewer count has been captured', {
                 appearance: 'success'
             });
@@ -195,7 +195,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 You can view all your captures charted out by clicking the view captures.
                 </Card.Text>
                {userTwitchData[0] && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
-                 <Link to="/profile/viewer/captures" className="btn-primary btn">View Captures</Link>
+                <Link to="/profile/viewer/captures" className={userTwitchData[0] ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link>
              </Card.Body>
             </Card>
           </Col>
