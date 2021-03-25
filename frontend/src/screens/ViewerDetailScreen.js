@@ -5,19 +5,13 @@ import { Table, Card } from 'react-bootstrap';
 import { FaPencilAlt, FaEdit } from 'react-icons/fa';
 import GoBack from '../components/GoBack';
 import { AiFillStar } from 'react-icons/ai';
-
+import Loader from '../components/bootstrapHelpers/Loader';
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
-    const [name, setName] = useState("");
     const [rating, setRating] = useState(Number);
-    const [followingSince, setFollowingSince] = useState("");
-    const [personalityType, setPersonalityType] = useState("");
-    const [location, setLocation] = useState("");
-    const [age, setAge] = useState("");
-    const [notes, setNotes] = useState("");
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
 
     const fetchViewer = async()=>{
@@ -33,21 +27,16 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
                 const { data } = await axios.get(`/api/viewers/${match.params.id}`, config)
 
                 setViewer(data);
-
+                setLoading(false);
 
             }catch(error){
                 setFetchViewerError(error.message);
+                setLoading(false);
             }
         
 
         }else{
-            setName(viewer.name);
             setRating(viewer.rating);
-            setFollowingSince(viewer.followingSince);
-            setPersonalityType(viewer.personalityType);
-            setLocation(viewer.location);
-            setAge(viewer.age);
-            setNotes(viewer.notes);
         }
 
     }
@@ -102,10 +91,12 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
 
     return (
             <div className="my-5">
+                { loading && <Loader /> }
                 <GoBack /><br />
                 <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mb-4">
                     Edit Details <FaEdit className="ml-1"/>
                 </Link>
+                {fetchViewerError}
              <h2>{viewer.name} Details</h2>
 
              <Table striped bordered hover responsive variant="dark" className="my-3">

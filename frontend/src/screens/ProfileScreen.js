@@ -3,14 +3,12 @@ import { Route } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
 import Paginate from '../components/Paginate';
 import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col, Card, Image } from 'react-bootstrap';
-import Loader from '../components/bootstrapHelpers/Loader';
+import { Row, Col, Card } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
-import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { AiFillSave } from 'react-icons/ai';
-import { FaBook, FaUserAlt } from 'react-icons/fa';
+import { FaBook } from 'react-icons/fa';
 import TMI from '../components/TMI';
 import { useToasts } from 'react-toast-notifications';
 
