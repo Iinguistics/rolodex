@@ -59,4 +59,6 @@ p{
   border-color: #3F729B;
 }
 
-
+.cap-type{
+  text-transform: capitalize;
+}

@@ -172,7 +172,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
     const renderLiveTwitchData = ()=>{
      
-        if(liveTwitchData){
+        if(liveTwitchData && userInfo){
            return (
             <>
             <h5>Currently streaming: {liveTwitchData.game_name}</h5>
@@ -192,8 +192,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         if(generalTwitchData){
            return (
             <>
-             <Image src={generalTwitchData.profile_image_url} roundedCircle fluid />
-            <h5>Twitch {generalTwitchData.broadcaster_type}</h5>
+            <Image src={generalTwitchData.profile_image_url} roundedCircle fluid className="border border-primary shadow-lg mb-1" />
+            <h5 className="cap-type">Twitch {generalTwitchData.broadcaster_type}</h5>
             <h5>Description: {generalTwitchData.description}</h5>
             <h5>Total views: {generalTwitchData.view_count}</h5>
             </>
