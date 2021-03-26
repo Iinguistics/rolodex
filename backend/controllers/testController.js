@@ -33,7 +33,9 @@ const test = asyncHandler(async(req,res)=>{
 });
 
 
-
+// Gen new token
+//@route  GET api/test/token
+//@access Have to be logged in
 const fetchToken = asyncHandler(async(req,res)=>{
       
          try{
