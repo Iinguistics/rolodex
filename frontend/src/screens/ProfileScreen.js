@@ -11,7 +11,7 @@ import { AiFillSave } from 'react-icons/ai';
 import { FaBook } from 'react-icons/fa';
 import TMI from '../components/TMI';
 import { useToasts } from 'react-toast-notifications';
-
+import Loader from '../components/bootstrapHelpers/Loader';
 
 
 const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
@@ -26,6 +26,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [userTwitchData, setUserTwitchData] = useState([]);
     const [createSnapshotError, setCreateSnapshotError] = useState("");
+    const [loading, setLoading] = useState(true);
 
 
     const { addToast } = useToasts();
@@ -50,8 +51,10 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             setPage(data.page);
             setTotalAddedViewers(data.totalLength);
             setFetchViewerSucces(true);
+            setLoading(false);
         }catch (error){
-          setListViewersError(error.message)
+          setListViewersError(error.message);
+          setLoading(false);
         }
     }
 
@@ -184,9 +187,9 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', height: '18rem'}}>
                 <Card.Body>
-                <Card.Title>Save your current viewer count</Card.Title>
+                <Card.Title>Save current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
                 Click save to capture your current viewer count from your twitch channel (Must be live).
@@ -199,13 +202,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
           </Col>
    
                <Col sm={6}>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', height: '18rem' }}>
                 <Card.Body>
                 <Card.Title>Add Viewer's to your book</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
                 <Card.Text>
-                Add viewer's to your spybook. You can refer back to your book so you 
-                can learn more about your viewer's & grow your channel.
+                Add viewer's to your spybook. You can reference back to your book. This tool allows you to learn more about your viewer's and grow your channel.
                 </Card.Text>
                 <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
               </Card.Body>
@@ -215,7 +217,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
 
             <Row className="mt-5">
-                <Col className="mb-5" sm={6}>
+                <Col className="mb-3" sm={6}>
                 { totalAddedViewers > 0 ? ( 
                     <>
                     <Route render={({ history })=> <SearchBox history = {history} />} />
@@ -225,7 +227,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 }
                 </Col>
             </Row>
-            
+            {loading && <Loader />} 
             <Row className="mt-5">
               {renderViewers()}
             </Row>
