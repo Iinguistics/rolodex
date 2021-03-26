@@ -19,7 +19,7 @@ function App({ history }) {
   const [userTwitchToken, setUserTwitchToken] = useState(null);
 
   const fetchTwitchToken = async()=>{
-    const { data } = await axios.get('/api/token');
+    const { data } = await axios.get('/api/twitchdata/token');
     localStorage.setItem('userTwitchToken', JSON.stringify(data));
   }
 
@@ -41,7 +41,7 @@ function App({ history }) {
        if(!userTwitchToken){
         fetchTwitchToken();
        }
-     
+
         
   }, [])
 
@@ -107,6 +107,7 @@ function App({ history }) {
 
         <Route
           path='/test'
+          exact
           render={(props) => (
             <Test {...props} userInfo={userInfo} />
           )}
