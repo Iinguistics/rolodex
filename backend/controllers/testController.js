@@ -3,8 +3,38 @@ const axios = require('axios');
 
 
 
-// Create new snapshot 
-//@route  POST api/snapshot
+// fetch twitch profile data / for profile img
+//@route  GET api/test
+//@access Have to be logged in
+const fetchTwitchUser = asyncHandler(async(req,res)=>{
+    const { token, name } = req.body;
+
+    //const testChannel = 'contv'
+    
+        try{
+
+        const config = {
+            headers:{
+                 // 'Content-Type': 'application/json',
+                  Authorization : `Bearer ${token}`,
+                 'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
+            }
+        }
+
+        // get specified users info
+        const { data } = await axios.get(`https://api.twitch.tv/helix/users?login=${name}&login=${name}`, config);
+
+        res.status(200).json(data);
+        
+         }catch(error){
+            res.status(404).json(error.message);
+        }
+});
+
+
+
+// fetch twitch user data
+//@route  POST api/test
 //@access Have to be logged in
 const test = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
@@ -60,4 +90,4 @@ const fetchToken = asyncHandler(async(req,res)=>{
 
 
 
-module.exports =  { test, fetchToken } 
+module.exports =  { test, fetchToken, fetchTwitchUser } 
