@@ -5,8 +5,6 @@ import { ToastProvider } from 'react-toast-notifications';
 import axios from 'axios';
 import Header from './Header';
 import HomeScreen from '../screens/HomeScreen';
-import Create from './Create';
-import Product from './Product';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -106,9 +104,6 @@ function App({ history }) {
             <ViewerCaptureScreen {...props} userInfo={userInfo} />
           )}
         />
-
-        <Route path="/create" exact component={Create} />
-        <Route path="/product/:id"  component={Product} />
 
         <Route path="/test" exact component={TMI} />
 

@@ -29,6 +29,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
     const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
+    const [sortedViewersName, setSortedViewersName] = useState([]);
 
 
 
@@ -60,6 +61,16 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
           setLoading(false);
         }
     }
+
+    //   const sortTest = ()=>{
+    //       const sortedArr = [];
+    //       for(let name of listViewers){
+    //           sortedArr.push(name.name)
+    //       }
+    //       sortedArr.sort();
+    //       setSortedViewersName(sortedArr);
+    //   }
+
 
 
     //fetch user data from twitch API
@@ -141,9 +152,9 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }catch(error){
             setCreateSnapshotError(error.message);
         }
-
     }
 
+   
 
     const renderViewers = ()=>{
         if(listViewers){

@@ -4,12 +4,8 @@ const { fetchLiveData, fetchToken, fetchGeneralData }  = require('../controllers
 const { protect, admin } = require('../middleware/authMiddleWare');
 
 
-
-
 router.post("/generaldata",fetchGeneralData);
-
 router.post("/livedata",fetchLiveData);
-
 router.get("/token",fetchToken)
 
 
