@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
 import Paginate from '../components/Paginate';
 import { Link } from 'react-router-dom';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Image } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
 import axios from 'axios';
 import { VscOpenPreview } from 'react-icons/vsc';
@@ -25,7 +25,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [page, setPage] = useState();
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [userTwitchData, setUserTwitchData] = useState([]);
-    const [moreUserTwitchData, setMoreUserTwitchData] = useState([]);
+    const [generalTwitchData, setGeneralTwitchData] = useState([]);
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -70,15 +70,15 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
 
      //fetch user data from twitch API
-     const fetchMoreUserTwitchData = async()=>{
+     const fetchGeneralTwitchData = async()=>{
         if(userInfo){
             const { data } = await axios.post('/api/twitchdata/generaldata', { token:userTwitchToken, name:userInfo.name });
-             setMoreUserTwitchData(data.data[0]);
+             setGeneralTwitchData(data.data[0]);
         }
     }
 
      console.log(userTwitchData);
-     console.log(moreUserTwitchData);
+     console.log(generalTwitchData);
 
     useEffect(()=>{
        
@@ -90,7 +90,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         //     fetchUserTwitchData();
         // }
         fetchUserTwitchData();
-        fetchMoreUserTwitchData();
+        fetchGeneralTwitchData();
 
         fetchViewers(keyword, pageNumber);
 
@@ -185,14 +185,15 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }
 
 
-    const renderMoreUserTwitchData = ()=>{
+    const renderGeneralTwitchData = ()=>{
      
-        if(moreUserTwitchData){
+        if(generalTwitchData){
            return (
             <>
-            <h5>{moreUserTwitchData.broadcaster_type}</h5>
-            <h5>Description: {moreUserTwitchData.description}</h5>
-            <h5>Total views: {moreUserTwitchData.view_count}</h5>
+             <Image src={generalTwitchData.profile_image_url} roundedCircle fluid />
+            <h5>Twitch {generalTwitchData.broadcaster_type}</h5>
+            <h5>Description: {generalTwitchData.description}</h5>
+            <h5>Total views: {generalTwitchData.view_count}</h5>
             </>
         )
         }else{
@@ -207,7 +208,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
-                {renderMoreUserTwitchData()}
+                {renderGeneralTwitchData()}
                 {renderUserTwitchData()}                 
             </div>
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
