@@ -63,7 +63,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     //fetch user data from twitch API
     const fetchUserTwitchData = async()=>{
         if(userInfo){
-            const { data } = await axios.post('/api/test', { token:userTwitchToken, name:userInfo.name });
+            const { data } = await axios.post('/api/twitchdata/livedata', { token:userTwitchToken, name:userInfo.name });
              setUserTwitchData(data.data);
         }
     }
@@ -72,7 +72,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
      //fetch user data from twitch API
      const fetchMoreUserTwitchData = async()=>{
         if(userInfo){
-            const { data } = await axios.post('/api/test/moredata', { token:userTwitchToken, name:userInfo.name });
+            const { data } = await axios.post('/api/twitchdata/generaldata', { token:userTwitchToken, name:userInfo.name });
              setMoreUserTwitchData(data.data[0]);
         }
     }
