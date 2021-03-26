@@ -6,7 +6,7 @@ const axios = require('axios');
 // fetch twitch profile data / for profile img
 //@route  POST api/test/moredata
 //@access Have to be logged in
-const fetchMoreTwitchUserData = asyncHandler(async(req,res)=>{
+const fetchGeneralData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
 
     //const testChannel = 'contv'
@@ -36,7 +36,7 @@ const fetchMoreTwitchUserData = asyncHandler(async(req,res)=>{
 // fetch twitch user data
 //@route  POST api/test
 //@access Have to be logged in
-const test = asyncHandler(async(req,res)=>{
+const fetchLiveData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
 
     //const testChannel = 'contv'
@@ -90,4 +90,4 @@ const fetchToken = asyncHandler(async(req,res)=>{
 
 
 
-module.exports =  { test, fetchToken, fetchMoreTwitchUserData} 
+module.exports =  { fetchLiveData, fetchToken, fetchGeneralData} 

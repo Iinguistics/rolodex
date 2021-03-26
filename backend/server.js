@@ -7,7 +7,7 @@ const viewerSnapshotRoutes = require('./routes/viewerSnapshotRoutes');
 const userRoutes = require('./routes/userRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleWare');
 
-const testRoutes = require('./routes/testRoutes');
+const twitchDataRoutes = require('./routes/twitchDataRoutes');
 
 
 dotenv.config();
@@ -28,7 +28,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/viewers', viewerRoutes);
 app.use('/api/snapshot', viewerSnapshotRoutes);
 
-app.use('/api/test', testRoutes);
+app.use('/api/twitchdata', twitchDataRoutes);
 
 
 app.use(notFound);

@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { test, fetchToken, fetchMoreTwitchUserData }  = require('../controllers/testController');
+const { fetchLiveData, fetchToken, fetchGeneralData }  = require('../controllers/testController');
 const { protect, admin } = require('../middleware/authMiddleWare');
 
 
 
 
-router.post("/moredata",  fetchMoreTwitchUserData);
+router.post("/generaldata",  fetchGeneralData);
 
-router.post("/",  test);
+router.post("/livedata",  fetchLiveData);
 
 router.get("/token", fetchToken)
 
