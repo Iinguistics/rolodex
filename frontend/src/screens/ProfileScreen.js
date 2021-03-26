@@ -28,6 +28,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [generalTwitchData, setGeneralTwitchData] = useState([]);
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
+    const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
+
 
 
     const { addToast } = useToasts();
@@ -74,6 +76,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         if(userInfo){
             const { data } = await axios.post('/api/twitchdata/generaldata', { token:userTwitchToken, name:userInfo.name });
              setGeneralTwitchData(data.data[0]);
+             setTwitchGeneralDataLoading(false);
         }
     }
 
@@ -207,6 +210,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
+                {twitchGeneralDataLoading && <Loader />}
                 {renderGeneralTwitchData()}
                 {renderLiveTwitchData()}                 
             </div>
