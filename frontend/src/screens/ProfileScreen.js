@@ -25,6 +25,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [page, setPage] = useState();
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [userTwitchData, setUserTwitchData] = useState([]);
+    const [moreUserTwitchData, setMoreUserTwitchData] = useState([]);
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -67,7 +68,17 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }
     }
 
+
+     //fetch user data from twitch API
+     const fetchMoreUserTwitchData = async()=>{
+        if(userInfo){
+            const { data } = await axios.post('/api/test/moredata', { token:userTwitchToken, name:userInfo.name });
+             setMoreUserTwitchData(data.data[0]);
+        }
+    }
+
      console.log(userTwitchData);
+     console.log(moreUserTwitchData);
 
     useEffect(()=>{
        
@@ -79,6 +90,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         //     fetchUserTwitchData();
         // }
         fetchUserTwitchData();
+        fetchMoreUserTwitchData();
 
         fetchViewers(keyword, pageNumber);
 
@@ -173,6 +185,22 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }
 
 
+    const renderMoreUserTwitchData = ()=>{
+     
+        if(moreUserTwitchData){
+           return (
+            <>
+            <h5>{moreUserTwitchData.broadcaster_type}</h5>
+            <h5>Description: {moreUserTwitchData.description}</h5>
+            <h5>Total views: {moreUserTwitchData.view_count}</h5>
+            </>
+        )
+        }else{
+           return <h5>Not currently streaming</h5>
+        }
+    }
+
+
 
     return (
         <div className="my-5 container">
@@ -180,6 +208,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
                 {renderUserTwitchData()}
+                {renderMoreUserTwitchData()}
+                 
             </div>
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }

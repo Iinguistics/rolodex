@@ -4,9 +4,9 @@ const axios = require('axios');
 
 
 // fetch twitch profile data / for profile img
-//@route  GET api/test
+//@route  POST api/test/moredata
 //@access Have to be logged in
-const fetchTwitchUser = asyncHandler(async(req,res)=>{
+const fetchMoreTwitchUserData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
 
     //const testChannel = 'contv'
@@ -90,4 +90,4 @@ const fetchToken = asyncHandler(async(req,res)=>{
 
 
 
-module.exports =  { test, fetchToken, fetchTwitchUser } 
+module.exports =  { test, fetchToken, fetchMoreTwitchUserData} 
