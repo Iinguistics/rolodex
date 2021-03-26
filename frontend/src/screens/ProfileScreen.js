@@ -64,7 +64,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const fetchLiveTwitchData = async()=>{
         if(userInfo){
             const { data } = await axios.post('/api/twitchdata/livedata', { token:userTwitchToken, name:userInfo.name });
-             setLiveTwitchData(data.data);
+             setLiveTwitchData(data.data[0]);
         }
     }
 
@@ -129,7 +129,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-             await axios.post('/api/snapshot', {count: liveTwitchData[0].viewer_count}, config)
+             await axios.post('/api/snapshot', {count: liveTwitchData.viewer_count}, config)
             addToast('Viewer count has been captured', {
                 appearance: 'success'
             });
@@ -169,12 +169,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
     const renderLiveTwitchData = ()=>{
      
-        if(liveTwitchData[0]){
+        if(liveTwitchData){
            return (
             <>
-            <h5>Currently streaming: {liveTwitchData[0].game_name}</h5>
-            <h5>Title: {liveTwitchData[0].title}</h5>
-            <h5>Current viewer count: {liveTwitchData[0].viewer_count}</h5>
+            <h5>Currently streaming: {liveTwitchData.game_name}</h5>
+            <h5>Title: {liveTwitchData.title}</h5>
+            <h5>Current viewer count: {liveTwitchData.viewer_count}</h5>
             <TMI channel = {userInfo.name}/>
             </>
         )
@@ -224,8 +224,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 Click save to capture your current viewer count from your twitch channel (Must be live).
                 You can view all your captures charted out by clicking the view captures.
                 </Card.Text>
-               {liveTwitchData[0] && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
-                <Link to="/profile/viewer/captures" className={liveTwitchData[0] ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link>
+               {liveTwitchData && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
+                <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link>
              </Card.Body>
             </Card>
           </Col>
