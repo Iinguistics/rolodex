@@ -4,7 +4,7 @@ const axios = require('axios');
 
 
 // fetch twitch profile data / for profile img
-//@route  POST api/test/moredata
+//@route  POST api/generaldata
 //@access Have to be logged in
 const fetchGeneralData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;

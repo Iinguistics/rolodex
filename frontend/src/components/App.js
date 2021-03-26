@@ -11,8 +11,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
-import TMI from '../components/TMI';
-
+import Test from './Test';
 
 
 function App({ history }) {
@@ -20,7 +19,7 @@ function App({ history }) {
   const [userTwitchToken, setUserTwitchToken] = useState(null);
 
   const fetchTwitchToken = async()=>{
-    const { data } = await axios.get('/api/test/token');
+    const { data } = await axios.get('/api/token');
     localStorage.setItem('userTwitchToken', JSON.stringify(data));
   }
 
@@ -105,7 +104,16 @@ function App({ history }) {
           )}
         />
 
-        <Route path="/test" exact component={TMI} />
+
+        <Route
+          path='/test'
+          render={(props) => (
+            <Test {...props} userInfo={userInfo} />
+          )}
+        />
+
+
+        
 
         </ToastProvider>
       </Container>

@@ -29,8 +29,6 @@ const CaptureChart = ({ userInfo, history }) => {
             const { data } = await axios.get('/api/snapshot', config);
             setCaptureData(data.snapshots);
 
-             
-           
         }catch (error){
           setCaptureDataError(error.message)
         }

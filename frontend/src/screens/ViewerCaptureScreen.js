@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import CaptureChart from '../components/CaptureChart';
 import GoBack from '../components/GoBack';
 
 
 
 const ViewerCaptureScreen = ({ userInfo, history }) => {
+
+    useEffect(()=>{
+        if(!userInfo){
+         history.push('/login');
+        }
+    }, []);
 
 
 
