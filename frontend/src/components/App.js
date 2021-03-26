@@ -11,7 +11,6 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
-import Test from './Test';
 
 
 function App({ history }) {
@@ -105,16 +104,6 @@ function App({ history }) {
         />
 
 
-        <Route
-          path='/test'
-          exact
-          render={(props) => (
-            <Test {...props} userInfo={userInfo} />
-          )}
-        />
-
-
-        
 
         </ToastProvider>
       </Container>

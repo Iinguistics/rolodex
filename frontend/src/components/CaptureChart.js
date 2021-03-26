@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Scatter } from 'react-chartjs-2';
+import { Line} from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
 import { ListGroup } from 'react-bootstrap';
 
 
-const CaptureChart = ({ userInfo, history }) => {
+const CaptureChart = ({ userInfo }) => {
     const [captureData, setCaptureData] = useState([]);
     const [captureDataError, setCaptureDataError] = useState("");
     const [dateArr, setDateArr] = useState([]);
     const [viewRaw, setViewRaw] = useState(false);
     const [averageViewers, setAverageViewers] = useState(0);
+    const [getAllCaptures, setGetAllCaptures] = useState(false);
 
-
-
-
-
-    //fetch captures from db
-    const fetchCaptures = async()=>{
+     //fetch captures from db
+     const fetchCaptures = async()=>{
         
         try{
             const config = {
@@ -28,6 +25,8 @@ const CaptureChart = ({ userInfo, history }) => {
             }
             const { data } = await axios.get('/api/snapshot', config);
             setCaptureData(data.snapshots);
+            setGetAllCaptures(true);
+
 
         }catch (error){
           setCaptureDataError(error.message)
@@ -35,7 +34,7 @@ const CaptureChart = ({ userInfo, history }) => {
     }
 
 
-    const fetchDates = ()=>{
+    const outputDates = ()=>{
         const myArr = [];
         for(let i = 0; i < captureData.length; i++){
         const newDate =  dateSplicer(captureData[i].createdAt);
@@ -45,124 +44,92 @@ const CaptureChart = ({ userInfo, history }) => {
         return myArr;
     }
 
-
-    useEffect(()=>{
-        if(!userInfo){
-         history.push('/login');
-        }
-
-        fetchCaptures();
-        fetchDates();
-        
-    }, []);
-
-    useEffect(()=>{
-        fetchAverageViewers();
-        }, [captureData]);
-
-   
-
     const dateSplicer = (date)=>{
         let dateToArr = date.split("");
         dateToArr.splice(10,14);
         const newDate = dateToArr.join("");
         return newDate;
     }
-   
-    const testArrFunc = ()=>{
+
+
+    const outputCount = ()=>{
         const myArr = [];
         for(let i = 0; i < captureData.length; i++){
-        const newDate =  dateSplicer(captureData[i].createdAt);
-        myArr.push({ x: newDate, y: captureData[i].chatter_count })
+        myArr.push( captureData[i].chatter_count )
         }
         return myArr;
     }
 
+
+    const toggleRaw = ()=>{
+        setViewRaw(!viewRaw)
+    }
+ 
+    const fetchAverageViewers = ()=>{
+        if(captureData.length === 0){
+            return
+        }
+        let runningValue = 0;
+        for(let item of captureData){
+            runningValue += item.chatter_count
+        }
+        setAverageViewers(Math.floor(runningValue / captureData.length))
+    }
+
+
+
+   if(userInfo) console.log(captureData)
+
+    useEffect(()=>{
+        if(userInfo){
+            fetchCaptures();
+            outputDates();    
+        }
+    }, [userInfo, getAllCaptures]);
+
+    useEffect(()=>{
+        if(userInfo){
+        fetchAverageViewers();
+        }
+        }, [captureData]);
+
     
-    
+
 
     const data = {
-    datasets: [
-        {
-        label: 'Captures Y-M-D',
-        data: testArrFunc(),
-        backgroundColor: '#000',
+        labels: dateArr && dateArr,
+        datasets: [
+          {
+            label: '# of Viewers',
+            data: captureData && outputCount(),
+            fill: false,
+            backgroundColor: '#000',
+            //borderColor: '#add8e6',
+            borderColor: '#8B9DC3',
+          },
+        ],
+      }
+      
+      const options = {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
         },
-    ],
-    }
+      }
+     
 
-    const options = {
-        
-    scales: {
-        yAxes: [{
-            ticks: {
-            beginAtZero: true,
-            },
-            scaleLabel: {
-                display: true,
-                labelString: 'Viewer Count'
-              }
-        }],
-        xAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'All Captures',
-              
-            },
-
-            type: 'time',
-            time: {
-                displayFormats: {
-                    quarter: 'MMM YYYY'
-                }
-            },
-            
-            ticks: {
-                callback: function(label, index, labels) {
-                     for(let i = 0;  i<dateArr.length; i++){
-                         if(dateArr[i] !== dateArr[i + 1]){
-                            return
-                         }
-                        
-                     }
-                    }
-                }   
-          }],
-      },
-    }
-    
-
-   const toggleRaw = ()=>{
-       setViewRaw(!viewRaw)
-   }
-
-   const fetchAverageViewers = ()=>{
-       if(captureData.length === 0){
-           return
-       }
-       let runningValue = 0;
-       for(let item of captureData){
-           runningValue += item.chatter_count
-       }
-       setAverageViewers(Math.floor(runningValue / captureData.length))
-   }
-
-    
-
-       
 
     return (
         <div className="my-5">
-            {captureDataError && <Message variant="danger">{captureDataError}</Message> }
+         {captureDataError && <Message variant="danger">{captureDataError}</Message> }
+           {captureData && <Line data={data} options={options} />} 
 
-            <Scatter
-                data={data}
-                width={100}
-                height={50}
-                options={options}
-            />
-
-            <ListGroup horizontal className="my-5">
+           <ListGroup horizontal className="my-5">
             <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>
             <ListGroup.Item className="text-white">Average Viewers: {averageViewers}</ListGroup.Item>
             </ListGroup>
