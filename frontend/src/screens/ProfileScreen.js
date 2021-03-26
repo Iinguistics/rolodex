@@ -207,9 +207,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             <div>
                 <h1>Dashboard</h1>
                 <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
-                {renderUserTwitchData()}
                 {renderMoreUserTwitchData()}
-                 
+                {renderUserTwitchData()}                 
             </div>
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
