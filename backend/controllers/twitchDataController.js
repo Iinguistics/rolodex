@@ -39,7 +39,7 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
 const fetchLiveData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
 
-    //const testChannel = 'contv'
+    const testChannel = 'contv'
     
         try{
 
@@ -52,7 +52,7 @@ const fetchLiveData = asyncHandler(async(req,res)=>{
         }
 
         // get specified users info, including their user_id & viewer_count
-        const { data } = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${name}`, config);
+        const { data } = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${testChannel}`, config);
 
         res.status(200).json(data);
         console.log(data);
