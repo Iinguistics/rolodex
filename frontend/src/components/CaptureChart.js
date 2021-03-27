@@ -12,6 +12,9 @@ const CaptureChart = ({ userInfo }) => {
     const [viewRaw, setViewRaw] = useState(false);
     const [averageViewers, setAverageViewers] = useState(0);
     const [getAllCaptures, setGetAllCaptures] = useState(false);
+    const [heighestCount, setHeighestCount] = useState(0);
+    const [heighestCountTitle, setHeighestCountTitle] = useState("");
+
 
      //fetch captures from db
      const fetchCaptures = async()=>{
@@ -61,6 +64,16 @@ const CaptureChart = ({ userInfo }) => {
     }
 
 
+    const setHighest = ()=>{
+        for(let i = 0; i < captureData.length; i++){
+            if(captureData[i].chatter_count > heighestCount){
+                setHeighestCount(captureData[i].chatter_count);
+                setHeighestCountTitle(captureData[i].stream_title);
+            }
+        }
+    }
+
+
     const toggleRaw = ()=>{
         setViewRaw(!viewRaw)
     }
@@ -90,6 +103,7 @@ const CaptureChart = ({ userInfo }) => {
     useEffect(()=>{
         if(userInfo){
         fetchAverageViewers();
+        setHighest();
         }
         }, [captureData]);
 
@@ -129,9 +143,13 @@ const CaptureChart = ({ userInfo }) => {
          {captureDataError && <Message variant="danger">{captureDataError}</Message> }
            {captureData && <Line data={data} options={options} />} 
 
-           <ListGroup horizontal className="my-5">
+           <ListGroup horizontal className="mt-5 mb-3">
             <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>
             <ListGroup.Item className="text-white">Average Viewers: {averageViewers}</ListGroup.Item>
+            </ListGroup>
+
+            <ListGroup horizontal className="mb-3">
+            <ListGroup.Item className="text-white">Heighest Viewers: {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
             </ListGroup>
 
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
