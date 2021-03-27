@@ -39,7 +39,7 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
 const fetchLiveData = asyncHandler(async(req,res)=>{
     const { token, name } = req.body;
 
-    const testChannel = 'contv'
+    const testChannel = 'contv';
     
         try{
 

@@ -64,7 +64,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }
       
       // sort viewers a-z
-      const sortTest = ()=>{
+      const sortViewers = ()=>{
           const sortedArr = [];
           for(let name of listViewers){
               sortedArr.push(name.name)
@@ -123,7 +123,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
     useEffect(()=>{
      if(listViewers){
-         sortTest();
+         sortViewers();
      }
     }, [fetchViewersSuccess])
 
