@@ -12,8 +12,11 @@ const CaptureChart = ({ userInfo }) => {
     const [viewRaw, setViewRaw] = useState(false);
     const [averageViewers, setAverageViewers] = useState(0);
     const [getAllCaptures, setGetAllCaptures] = useState(false);
-    const [heighestCount, setHeighestCount] = useState(0);
+    const [heighestCount, setHeighestCount] = useState(Number);
     const [heighestCountTitle, setHeighestCountTitle] = useState("");
+    const [lowestCount, setLowestCount] = useState(Number);
+    const [lowestCountTitle, setLowestCountTitle] = useState("");
+
 
 
      //fetch captures from db
@@ -65,11 +68,32 @@ const CaptureChart = ({ userInfo }) => {
 
 
     const setHighest = ()=>{
-        for(let i = 0; i < captureData.length; i++){
-            if(captureData[i].chatter_count > heighestCount){
-                setHeighestCount(captureData[i].chatter_count);
-                setHeighestCountTitle(captureData[i].stream_title);
+        if(captureData){
+            let highNum = 0;
+            let highTitle = "";
+            for(let i = 0; i < captureData.length; i++){
+                if(captureData[i].chatter_count > highNum){
+                    highNum = captureData[i].chatter_count;
+                    highTitle = captureData[i].stream_title;
+                }
             }
+            setHeighestCount(highNum);
+            setHeighestCountTitle(highTitle);
+        }
+    }
+
+    const setLowest = ()=>{
+        if(captureData){
+            let lowNum = Infinity;
+            let lowTitle = "";
+            for(let i = 0; i < captureData.length; i++){
+                if(captureData[i].chatter_count < lowNum){
+                    lowNum = captureData[i].chatter_count;
+                    lowTitle = captureData[i].stream_title;
+                }
+            }
+            setLowestCount(lowNum);
+            setLowestCountTitle(lowTitle);
         }
     }
 
@@ -104,8 +128,15 @@ const CaptureChart = ({ userInfo }) => {
         if(userInfo){
         fetchAverageViewers();
         setHighest();
+        setLowest();
         }
         }, [captureData]);
+
+        // useEffect(()=>{
+        //     if(captureData){
+        //     setHighest();
+        //     }
+        //     }, []);
 
     
 
@@ -150,6 +181,10 @@ const CaptureChart = ({ userInfo }) => {
 
             <ListGroup horizontal className="mb-3">
             <ListGroup.Item className="text-white">Heighest Viewers: {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
+            </ListGroup>
+
+            <ListGroup horizontal className="mb-3">
+            <ListGroup.Item className="text-white">Lowest Viewers: {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
             </ListGroup>
 
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
