@@ -19,7 +19,7 @@ const getSnapshots = asyncHandler(async(req,res)=>{
 //@route  POST api/snapshot
 //@access Have to be logged in
 const createSnapshot = asyncHandler(async(req,res)=>{
-   const { count } = req.body;
+   const { count, title } = req.body;
 
         try{
             if(count === 0){
@@ -29,7 +29,8 @@ const createSnapshot = asyncHandler(async(req,res)=>{
                 }else{
                     const snapshot = new ViewerSnapshot({
                         user: req.user._id,
-                        chatter_count: count
+                        chatter_count: count,
+                        stream_title: title
                     });
                     const createdSnapshot = await snapshot.save();
                     res.status(201).json(createdSnapshot);

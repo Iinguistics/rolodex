@@ -9,7 +9,11 @@ const viewerSnapshotSchema = mongoose.Schema({
     chatter_count:{
        type: Number,
        required: true
-    }
+    },
+    stream_title:{
+        type: String,
+        required: true
+     }
  
 }, {
     timestamps: true
