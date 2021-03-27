@@ -203,7 +203,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         if(generalTwitchData){
            return (
             <>
-            <Image src={generalTwitchData.profile_image_url} roundedCircle fluid className="border border-primary shadow-lg mb-1" />
+            <Image src={generalTwitchData.profile_image_url} roundedCircle fluid className="border border-primary shadow-lg mb-2" />
             <h5 className="cap-type">Twitch {generalTwitchData.broadcaster_type}</h5>
             <h5>Description: {generalTwitchData.description}</h5>
             <h5>Total views: {generalTwitchData.view_count}</h5>
@@ -220,7 +220,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         <div className="my-5 container">
             <div>
                 <h1>Dashboard</h1>
-                <h2 className="my-4">Welcome {userInfo && userInfo.name}</h2>
+                <h2 className="my-3">Welcome {userInfo && userInfo.name}</h2>
                 {twitchGeneralDataLoading && <Loader />}
                 {renderGeneralTwitchData()}
                 {renderLiveTwitchData()}                 
@@ -228,6 +228,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
             {createSnapshotError && <Message variant="danger">{createSnapshotError}</Message> }
+
+            <div className="divider w-75 my-3"></div>
             
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
@@ -261,18 +263,18 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
 
 
             <Row className="mt-5">
-                <Col className="mb-3" sm={6}>
+                <Col className="mb-4" sm={6}>
                 { totalAddedViewers > 0 ? ( 
                     <>
                     <Route render={({ history })=> <SearchBox history = {history} />} />
-                    <h5 className ="mt-3">{totalAddedViewers} Viewer's currently in your book <FaBook /></h5> 
+                    <h5 className ="mt-4">{totalAddedViewers} Viewer's currently in your book <FaBook /></h5> 
                     </>
-                ) : <h5 className ="mt-3">You have no viewers currently in your book. <FaBook /></h5>
+                ) : <h5 className ="mt-4">You have no viewers currently in your book. <FaBook /></h5>
                 }
                 </Col>
             </Row>
             {loading && <Loader />} 
-            <Row className="mt-5">
+            <Row className="mt-4">
               {renderViewers()}
             </Row>
              

@@ -26,6 +26,12 @@ p{
   font-size: 16px;
 }
 
+.divider{
+  background: #595959;
+  height: 1px;
+  margin-bottom: 6rem !important;
+}
+
 
 .personality-description-cards{
   background-color: #333;
