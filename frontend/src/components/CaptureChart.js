@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Line} from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Jumbotron } from 'react-bootstrap';
 
 
 const CaptureChart = ({ userInfo }) => {
@@ -132,13 +132,7 @@ const CaptureChart = ({ userInfo }) => {
         }
         }, [captureData]);
 
-        // useEffect(()=>{
-        //     if(captureData){
-        //     setHighest();
-        //     }
-        //     }, []);
-
-    
+        
 
 
     const data = {
@@ -173,19 +167,20 @@ const CaptureChart = ({ userInfo }) => {
         <div className="my-5">
          {captureDataError && <Message variant="danger">{captureDataError}</Message> }
            {captureData && <Line data={data} options={options} />} 
-
+           <Jumbotron className="my-5 main-jumbo-bg shadow">
            <ListGroup horizontal className="mt-5 mb-3">
             <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>
             <ListGroup.Item className="text-white">Average Viewers: {averageViewers}</ListGroup.Item>
             </ListGroup>
 
             <ListGroup horizontal className="mb-3">
-            <ListGroup.Item className="text-white">Heighest Viewers: {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
+            <ListGroup.Item className="text-white"><span className="green">Heighest Viewers:</span> {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
             </ListGroup>
 
             <ListGroup horizontal className="mb-3">
-            <ListGroup.Item className="text-white">Lowest Viewers: {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
+            <ListGroup.Item className="text-white"><span className="red">Lowest Viewers:</span>  {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
             </ListGroup>
+            </Jumbotron>
 
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
          

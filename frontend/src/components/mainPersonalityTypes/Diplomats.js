@@ -18,7 +18,7 @@ const Diplomats = () => {
     return (
         <Fragment>
         <Element name="diplomats">
-           <Jumbotron className="card border-success">
+           <Jumbotron className="card-jumbo-bg">
            <h1>Diplomats</h1>
             
            <CardDeck className="mt-5">

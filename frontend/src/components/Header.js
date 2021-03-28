@@ -62,7 +62,7 @@ const Header = ({ history }) => {
     return (
         <header>
 
-         <Navbar expand="lg" collapseOnSelect fixed="top" className="bg-dark navbar-dark">
+         <Navbar expand="lg" collapseOnSelect fixed="top" className="navbar">
              <Container>
              <LinkContainer to="/">
                  <Navbar.Brand>Spybook</Navbar.Brand>

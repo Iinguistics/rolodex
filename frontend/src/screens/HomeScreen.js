@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { ListGroup, Jumbotron } from 'react-bootstrap';
 
 
 const HomeScreen = ({ userInfo }) => {
+
+
+    
 
   
    
@@ -16,8 +20,10 @@ const HomeScreen = ({ userInfo }) => {
             
             : ""}
             
-            <h1>Home screen</h1>
-       
+            <Jumbotron className="my-5 main-jumbo-bg shadow">
+
+                </Jumbotron>
+            
         </div>
     )
 }

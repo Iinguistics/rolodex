@@ -5,11 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #12141D;
 }
-
+/* good card color background: #252525;   good black color: #37352F; */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.navbar{
+  background: #12141D;
+}
+
+.navbar a{
+  color: #FFFFFF90 !important;
 }
 
 input, textarea{
@@ -18,12 +27,25 @@ input, textarea{
 
 
 h1,h2,h3,h4,h5{
-  color: #37352f;
+  color: #FFFFFF90;
+}
+
+label{
+  color: #FFFFFF;
 }
 
 
 p{
   font-size: 16px;
+  color: #FFFFFF95;
+}
+
+.green{
+  color: #00ff00;
+}
+
+.red{
+  color: #ff0000;
 }
 
 .divider{
@@ -32,11 +54,6 @@ p{
   margin-bottom: 6rem !important;
 }
 
-
-.personality-description-cards{
-  background-color: #333;
-  border-radius: 6px;
-}
 
 
 .scroll-link:hover{
@@ -74,3 +91,29 @@ p{
 .cap-type{
   text-transform: capitalize;
 }
+
+
+.main-jumbo-bg{
+  background-image: linear-gradient(
+  90deg
+  , #5132c0, #8f2df0);
+  border-radius: 6px;
+}
+
+
+.card-jumbo-bg{
+  background: #212121;
+  border-radius: 6px;
+
+}
+
+
+.personality-description-cards{
+  background-color: #37352F;
+  border-radius: 6px;
+}
+.personality-description-cards p, h1{
+  color: #FFFFFF;
+}
+
+

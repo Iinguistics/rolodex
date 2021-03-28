@@ -17,7 +17,7 @@ const Explorers = () => {
     return (
         <Fragment>
         <Element name="explorers">
-           <Jumbotron className="card border-warning">
+           <Jumbotron className="card-jumbo-bg">
            <h1>Explorers</h1>
             
            <CardDeck className="mt-5">

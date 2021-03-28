@@ -125,7 +125,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}edit view error</Message> }
         {fetchViewerError && <Message variant="danger">{fetchViewerError}viewererror</Message> }
         <FormContainer>
-        <h1>Update Viewer</h1>
+        <h1 className="mb-4">Update Viewer</h1>
 
         <Form onSubmit={submitHandler}>
 

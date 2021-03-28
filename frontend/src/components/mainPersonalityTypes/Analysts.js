@@ -18,7 +18,7 @@ const Analysts = () => {
     return (
         <Fragment>
         <Element name="analysts">
-           <Jumbotron className="card border-primary">
+           <Jumbotron className="card-jumbo-bg">
            <h1>Analysts</h1>
             
            <CardDeck className="mt-5">
