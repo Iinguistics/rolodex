@@ -142,7 +142,7 @@ const CaptureChart = ({ userInfo }) => {
             label: '# of Viewers',
             data: captureData && outputCount(),
             fill: false,
-            backgroundColor: '#000',
+            backgroundColor: '#FFFFFF',
             //borderColor: '#add8e6',
             borderColor: '#8B9DC3',
           },
@@ -166,7 +166,7 @@ const CaptureChart = ({ userInfo }) => {
     return (
         <div className="my-5">
          {captureDataError && <Message variant="danger">{captureDataError}</Message> }
-           {captureData && <Line data={data} options={options} />} 
+           {captureData && <Line data={data} options={options} /> } 
            <Jumbotron className="my-5 main-jumbo-bg shadow">
            <ListGroup horizontal className="mt-5 mb-3">
             <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>

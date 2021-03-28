@@ -136,7 +136,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             </Table>
 
             <Card className="personality-description-cards" text="light" >
-                    <Card.Header className="text-light">Notes<FaPencilAlt className="ml-1"/></Card.Header>
+                    <Card.Header className="text-light">Notes <FaPencilAlt className="ml-1"/></Card.Header>
                     <Card.Body>
                     <Card.Text>
                      {viewer.notes}
