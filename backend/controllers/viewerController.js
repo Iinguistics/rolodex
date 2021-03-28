@@ -63,7 +63,7 @@ const getViewerById = asyncHandler(async(req,res)=>{
 
 
  // UPDATE viewer
-//@route  PUT api/viewer/edit/:id
+//@route  PUT api/viewers/edit/:id
 //@access Private
 const editViewer = asyncHandler(async(req,res)=>{
     const viewer = await Viewer.findById(req.params.id)
@@ -87,8 +87,22 @@ const editViewer = asyncHandler(async(req,res)=>{
 });
 
 
+// Delete 
+//@route  DELETE api/viewers/remove/:id
+//@access Private
+const deleteViewer = asyncHandler(async(req,res)=>{
+    const viewer = await Viewer.findByIdAndDelete(req.params.id);
+ 
+    if(!viewer){
+        res.status(404)
+        throw new Error('Viewer not found');
+    }
+
+ });
 
 
 
 
- module.exports = { getViewers, createViewer, getViewerById, editViewer }
+
+
+ module.exports = { getViewers, createViewer, getViewerById, editViewer, deleteViewer }
