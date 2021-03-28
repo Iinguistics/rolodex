@@ -25,7 +25,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
                     }
                 }
                 const { data } = await axios.get(`/api/viewers/${match.params.id}`, config)
-
+        
                 setViewer(data);
                 setLoading(false);
 
@@ -49,7 +49,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             
          fetchViewer();
             
-    },[viewer, history, match.params.id])
+    },[viewer, history, match.params.id, userInfo])
 
 
     const renderStars = ()=>{
@@ -96,6 +96,7 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
                 <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mb-4">
                     Edit Details <FaEdit className="ml-1"/>
                 </Link>
+                <input className="btn-danger btn my-4 d-block" type="submit" value="Delete Viewer" onClick={()=> window.history.back()}/>
                 {fetchViewerError}
              <h2>{viewer.name} Details</h2>
 
