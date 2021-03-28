@@ -154,6 +154,17 @@ div{
 }
 
 
+.login-text{
+  font-size: 14px;
+}
+.register-text{
+  color: #3F729B;
+}
+.register-text:hover{
+  color: #3F729B;
+}
+
+
 
 
 @media (max-width: 767.98px) {
