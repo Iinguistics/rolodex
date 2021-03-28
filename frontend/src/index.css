@@ -119,9 +119,10 @@ div{
   background-color: #37352F;
   border-radius: 6px;
 }
-.personality-description-cards p, h1{
-  color: #FFFFFF;
+.personality-description-cards p, h1, div{
+  color: #FFFFFF ;
 }
+
 
 .shadow-lgg{
   -webkit-box-shadow: 0px 0px 3px 5px #292929; 

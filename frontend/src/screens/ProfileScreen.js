@@ -30,6 +30,8 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [loading, setLoading] = useState(true);
     const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
     const [sortedViewersName, setSortedViewersName] = useState([]);
+    const [sortedViewersRating, setSortedViewersRating] = useState([]);
+
     const [toggleSort, setToggleSort] = useState(false);
 
 
@@ -66,11 +68,14 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
       // sort viewers a-z
       const sortViewers = ()=>{
           const sortedArr = [];
+          const sortedRating = [];
           for(let name of listViewers){
               sortedArr.push(name.name)
+              sortedRating.push(name.rating)
           }
           sortedArr.sort();
           setSortedViewersName(sortedArr);
+          setSortedViewersRating(sortedRating);
       }
 
       // toggle
@@ -121,17 +126,17 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber ]);
 
 
-    useEffect(()=>{
-     if(listViewers){
-         sortViewers();
-     }
-    }, [fetchViewersSuccess])
+    // useEffect(()=>{
+    //  if(listViewers){
+    //      sortViewers();
+    //  }
+    // }, [fetchViewersSuccess])
 
-    useEffect(()=>{
-        if(listViewers){
-            fetchViewers(keyword, pageNumber);
-        }
-       }, [toggleSort])
+    // useEffect(()=>{
+        
+    //     fetchViewers(keyword, pageNumber);
+    //     console.log()
+    //    }, [toggleSort])
 
      
 
@@ -201,31 +206,31 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }
     }
 
-    // sorted a - z
-    const renderSortedViewers = ()=>{
-        if(listViewers){
-            return listViewers.map((viewer, i)=>{
-                return(
-                        <Col className="mb-5" sm key={viewer._id}>
-                         <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
-                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
-                            <Card.Body>
-                            <Card.Title className="viewer-name">{sortedViewersName[i]}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating} </Card.Subtitle>
-                                <Card.Text>
-                                Personality: {viewer.personalityType}
-                            </Card.Text>
-                            <Card.Text>
-                                Following Since: {viewer.followingSince}
-                            </Card.Text>
-                         </Card.Body>
-                        </Card>
-                     </Link>
-                  </Col>
-                )
-            })
-        }
-    }
+    // sorted a - z   come back to this   <input type="submit" className="btn-primary btn my-3" value={toggleSort ? "Unsort viewers" : "Sort Viewers (a-z)"} onClick={()=> sortToggle()}/>
+    // const renderSortedViewers = ()=>{
+    //     if(listViewers){
+    //         return listViewers.map((viewer, i)=>{
+    //             return(
+    //                     <Col className="mb-5" sm key={viewer._id}>
+    //                      <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
+    //                         <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
+    //                         <Card.Body>
+    //                         <Card.Title className="viewer-name">{sortedViewersName[i]}</Card.Title>
+    //                             <Card.Subtitle className="mb-2 text-muted">Rating: {sortedViewersRating[i]} </Card.Subtitle>
+    //                             <Card.Text>
+    //                             Personality: {viewer.personalityType}
+    //                         </Card.Text>
+    //                         <Card.Text>
+    //                             Following Since: {viewer.followingSince}
+    //                         </Card.Text>
+    //                      </Card.Body>
+    //                     </Card>
+    //                  </Link>
+    //               </Col>
+    //             )
+    //         })
+    //     }
+    // }
 
     const renderLiveTwitchData = ()=>{
      
@@ -314,7 +319,6 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                     <>
                     <Route render={({ history })=> <SearchBox history = {history} />} />
                     <h5 className ="mt-4">{totalAddedViewers} Viewer's currently in your book <FaBook /></h5> 
-                    <input type="submit" className="btn-primary btn my-3" value={toggleSort ? "Unsort viewers" : "Sort Viewers (a-z)"} onClick={()=> sortToggle()}/>
                     </>
                 ) : <h5 className ="mt-4">You have no viewers currently in your book. <FaBook /></h5>
                 }
@@ -322,7 +326,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             </Row>
             {loading && <Loader />} 
             <Row className="mt-4">
-                {toggleSort ? renderSortedViewers() : renderViewers()}
+                {renderViewers()}
             </Row>
              
              { totalAddedViewers > 15 &&  <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} /> }

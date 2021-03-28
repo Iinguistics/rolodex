@@ -23,10 +23,10 @@ const Analysts = () => {
             
            <CardDeck className="mt-5">
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Architect</Card.Header>
+                    <Card.Header className="text-light">Architect</Card.Header>
                     <Card.Body>
-                    <Card.Title>INTJ</Card.Title>
-                    <Card.Text>
+                    <Card.Title className="text-light">INTJ</Card.Title>
+                    <Card.Text >
                      Imaginative & strategic thinkers, with a plan for everything.
                     </Card.Text>
                     </Card.Body>
@@ -45,9 +45,9 @@ const Analysts = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Logician</Card.Header>
+                    <Card.Header className="text-light">Logician</Card.Header>
                     <Card.Body>
-                    <Card.Title>INTP</Card.Title>
+                    <Card.Title className="text-light">INTP</Card.Title>
                     <Card.Text>
                       Innovative inventors with an unquenchable thirst for knowledge.
                     </Card.Text>

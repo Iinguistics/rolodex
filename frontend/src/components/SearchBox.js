@@ -23,7 +23,7 @@ const SearchBox = ({ history })=>{
            <Form.Control type="text" name="q" onChange={(e)=> setKeyword(e.target.value)}
             placeholder="Search" className="mr-sm-2">
            </Form.Control>
-           <Button type="submit" variant="outline-primary" className="p-2 btn-sm mt-2 mt-md-0">Search Viewers</Button>
+           <Button type="submit"  className="p-2 btn-sm mt-2 mt-md-0">Search Viewers</Button>
         </Form>
     )
 }
