@@ -19,7 +19,8 @@ const HomeScreen = ({ userInfo }) => {
            
             <section>
              <Jumbotron className="my-5 main-jumbo-bg shadow">
-               <h1 className="font-weight-bold home-title">Get to know your viewers & grow your channel</h1>
+               <h1 className="font-weight-bold home-title my-4">Get to know your viewers & grow your channel</h1>
+               <h3 id="test" className="d-inline font-weight-bold">Data tool</h3><br /> <h3>for streamers who <br />are dedicated to their craft</h3>
             </Jumbotron>
             </section>
            

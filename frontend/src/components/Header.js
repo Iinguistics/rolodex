@@ -67,7 +67,7 @@ const Header = ({ history }) => {
              <LinkContainer to="/">
                  <Navbar.Brand>Spybook</Navbar.Brand>
                  </LinkContainer>
-               <Navbar.Toggle aria-controls="basic-navbar-nav" id="test" />
+               <Navbar.Toggle aria-controls="basic-navbar-nav" id="hamburger" />
                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                       
