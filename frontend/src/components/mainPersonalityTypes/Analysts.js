@@ -67,9 +67,9 @@ const Analysts = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Commander</Card.Header>
+                    <Card.Header className="text-light">Commander</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENTJ</Card.Title>
+                    <Card.Title className="text-light">ENTJ</Card.Title>
                     <Card.Text>
                         Bold, imaginative & strong-willed leaders, always finding a way, or making one themselves.
                     </Card.Text>
@@ -90,9 +90,9 @@ const Analysts = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Debater</Card.Header>
+                    <Card.Header className="text-light">Debater</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENTP</Card.Title>
+                    <Card.Title className="text-light">ENTP</Card.Title>
                     <Card.Text>
                         Smart & curious thinkers who cannot resist an intellectual challenge.
                     </Card.Text>

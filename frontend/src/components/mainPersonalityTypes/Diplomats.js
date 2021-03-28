@@ -23,9 +23,9 @@ const Diplomats = () => {
             
            <CardDeck className="mt-5">
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Advocate</Card.Header>
+                    <Card.Header className="text-light">Advocate</Card.Header>
                     <Card.Body>
-                    <Card.Title>INFJ</Card.Title>
+                    <Card.Title className="text-light">INFJ</Card.Title>
                     <Card.Text>
                      Quite & mystical, yet very inspiring & tireless idealists.
                     </Card.Text>
@@ -45,9 +45,9 @@ const Diplomats = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Mediator</Card.Header>
+                    <Card.Header className="text-light">Mediator</Card.Header>
                     <Card.Body>
-                    <Card.Title>INFP</Card.Title>
+                    <Card.Title className="text-light">INFP</Card.Title>
                     <Card.Text>
                       Poetic, kind & altruistic people, always eager to help a good cause.
                     </Card.Text>
@@ -67,9 +67,9 @@ const Diplomats = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Protagonist</Card.Header>
+                    <Card.Header className="text-light">Protagonist</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENJF</Card.Title>
+                    <Card.Title className="text-light">ENJF</Card.Title>
                     <Card.Text>
                         Charismatic & inspiring leaders, able to mesmerize their listeners.
                     </Card.Text>
@@ -90,9 +90,9 @@ const Diplomats = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Campaigner</Card.Header>
+                    <Card.Header className="text-light">Campaigner</Card.Header>
                     <Card.Body>
-                    <Card.Title>ENFP</Card.Title>
+                    <Card.Title className="text-light">ENFP</Card.Title>
                     <Card.Text>
                         Enthusiastic, creative & sociable free spirits, who can always find a reason to smile.
                     </Card.Text>
