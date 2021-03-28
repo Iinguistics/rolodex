@@ -289,10 +289,10 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Card.Title className="text-white">Save current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
-                Click save to capture your current viewer count from your twitch channel (Must be live).
+                Click save to capture your current viewer count (Must be live).
                 You can view all your captures charted out by clicking the view captures.
                 </Card.Text>
-               {liveTwitchData && <Card.Link type="submit" className="btn-primary btn" onClick={createViewerSnapshot}>Save</Card.Link>} 
+               {liveTwitchData && <Card.Link type="submit" className="btn-primary btn my-3" onClick={createViewerSnapshot}>Save</Card.Link>} 
                 <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link>
              </Card.Body>
             </Card>
@@ -304,9 +304,9 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Card.Title className="text-white">Add Viewer's to your book</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
                 <Card.Text>
-                Add viewer's to your spybook. You can reference back to your book. This tool allows you to learn more about your viewer's and grow your channel.
+                 You can reference back to your book. This tool allows you to learn more about your viewer's and grow your channel.
                 </Card.Text>
-                <Card.Link type="submit" className="btn-primary btn" onClick={createViewerHandler}>+ Viewer</Card.Link>
+                <Card.Link type="submit" className="btn-primary btn my-3" onClick={createViewerHandler}>+ Viewer</Card.Link>
               </Card.Body>
              </Card>
             </Col>
