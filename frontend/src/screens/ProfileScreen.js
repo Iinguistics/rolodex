@@ -243,7 +243,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         if(generalTwitchData){
            return (
             <>
-            <Image src={generalTwitchData.profile_image_url} roundedCircle fluid className="border border-primary shadow-lg mb-2" />
+            <Image src={generalTwitchData.profile_image_url} roundedCircle fluid className="border border-primary shadow-lgg mb-2" />
             <h5 className="cap-type">Twitch {generalTwitchData.broadcaster_type}</h5>
             <h5>Description: {generalTwitchData.description}</h5>
             <h5>Total views: {generalTwitchData.view_count}</h5>
@@ -273,7 +273,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             
             <Row className="mt-5">
                 <Col className="mb-5" sm={6}>
-                <Card style={{ width: '18rem', height: '18rem'}}>
+                <Card style={{ width: '18rem', height: '18rem'}} className="profile-description-cards">
                 <Card.Body>
                 <Card.Title>Save current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
@@ -288,7 +288,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
           </Col>
    
                <Col sm={6}>
-                <Card style={{ width: '18rem', height: '18rem' }}>
+                <Card style={{ width: '18rem', height: '18rem' }} className="profile-description-cards">
                 <Card.Body>
                 <Card.Title>Add Viewer's to your book</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
