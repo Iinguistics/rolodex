@@ -135,6 +135,6 @@ div{
   background-color: #252525;
   border-radius: 6px;
 }
-.profile-description-cards p, h1, div{
+.profile-description-cards p, h1 {
   color: #FFFFFF;
 }

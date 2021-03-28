@@ -23,9 +23,9 @@ const Sentinels = () => {
             
            <CardDeck className="mt-5">
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Logistician</Card.Header>
+                    <Card.Header className="text-light">Logistician</Card.Header>
                     <Card.Body>
-                    <Card.Title>ISTJ</Card.Title>
+                    <Card.Title className="text-light">ISTJ</Card.Title>
                     <Card.Text>
                      Practical & fact minded individuals, whose reliability cannot be doubted.
                     </Card.Text>
@@ -45,9 +45,9 @@ const Sentinels = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Defender</Card.Header>
+                    <Card.Header className="text-light">Defender</Card.Header>
                     <Card.Body>
-                    <Card.Title>ISFJ</Card.Title>
+                    <Card.Title className="text-light">ISFJ</Card.Title>
                     <Card.Text>
                       Dedicated & warm protectors, always ready to defend their loved ones.
                     </Card.Text>
@@ -67,9 +67,9 @@ const Sentinels = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Executive</Card.Header>
+                    <Card.Header className="text-light">Executive</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESTJ</Card.Title>
+                    <Card.Title className="text-light">ESTJ</Card.Title>
                     <Card.Text>
                         Excellent administrators, unsurpassed at managing things or people.
                     </Card.Text>
@@ -90,9 +90,9 @@ const Sentinels = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Consul</Card.Header>
+                    <Card.Header className="text-light">Consul</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESFJ</Card.Title>
+                    <Card.Title className="text-light">ESFJ</Card.Title>
                     <Card.Text>
                        Extraordinarily caring, social & popular people, always eager to help.
                     </Card.Text>
