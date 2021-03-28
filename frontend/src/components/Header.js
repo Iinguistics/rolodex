@@ -41,8 +41,8 @@ const Header = ({ history }) => {
           return(
            <>
            {adminView()}
-           <LinkContainer to="/profile"><NavDropdown.Item className="text-white">Profile</NavDropdown.Item></LinkContainer>
-           <NavDropdown.Item className="text-white" onClick={()=> logoutHandler()}>Logout</NavDropdown.Item>
+           <LinkContainer to="/profile"><NavDropdown.Item className="text-white dropdown-item">Profile</NavDropdown.Item></LinkContainer>
+           <NavDropdown.Item className="text-white dropdown-item" onClick={()=> logoutHandler()}>Logout</NavDropdown.Item>
            </>
           )
         }else{
