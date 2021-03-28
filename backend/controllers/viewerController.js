@@ -96,10 +96,7 @@ const deleteViewer = asyncHandler(async(req,res)=>{
     if(!viewer){
         res.status(404)
         throw new Error('Viewer not found');
-    }else{
-        res.status(201).json({ viewer });
     }
-
  });
 
 

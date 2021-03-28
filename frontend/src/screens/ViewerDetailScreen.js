@@ -6,12 +6,18 @@ import { FaPencilAlt, FaEdit } from 'react-icons/fa';
 import GoBack from '../components/GoBack';
 import { AiFillStar } from 'react-icons/ai';
 import Loader from '../components/bootstrapHelpers/Loader';
+import { useToasts } from 'react-toast-notifications';
+
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const [rating, setRating] = useState(Number);
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
     const [loading, setLoading] = useState(true);
+    const [removedViewerError, setRemovedViewerError] = useState("");
+
+
+    const { addToast } = useToasts();
 
 
     const fetchViewer = async()=>{
@@ -25,21 +31,49 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
                     }
                 }
                 const { data } = await axios.get(`/api/viewers/${match.params.id}`, config)
-        
                 setViewer(data);
                 setLoading(false);
-
             }catch(error){
                 setFetchViewerError(error.message);
                 setLoading(false);
             }
-        
-
         }else{
             setRating(viewer.rating);
         }
-
     }
+
+
+    const removeHandler = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+              await axios.delete(`/api/viewers/remove/${match.params.id}`, config)
+           
+        }catch(error){
+            setRemovedViewerError(error.message);
+        }
+    }
+
+
+    const removeSubmitHandler = (e)=>{
+        e.preventDefault();
+          removeHandler();
+         
+            setTimeout(()=>{
+                if(!removedViewerError){
+                    addToast(`${viewer.name} has been updated`, {
+                        appearance: 'success'
+                    });
+                    history.push('/profile');
+                    }
+            }, 2000)
+    }
+
+
 
     useEffect(()=>{
 
@@ -93,11 +127,12 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
             <div className="my-5">
                 { loading && <Loader /> }
                 <GoBack /><br />
-                <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mb-4">
+                <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mr-4">
                     Edit Details <FaEdit className="ml-1"/>
                 </Link>
-                <input className="btn-danger btn my-4 d-block" type="submit" value="Delete Viewer" onClick={()=> window.history.back()}/>
-                {fetchViewerError}
+                <input className="btn-danger btn my-3 " type="submit" value="Delete Viewer" onClick={(e)=> removeSubmitHandler(e)}/>
+                {fetchViewerError && fetchViewerError}
+                {removedViewerError && removedViewerError}
              <h2>{viewer.name} Details</h2>
 
              <Table striped bordered hover responsive variant="dark" className="my-3">
