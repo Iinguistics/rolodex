@@ -132,6 +132,8 @@ const CaptureChart = ({ userInfo }) => {
         }
         }, [captureData]);
 
+   
+
         
 
 
@@ -139,7 +141,7 @@ const CaptureChart = ({ userInfo }) => {
         labels: dateArr && dateArr,
         datasets: [
           {
-            label: '# of Viewers (Y-M-D)',
+            label: '# of Viewers',
             data: captureData && outputCount(),
             fill: false,
             backgroundColor: '#FFFFFF',
@@ -169,16 +171,16 @@ const CaptureChart = ({ userInfo }) => {
            {captureData && <Line data={data} options={options} /> } 
            <Jumbotron className="my-5 main-jumbo-bg shadow">
            <ListGroup horizontal className="mt-5 mb-3">
-            <ListGroup.Item className="text-white">Total Captures: {captureData.length}</ListGroup.Item>
-            <ListGroup.Item className="text-white">Average Viewers: {averageViewers}</ListGroup.Item>
+            <ListGroup.Item className="text-white profile-description-cards">Total Captures: {captureData.length}</ListGroup.Item>
+            <ListGroup.Item className="text-white profile-description-cards">Average Viewers: {averageViewers}</ListGroup.Item>
             </ListGroup>
 
             <ListGroup horizontal className="mb-3">
-            <ListGroup.Item className="text-white"><span className="green">Heighest Viewers:</span> {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
+            <ListGroup.Item className="text-white profile-description-cards"><span className="green">Heighest Viewers:</span> {heighestCount}, Stream Title: {heighestCountTitle}</ListGroup.Item>
             </ListGroup>
 
             <ListGroup horizontal className="mb-3">
-            <ListGroup.Item className="text-white"><span className="red">Lowest Viewers:</span>  {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
+            <ListGroup.Item className="text-white profile-description-cards"><span className="red">Lowest Viewers:</span>  {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
             </ListGroup>
             </Jumbotron>
 
