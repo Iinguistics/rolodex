@@ -16,12 +16,10 @@ const HomeScreen = ({ userInfo }) => {
 
     return (
         <div className="my-5">
-            {userInfo ? <> <h3>Currently logged in under {userInfo.name}</h3> <Link to='/profile' className="btn-primary btn my-2">My Profile </Link> </>
-            
-            : ""}
+           
             <section>
              <Jumbotron className="my-5 main-jumbo-bg shadow">
-               <h1>Get to know your viewers & grow your channel</h1>
+               <h1 className="font-weight-bold home-title">Get to know your viewers & grow your channel</h1>
             </Jumbotron>
             </section>
            
