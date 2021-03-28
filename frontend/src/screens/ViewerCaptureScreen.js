@@ -10,7 +10,7 @@ const ViewerCaptureScreen = ({ userInfo, history }) => {
         if(!userInfo){
          history.push('/login');
         }
-    }, []);
+    }, [userInfo, history]);
 
 
 

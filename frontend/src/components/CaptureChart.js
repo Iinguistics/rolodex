@@ -118,18 +118,14 @@ const CaptureChart = ({ userInfo }) => {
    if(userInfo) console.log(captureData)
 
     useEffect(()=>{
-        if(userInfo){
             fetchCaptures();
             outputDates();    
-        }
-    }, [userInfo, getAllCaptures]);
+    }, [getAllCaptures]);
 
     useEffect(()=>{
-        if(userInfo){
         fetchAverageViewers();
         setHighest();
         setLowest();
-        }
         }, [captureData]);
 
    
