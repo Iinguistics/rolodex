@@ -127,6 +127,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
      }
     }, [fetchViewersSuccess])
 
+    useEffect(()=>{
+        if(listViewers){
+            fetchViewers(keyword, pageNumber);
+        }
+       }, [toggleSort])
+
      
 
 
@@ -176,7 +182,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
                          <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
-                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border">
+                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating} </Card.Subtitle>
@@ -202,7 +208,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
                          <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
-                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border">
+                            <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
                             <Card.Body>
                             <Card.Title className="viewer-name">{sortedViewersName[i]}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Rating: {viewer.rating} </Card.Subtitle>
@@ -275,7 +281,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Col className="mb-5" sm={6}>
                 <Card style={{ width: '18rem', height: '18rem'}} className="profile-description-cards">
                 <Card.Body>
-                <Card.Title>Save current viewer count</Card.Title>
+                <Card.Title className="text-white">Save current viewer count</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><AiFillSave /></Card.Subtitle>
                 <Card.Text>
                 Click save to capture your current viewer count from your twitch channel (Must be live).
@@ -290,7 +296,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                <Col sm={6}>
                 <Card style={{ width: '18rem', height: '18rem' }} className="profile-description-cards">
                 <Card.Body>
-                <Card.Title>Add Viewer's to your book</Card.Title>
+                <Card.Title className="text-white">Add Viewer's to your book</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted"><VscOpenPreview /></Card.Subtitle>
                 <Card.Text>
                 Add viewer's to your spybook. You can reference back to your book. This tool allows you to learn more about your viewer's and grow your channel.

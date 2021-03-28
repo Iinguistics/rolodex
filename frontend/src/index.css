@@ -41,7 +41,7 @@ p{
 }
 
 div{
-  color: #FFFFFF;
+  color: #353535 !important;
 }
 
 .green{
@@ -85,11 +85,14 @@ div{
 
 }
 .no-underline:hover .viewer-name{
-  color: #3F729B;
+  color: #3F729B !important;
   transition: 0.3s;
 }
 .card-border:hover{
   border-color: #3F729B;
+}
+.viewer-name{
+  color: #FFFFFF !important;
 }
 
 .cap-type{
@@ -131,6 +134,6 @@ div{
   background-color: #252525;
   border-radius: 6px;
 }
-.profile-description-cards p, h1{
+.profile-description-cards p, h1, div{
   color: #FFFFFF;
 }
