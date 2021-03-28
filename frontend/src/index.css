@@ -25,6 +25,9 @@ code {
   background: none;
   color: #FFFFFF !important;
 }
+.dropdown-item{
+  background: none !important;
+}
 
 
 input, textarea{
