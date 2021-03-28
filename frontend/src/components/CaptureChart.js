@@ -139,12 +139,12 @@ const CaptureChart = ({ userInfo }) => {
         labels: dateArr && dateArr,
         datasets: [
           {
-            label: '# of Viewers',
+            label: '# of Viewers (Y-M-D)',
             data: captureData && outputCount(),
             fill: false,
             backgroundColor: '#FFFFFF',
-            //borderColor: '#add8e6',
-            borderColor: '#8B9DC3',
+            borderColor: '#add8e6',
+            //borderColor: '#8B9DC3',
           },
         ],
       }
@@ -188,7 +188,7 @@ const CaptureChart = ({ userInfo }) => {
           {viewRaw &&  captureData.map((item)=>{
               return (
                   <>
-                   <ListGroup.Item key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
+                   <ListGroup.Item className="text-white profile-description-cards" key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
                    </>
               )
           })}
