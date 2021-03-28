@@ -62,10 +62,10 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const removeSubmitHandler = (e)=>{
         e.preventDefault();
           removeHandler();
-         
+          setLoading(true);
             setTimeout(()=>{
                 if(!removedViewerError){
-                    addToast(`${viewer.name} has been updated`, {
+                    addToast(`${viewer.name} has been removed`, {
                         appearance: 'success'
                     });
                     history.push('/profile');
