@@ -22,9 +22,9 @@ const Explorers = () => {
             
            <CardDeck className="mt-5">
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Virtuoso</Card.Header>
+                    <Card.Header className="text-light">Virtuoso</Card.Header>
                     <Card.Body>
-                    <Card.Title>ISTP</Card.Title>
+                    <Card.Title className="text-light">ISTP</Card.Title>
                     <Card.Text>
                      Bold & practical experimenters, masters of all kinds of tools.
                     </Card.Text>
@@ -44,9 +44,9 @@ const Explorers = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Adventurer</Card.Header>
+                    <Card.Header className="text-light">Adventurer</Card.Header>
                     <Card.Body>
-                    <Card.Title>ISFP</Card.Title>
+                    <Card.Title className="text-light">ISFP</Card.Title>
                     <Card.Text>
                       Flexible & charming artists, always ready to explore & experience new things.
                     </Card.Text>
@@ -66,9 +66,9 @@ const Explorers = () => {
                 </Card>
 
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Entrepreneur</Card.Header>
+                    <Card.Header className="text-light">Entrepreneur</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESTP</Card.Title>
+                    <Card.Title className="text-light">ESTP</Card.Title>
                     <Card.Text>
                        Smart, energetic & very perceptive people, who truly enjoy living on the edge.
                     </Card.Text>
@@ -89,9 +89,9 @@ const Explorers = () => {
                 
                
                 <Card className="personality-description-cards" text="light" >
-                    <Card.Header>Entertainer</Card.Header>
+                    <Card.Header className="text-light">Entertainer</Card.Header>
                     <Card.Body>
-                    <Card.Title>ESFP</Card.Title>
+                    <Card.Title className="text-light">ESFP</Card.Title>
                     <Card.Text>
                        Spontaneous, energetic & enthusiastic people. Life is never boring around them.
                     </Card.Text>
