@@ -33,6 +33,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [sortedViewersRating, setSortedViewersRating] = useState([]);
     const [captureData, setCaptureData] = useState([]);
     const [captureDataError, setCaptureDataError] = useState("");
+    const [removedRan, setRemovedRan] = useState(0);
 
 
     const [toggleSort, setToggleSort] = useState(false);
@@ -150,7 +151,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
         }
 
-    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber ]);
+    }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber, removedRan ]);
 
 
     // useEffect(()=>{
@@ -199,7 +200,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
             addToast('Viewer count has been captured', {
                 appearance: 'success'
             });
-           
+            setRemovedRan( removedRan => removedRan + 1)
 
         }catch(error){
             setCreateSnapshotError(error.message);
@@ -318,7 +319,12 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 <Card.Text>
                 {liveTwitchData ? 
                  <Card.Text>Click save to capture your current viewer count. You can view all your captures charted out by clicking the view captures.</Card.Text>
-                 : <Card.Text>You must be live to capture your current viewers</Card.Text>
+                 : (
+                  <>
+                 <Card.Text>You must be live to capture your current viewers</Card.Text>
+                 <Card.Link type="submit" className="btn-primary btn my-3 disabled">Save</Card.Link>
+                 </>
+                 )
                 }
                 
                
