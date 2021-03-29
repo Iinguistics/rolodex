@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+
+#home-screen{
+  height: 88vh;
+}
+
+
 .navbar{
   background: #12141D;
 }
@@ -121,7 +127,6 @@ div{
 .card-jumbo-bg{
   background: #212121;
   border-radius: 6px;
-
 }
 
 
@@ -173,6 +178,9 @@ div{
 .register-text:hover{
   color: #3F729B;
 }
+
+
+
 
 
 

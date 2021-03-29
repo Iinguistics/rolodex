@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Table, Card } from 'react-bootstrap';
+import { Table, Card, Button } from 'react-bootstrap';
 import { FaPencilAlt, FaEdit } from 'react-icons/fa';
 import GoBack from '../components/GoBack';
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillStar, AiOutlineDelete } from 'react-icons/ai';
 import Loader from '../components/bootstrapHelpers/Loader';
 import { useToasts } from 'react-toast-notifications';
 
@@ -130,7 +130,9 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
                 <Link to={`/profile/viewer/edit/${viewer._id}`} className="btn-info btn mr-4">
                     Edit Details <FaEdit className="ml-1"/>
                 </Link>
-                <input className="btn-danger btn my-3 " type="submit" value="Delete Viewer" onClick={(e)=> removeSubmitHandler(e)}/>
+                <Button className="btn-danger btn my-3" onClick={(e)=> removeSubmitHandler(e)}>
+                    Delete Viewer <AiOutlineDelete />
+                </Button>
                 {fetchViewerError && fetchViewerError}
                 {removedViewerError && removedViewerError}
              <h2>{viewer.name} Details</h2>
