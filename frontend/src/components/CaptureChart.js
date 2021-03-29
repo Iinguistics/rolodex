@@ -10,7 +10,7 @@ import { useToasts } from 'react-toast-notifications';
 import { CgArrowUpR } from 'react-icons/cg';
 
 
-const CaptureChart = ({ userInfo }) => {
+const CaptureChart = ({ userInfo, history }) => {
     const [captureData, setCaptureData] = useState([]);
     const [captureDataError, setCaptureDataError] = useState("");
     const [dateArr, setDateArr] = useState([]);
@@ -23,7 +23,7 @@ const CaptureChart = ({ userInfo }) => {
     const [lowestCountTitle, setLowestCountTitle] = useState("");
     const [removedCaptureError, setRemovedCaptureError] = useState("");
     const [loading, setLoading] = useState(false);
-    const [removedRan, setRemovedRan] = useState(false);
+    const [removedRan, setRemovedRan] = useState(0);
 
 
     const { addToast } = useToasts();
@@ -42,7 +42,6 @@ const CaptureChart = ({ userInfo }) => {
             const { data } = await axios.get('/api/snapshot', config);
             setCaptureData(data.snapshots);
             setGetAllCaptures(true);
-
 
         }catch (error){
           setCaptureDataError(error.message)
@@ -152,7 +151,7 @@ const CaptureChart = ({ userInfo }) => {
                     addToast('capture has been removed', {
                         appearance: 'success'
                     });
-                    setRemovedRan(true);
+                    setRemovedRan( removedRan => removedRan + 1)
                     }
             }, 2000)
     }
@@ -164,15 +163,23 @@ const CaptureChart = ({ userInfo }) => {
     useEffect(()=>{
             fetchCaptures();
             outputDates(); 
+            
     }, [getAllCaptures, removedRan]);
 
     useEffect(()=>{
         fetchAverageViewers();
         setHighest();
         setLowest();
+        
         }, [captureData]);
 
-   
+        useEffect(()=>{
+            if(removedRan !== 0 && captureData.length === 0){
+                console.log(captureData)
+                history.push('/profile');
+              }
+            
+    }, [fetchCaptures]);
 
         
 

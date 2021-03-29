@@ -31,6 +31,9 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
     const [sortedViewersName, setSortedViewersName] = useState([]);
     const [sortedViewersRating, setSortedViewersRating] = useState([]);
+    const [captureData, setCaptureData] = useState([]);
+    const [captureDataError, setCaptureDataError] = useState("");
+
 
     const [toggleSort, setToggleSort] = useState(false);
 
@@ -103,7 +106,28 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }
     }
 
+
+
+     //fetch captures from db
+     const fetchCaptures = async()=>{
+        
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+            const { data } = await axios.get('/api/snapshot', config);
+            setCaptureData(data.snapshots);
+
+        }catch (error){
+          setCaptureDataError(error.message)
+        }
+    }
+
      console.log(liveTwitchData);
+     console.log(captureData);
 
     useEffect(()=>{
        
@@ -116,8 +140,11 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         // }
         fetchLiveTwitchData();
         fetchGeneralTwitchData();
-
         fetchViewers(keyword, pageNumber);
+
+        fetchCaptures();
+
+
 
         if(createdViewerSuccess){
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
@@ -293,7 +320,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                 You can view all your captures charted out by clicking the view captures.
                 </Card.Text>
                {liveTwitchData && <Card.Link type="submit" className="btn-primary btn my-3" onClick={createViewerSnapshot}>Save</Card.Link>} 
-                <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link>
+               {captureData.length !== 0 &&  <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link> }
              </Card.Body>
             </Card>
           </Col>

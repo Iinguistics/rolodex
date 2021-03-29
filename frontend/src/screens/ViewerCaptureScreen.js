@@ -18,7 +18,7 @@ const ViewerCaptureScreen = ({ userInfo, history }) => {
         <div className="my-5 container">
             <GoBack />
             <h1>Captures</h1>
-          <CaptureChart userInfo={userInfo} />
+          <CaptureChart userInfo={userInfo} history={history} />
         </div>
     )
 }
