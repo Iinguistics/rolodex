@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Line} from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
-import { ListGroup, Jumbotron } from 'react-bootstrap';
+import { ListGroup, Jumbotron, Button } from 'react-bootstrap';
+import { AiOutlineDelete } from 'react-icons/ai';
+import Loader from '../components/bootstrapHelpers/Loader';
+import { useToasts } from 'react-toast-notifications';
 
 
 const CaptureChart = ({ userInfo }) => {
@@ -16,7 +19,10 @@ const CaptureChart = ({ userInfo }) => {
     const [heighestCountTitle, setHeighestCountTitle] = useState("");
     const [lowestCount, setLowestCount] = useState(Number);
     const [lowestCountTitle, setLowestCountTitle] = useState("");
+    const [removedViewerError, setRemovedViewerError] = useState("");
+    const [loading, setLoading] = useState(false);
 
+    const { addToast } = useToasts();
 
 
      //fetch captures from db
@@ -113,6 +119,37 @@ const CaptureChart = ({ userInfo }) => {
         setAverageViewers(Math.floor(runningValue / captureData.length))
     }
 
+    // delete capture
+    const removeHandler = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+              await axios.delete(`/api/viewers/remove/`, config)
+           
+        }catch(error){
+            setRemovedViewerError(error.message);
+        }
+    }
+
+
+    const removeSubmitHandler = (e)=>{
+        e.preventDefault();
+          removeHandler();
+          setLoading(true);
+            setTimeout(()=>{
+                if(!removedViewerError){
+                    // addToast(`${viewer.name} has been removed`, {
+                    //     appearance: 'success'
+                    // });
+                    // refetch
+                    }
+            }, 2000)
+    }
+
 
 
    if(userInfo) console.log(captureData)
@@ -179,14 +216,20 @@ const CaptureChart = ({ userInfo }) => {
             <ListGroup.Item className="text-white profile-description-cards"><span className="red">Lowest Viewers:</span>  {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
             </ListGroup>
             </Jumbotron>
-
+          
           <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
          
-          <ListGroup>
+          <ListGroup >
+          { loading && <Loader /> }
           {viewRaw &&  captureData.map((item)=>{
               return (
                   <>
-                   <ListGroup.Item className="text-white profile-description-cards" key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}</ListGroup.Item>
+                   <div className="divider"></div>
+                   <ListGroup.Item className="text-white profile-description-cards d-flex justify-content-between" key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}
+                   <Button className="btn-danger btn-sm " onClick={(e)=> removeSubmitHandler(e)}>
+                    Delete Viewer <AiOutlineDelete />
+                    </Button>
+                   </ListGroup.Item>
                    </>
               )
           })}

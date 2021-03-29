@@ -6,9 +6,6 @@ import { Jumbotron } from 'react-bootstrap';
 const HomeScreen = ({ userInfo }) => {
 
 
-    
-
-
     return (
         <div className="d-flex align-items-center " id="home-screen">
              <Jumbotron className=" main-jumbo-bg shadow ">
