@@ -330,7 +330,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
                
                 </Card.Text>
                {liveTwitchData && <Card.Link type="submit" className="btn-primary btn my-3" onClick={createViewerSnapshot}>Save</Card.Link>} 
-               {captureData.length !== 0 &&  <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn`}>View Captures</Link> }
+               {captureData.length !== 0 &&  <Link to="/profile/viewer/captures" className={liveTwitchData ? `btn-primary btn ml-3` : `btn-primary btn d-inline`}>View Captures</Link> }
              </Card.Body>
             </Card>
           </Col>
