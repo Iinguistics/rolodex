@@ -158,8 +158,6 @@ const CaptureChart = ({ userInfo, history }) => {
 
 
 
-   if(userInfo) console.log(captureData)
-
     useEffect(()=>{
             fetchCaptures();
             outputDates(); 
@@ -175,7 +173,6 @@ const CaptureChart = ({ userInfo, history }) => {
 
         useEffect(()=>{
             if(removedRan !== 0 && captureData.length === 0){
-                console.log(captureData)
                 history.push('/profile');
               }
             
