@@ -21,8 +21,10 @@ const CaptureChart = ({ userInfo }) => {
     const [heighestCountTitle, setHeighestCountTitle] = useState("");
     const [lowestCount, setLowestCount] = useState(Number);
     const [lowestCountTitle, setLowestCountTitle] = useState("");
-    const [removedViewerError, setRemovedViewerError] = useState("");
+    const [removedCaptureError, setRemovedCaptureError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [removedRan, setRemovedRan] = useState(false);
+
 
     const { addToast } = useToasts();
 
@@ -121,8 +123,10 @@ const CaptureChart = ({ userInfo }) => {
         setAverageViewers(Math.floor(runningValue / captureData.length))
     }
 
-    // delete capture
-    const removeHandler = async()=>{
+    
+
+     // delete capture
+    const removeHandler = async(id)=>{
         try{
             const config = {
                 headers:{
@@ -130,24 +134,25 @@ const CaptureChart = ({ userInfo }) => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }
-              await axios.delete(`/api/viewers/remove/`, config)
+            await axios.delete(`/api/snapshot/remove/${id}`, config);
            
         }catch(error){
-            setRemovedViewerError(error.message);
+            setRemovedCaptureError(error.message);
         }
     }
 
 
-    const removeSubmitHandler = (e)=>{
+    const removeSubmitHandler = (e, id)=>{
         e.preventDefault();
-          removeHandler();
-          setLoading(true);
+        setLoading(true)
+          removeHandler(id);
             setTimeout(()=>{
-                if(!removedViewerError){
-                    // addToast(`${viewer.name} has been removed`, {
-                    //     appearance: 'success'
-                    // });
-                    // refetch
+                if(!removedCaptureError){
+                    setLoading(false);
+                    addToast('capture has been removed', {
+                        appearance: 'success'
+                    });
+                    setRemovedRan(true);
                     }
             }, 2000)
     }
@@ -158,8 +163,8 @@ const CaptureChart = ({ userInfo }) => {
 
     useEffect(()=>{
             fetchCaptures();
-            outputDates();    
-    }, [getAllCaptures]);
+            outputDates(); 
+    }, [getAllCaptures, removedRan]);
 
     useEffect(()=>{
         fetchAverageViewers();
@@ -203,6 +208,7 @@ const CaptureChart = ({ userInfo }) => {
     return (
         <div className="my-5">
          {captureDataError && <Message variant="danger">{captureDataError}</Message> }
+         {removedCaptureError && <Message variant="danger">{removedCaptureError}</Message> }
            {captureData && <Line data={data} options={options} /> } 
            <Jumbotron className="my-5 main-jumbo-bg shadow">
            <ListGroup horizontal className="mt-5 mb-3">
@@ -235,7 +241,7 @@ const CaptureChart = ({ userInfo }) => {
                   <>
                   <div className="divider"></div>
                    <ListGroup.Item className="text-white profile-description-cards d-flex justify-content-between" key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}
-                   <Button className="btn-danger btn-sm " onClick={(e)=> removeSubmitHandler(e)}>
+                   <Button className="btn-danger btn-sm " onClick={(e)=> removeSubmitHandler(e,item._id)}>
                     Delete Capture <AiOutlineDelete />
                     </Button>
                    </ListGroup.Item>

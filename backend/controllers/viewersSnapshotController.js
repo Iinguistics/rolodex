@@ -47,8 +47,8 @@ const createSnapshot = asyncHandler(async(req,res)=>{
 //@route  DELETE api/snapshot
 //@access Private
 const deleteSnapshot = asyncHandler(async(req,res)=>{
-    { snapshotId } req.body;
-    const viewerSnapshot = await Viewer.findByIdAndDelete(snapshotId);
+
+    const viewerSnapshot = await ViewerSnapshot.findByIdAndDelete(req.params.id);
  
     if(!viewerSnapshot){
         res.status(404)

@@ -8,7 +8,7 @@ const { protect, admin } = require('../middleware/authMiddleWare');
 
 router.get("/", protect, getSnapshots);
 router.post("/",  protect, createSnapshot);
-router.delete("/",  protect, deleteSnapshot);
+router.delete("/remove/:id",  protect, deleteSnapshot);
 
 
 
