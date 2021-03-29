@@ -3,9 +3,11 @@ import axios from 'axios';
 import { Line} from 'react-chartjs-2';
 import Message from './bootstrapHelpers/Message';
 import { ListGroup, Jumbotron, Button } from 'react-bootstrap';
+import { Link, Element } from 'react-scroll';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Loader from '../components/bootstrapHelpers/Loader';
 import { useToasts } from 'react-toast-notifications';
+import { CgArrowUpR } from 'react-icons/cg';
 
 
 const CaptureChart = ({ userInfo }) => {
@@ -216,26 +218,43 @@ const CaptureChart = ({ userInfo }) => {
             <ListGroup.Item className="text-white profile-description-cards"><span className="red">Lowest Viewers:</span>  {lowestCount}, Stream Title: {lowestCountTitle}</ListGroup.Item>
             </ListGroup>
             </Jumbotron>
+           
+            <Element name="raw-data">
+            <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()} />
+           </Element>
+
+
           
-          <input type="submit" className="btn-primary btn my-5" value={viewRaw ? "hide raw data" : "view raw data"} onClick={()=> toggleRaw()}/>
-         
-          <ListGroup >
-          { loading && <Loader /> }
-          {viewRaw &&  captureData.map((item)=>{
+          
+          
+
+           <ListGroup>
+            { loading && <Loader /> }
+            {viewRaw &&  captureData.map((item)=>{
               return (
                   <>
-                   <div className="divider"></div>
+                  <div className="divider"></div>
                    <ListGroup.Item className="text-white profile-description-cards d-flex justify-content-between" key={item._id}>Viewer count captured: {item.chatter_count} viewers on {dateSplicer(item.createdAt)}
                    <Button className="btn-danger btn-sm " onClick={(e)=> removeSubmitHandler(e)}>
-                    Delete Viewer <AiOutlineDelete />
+                    Delete Capture <AiOutlineDelete />
                     </Button>
                    </ListGroup.Item>
                    </>
-              )
-          })}
+               )
+            })}
+
           </ListGroup>
+          {viewRaw && <Link 
+                     activeClass="active" to="raw-data" spy={true} smooth={true} 
+                     duration={500} delay={200} 
+                    isDynamic={true} 
+                    >
+                    <CgArrowUpR className="h1 up-arrow mt-4"/> 
+             </Link>}
+          
         </div>
     )
 }
+
 
 export default CaptureChart
