@@ -43,8 +43,23 @@ const createSnapshot = asyncHandler(async(req,res)=>{
 
 
 
+// Delete 
+//@route  DELETE api/snapshot
+//@access Private
+const deleteSnapshot = asyncHandler(async(req,res)=>{
+    { snapshotId } req.body;
+    const viewerSnapshot = await Viewer.findByIdAndDelete(snapshotId);
+ 
+    if(!viewerSnapshot){
+        res.status(404)
+        throw new Error('Snapshot not found');
+    }
+ });
 
 
 
 
-module.exports = { createSnapshot, getSnapshots }
+
+
+
+module.exports = { createSnapshot, getSnapshots, deleteSnapshot }
