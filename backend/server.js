@@ -28,7 +28,7 @@ app.use('/api/twitchdata', twitchDataRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const __dirname = path.resolve();
+var __dirname = path.resolve();
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, '/frontend/build')))
