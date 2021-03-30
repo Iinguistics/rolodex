@@ -105,7 +105,7 @@ const RegisterScreen = ({ location, history, userInfo }) => {
 
             <Row className="py-3">
                 <Col>
-                <p className="d-inline login-text">Already have an account?</p> {''}
+                <span className="login-text text-white">Already have an account?</span> {''}
                  <Link to='/login' className="register-text">
                     Login
                 </Link>

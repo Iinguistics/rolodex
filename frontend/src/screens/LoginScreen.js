@@ -79,7 +79,7 @@ const LoginScreen = ({ location, history, userInfo}) => {
 
             <Row className="py-3">
                 <Col>
-                 <p className="d-inline login-text">New Spy?</p> {''}
+                 <span className="login-text text-white">New Spy?</span> {''}
                  <Link to= '/register' className="register-text">
                     Register
                 </Link>
