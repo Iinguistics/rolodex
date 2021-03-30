@@ -55,7 +55,7 @@ const fetchLiveData = asyncHandler(async(req,res)=>{
         const { data } = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${name}`, config);
 
         res.status(200).json(data);
-        console.log(data);
+        //console.log(data);
         
          }catch(error){
             res.status(404).json(error.message);

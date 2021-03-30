@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import CaptureChart from '../components/CaptureChart';
 import GoBack from '../components/GoBack';
-
+import ScrollToTop from '../components/ScrollToTop';
 
 
 const ViewerCaptureScreen = ({ userInfo, history }) => {
@@ -11,6 +11,10 @@ const ViewerCaptureScreen = ({ userInfo, history }) => {
          history.push('/login');
         }
     }, [userInfo, history]);
+
+    useEffect(()=>{
+        ScrollToTop();
+    }, [])
 
 
 
