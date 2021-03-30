@@ -148,6 +148,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         <Form.Group controlId="followingSince">
             <Form.Label>Following Since</Form.Label>
             <Form.Control type="date" placeholder="Enter follow date"
+            max={new Date()}
              value={followingSince} 
              onChange={(e)=> setFollowingSince(e.target.value)} />
         </Form.Group>
