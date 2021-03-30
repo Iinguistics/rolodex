@@ -25,8 +25,7 @@ app.use('/api/snapshot', viewerSnapshotRoutes);
 app.use('/api/twitchdata', twitchDataRoutes);
 
 
-app.use(notFound);
-app.use(errorHandler);
+
 
 var __dirname = path.resolve();
 
@@ -39,6 +38,9 @@ if(process.env.NODE_ENV === 'production'){
         res.send("api was hit")
     });
 }
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
