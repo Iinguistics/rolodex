@@ -17,8 +17,6 @@ const app = express();
 
 app.use(express.json())
 
-
-
 app.use('/api/users', userRoutes);
 app.use('/api/viewers', viewerRoutes);
 app.use('/api/snapshot', viewerSnapshotRoutes);

@@ -4,7 +4,7 @@ const axios = require('axios');
 
 
 // fetch twitch profile data / for profile img
-//@route  POST api/generaldata
+//@route  POST api/twitchdata/generaldata
 //@access Have to be logged in
 const fetchGeneralData = asyncHandler(async(req,res)=>{
     const { name } = req.body;
@@ -34,7 +34,7 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
 
 
 // fetch twitch user data
-//@route  POST api/test
+//@route  POST api/twitchdata/livedata
 //@access Have to be logged in
 const fetchLiveData = asyncHandler(async(req,res)=>{
     const { name } = req.body;
@@ -64,7 +64,7 @@ const fetchLiveData = asyncHandler(async(req,res)=>{
 
 
 // Gen new token
-//@route  GET api/test/token
+//@route  GET api/twitchdata/token
 //@access Have to be logged in
 const fetchToken = asyncHandler(async(req,res)=>{
       
