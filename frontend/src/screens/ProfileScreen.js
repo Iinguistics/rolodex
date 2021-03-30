@@ -127,8 +127,6 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
         }
     }
 
-     console.log(liveTwitchData);
-     console.log(captureData);
 
     useEffect(()=>{
        

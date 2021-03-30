@@ -7,7 +7,7 @@ const axios = require('axios');
 //@route  POST api/generaldata
 //@access Have to be logged in
 const fetchGeneralData = asyncHandler(async(req,res)=>{
-    const { token, name } = req.body;
+    const { name } = req.body;
 
     //const testChannel = 'contv'
     
@@ -16,7 +16,7 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
         const config = {
             headers:{
                  // 'Content-Type': 'application/json',
-                  Authorization : `Bearer ${token}`,
+                  Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
                  'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
             }
         }
@@ -37,7 +37,7 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
 //@route  POST api/test
 //@access Have to be logged in
 const fetchLiveData = asyncHandler(async(req,res)=>{
-    const { token, name } = req.body;
+    const { name } = req.body;
 
     //const testChannel = 'contv';
     
@@ -46,7 +46,7 @@ const fetchLiveData = asyncHandler(async(req,res)=>{
         const config = {
             headers:{
                  // 'Content-Type': 'application/json',
-                  Authorization : `Bearer ${token}`,
+                  Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
                  'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
             }
         }
