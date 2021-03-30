@@ -5,7 +5,7 @@ const path = require('path');
 const viewerRoutes = require('./routes/viewerRoutes');
 const viewerSnapshotRoutes = require('./routes/viewerSnapshotRoutes');
 const userRoutes = require('./routes/userRoutes');
-const { notFound, errorHandler } = require('./middleware/errorMiddleWare');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const twitchDataRoutes = require('./routes/twitchDataRoutes');
 
 
