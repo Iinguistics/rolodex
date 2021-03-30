@@ -14,7 +14,7 @@ import { useToasts } from 'react-toast-notifications';
 import Loader from '../components/bootstrapHelpers/Loader';
 
 
-const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
+const ProfileScreen = ({ userInfo, history, match }) => {
     const [createViewerError, setCreateViewerError] = useState("");
     const [createdViewer, setCreatedViewer] = useState({});
     const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
@@ -92,7 +92,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
     //fetch user data from twitch API
     const fetchLiveTwitchData = async()=>{
         if(userInfo){
-            const { data } = await axios.post('/api/twitchdata/livedata', { token:userTwitchToken, name:userInfo.name });
+            const { data } = await axios.post('/api/twitchdata/livedata', { name:userInfo.name });
              setLiveTwitchData(data.data[0]);
         }
     }
@@ -101,7 +101,7 @@ const ProfileScreen = ({ userInfo, history, match, userTwitchToken }) => {
      //fetch user data from twitch API
      const fetchGeneralTwitchData = async()=>{
         if(userInfo){
-            const { data } = await axios.post('/api/twitchdata/generaldata', { token:userTwitchToken, name:userInfo.name });
+            const { data } = await axios.post('/api/twitchdata/generaldata', { name:userInfo.name });
              setGeneralTwitchData(data.data[0]);
              setTwitchGeneralDataLoading(false);
         }
