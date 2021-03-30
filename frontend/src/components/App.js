@@ -22,8 +22,6 @@ function App({ history }) {
     localStorage.setItem('userTwitchToken', JSON.stringify(data));
   }
 
-  //localStorage.clear();
-
   useEffect(()=>{
 
        setUserInfo(
