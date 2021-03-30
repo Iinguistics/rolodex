@@ -5,7 +5,7 @@ const path = require('path');
 const viewerRoutes = require('./routes/viewerRoutes');
 const viewerSnapshotRoutes = require('./routes/viewerSnapshotRoutes');
 const userRoutes = require('./routes/userRoutes');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware'); //for some odd reason putting the correct path of MiddleWare breaks heroku
+const { notFound, errorHandler } = require('./middleware/errorMiddleware'); //for some odd reason MiddleWare is getting pushed as Middleware
 const twitchDataRoutes = require('./routes/twitchDataRoutes');
 
 
