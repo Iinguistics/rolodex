@@ -33,8 +33,6 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     }
 
 
-    console.log(followingSince);
-
 
     const fetchViewer = async()=>{
         
