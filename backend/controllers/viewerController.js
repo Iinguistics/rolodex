@@ -33,13 +33,13 @@ const getViewers = asyncHandler(async(req,res)=>{
 const createViewer = asyncHandler(async(req,res)=>{
     const viewer = new Viewer({
         user: req.user._id,
-        name: 'Uknown',
+        name: 'Unknown',
         rating: 0,
-        followingSince: 'Uknown',
-        personalityType: 'Uknown',
-        location: "Uknown",
-        age: "Uknown",
-        notes: 'Uknown'
+        followingSince: 'Unknown',
+        personalityType: 'Unknown',
+        location: "Unknown",
+        age: "Unknown",
+        notes: 'Unknown'
         
     });
     

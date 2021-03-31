@@ -166,7 +166,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
             <Form.Control as="select" placeholder="Choose a type"
              value={personalityType} 
              onChange={(e)=> setPersonalityType(e.target.value)} >
-             <option>Uknown</option>
+             <option>Unknown</option>
              <option>Troll</option>
              <option>Architect - INTJ</option>
              <option>Logician - INTP</option>
