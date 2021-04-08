@@ -90,7 +90,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
 
 
 
-    //fetch user live data from twitch API
+    // fetch user live data from twitch API
     const fetchLiveTwitchData = async()=>{
         if(userInfo){
             const { data } = await axios.post('/api/twitchdata/livedata', { name:userInfo.name });
