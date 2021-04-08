@@ -26,9 +26,10 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [totalAddedViewers, setTotalAddedViewers] = useState();
     const [liveTwitchData, setLiveTwitchData] = useState([]);
     const [generalTwitchData, setGeneralTwitchData] = useState([]);
+    const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
+    const [generalTwitchDataError, setGeneralTwitchDataError] = useState("");
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
-    const [twitchGeneralDataLoading, setTwitchGeneralDataLoading] = useState(true);
     const [sortedViewersName, setSortedViewersName] = useState([]);
     const [sortedViewersRating, setSortedViewersRating] = useState([]);
     const [captureData, setCaptureData] = useState([]);
@@ -89,7 +90,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
 
 
 
-    //fetch user data from twitch API
+    //fetch user live data from twitch API
     const fetchLiveTwitchData = async()=>{
         if(userInfo){
             const { data } = await axios.post('/api/twitchdata/livedata', { name:userInfo.name });
@@ -98,13 +99,20 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     }
 
 
-     //fetch user data from twitch API
+     //fetch user general data from twitch API
      const fetchGeneralTwitchData = async()=>{
-        if(userInfo){
-            const { data } = await axios.post('/api/twitchdata/generaldata', { name:userInfo.name });
-             setGeneralTwitchData(data.data[0]);
-             setTwitchGeneralDataLoading(false);
+         try{
+            if(userInfo){
+                const { data } = await axios.post('/api/twitchdata/generaldata', { name:userInfo.name });
+                 setGeneralTwitchData(data.data[0]);
+                 setTwitchGeneralDataLoading(false);
+            }
+
+         }catch (error){
+          setGeneralTwitchDataError("To use all of spybooks features please sign in with a valid twitch account");
+          setTwitchGeneralDataLoading(false);
         }
+
     }
 
 
@@ -305,6 +313,9 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             {createViewerError && <Message variant="danger">{createViewerError}</Message> }
             {listViewersError && <Message variant="danger">{listViewersError}</Message> }
             {createSnapshotError && <Message variant="danger">{createSnapshotError}</Message> }
+            {captureDataError && <Message variant="danger">{captureDataError}</Message> }
+            {generalTwitchDataError && <Message variant="danger">{generalTwitchDataError}</Message> }
+
 
             <div className="divider w-75 my-3"></div>
             
