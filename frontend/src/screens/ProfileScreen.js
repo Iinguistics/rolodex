@@ -31,7 +31,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
     const [createSnapshotError, setCreateSnapshotError] = useState("");
     const [loading, setLoading] = useState(true);
     const [sortedViewersName, setSortedViewersName] = useState([]);
-    const [sortedViewersRating, setSortedViewersRating] = useState([]);
+    //const [sortedViewersRating, setSortedViewersRating] = useState([]);
     const [captureData, setCaptureData] = useState([]);
     const [captureDataError, setCaptureDataError] = useState("");
     const [removedRan, setRemovedRan] = useState(0);
@@ -376,7 +376,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                 { totalAddedViewers > 0 ? ( 
                     <>
                     <Route render={({ history })=> <SearchBox history = {history} />} /> 
-                    <input type="submit" className="btn-info btn my-3" value={toggleSort ? "Unsort viewers" : "Sort Viewers by name (a-z)"} onClick={()=> sortToggle()}/>
+                   {totalAddedViewers > 1 && <input type="submit" className="btn-info btn my-3" value={toggleSort ? "Unsort viewers" : "Sort Viewers by name (a-z)"} onClick={()=> sortToggle()}/> } 
                     <h5 className ="mt-4">{totalAddedViewers} Viewer's currently in your book <FaBook /></h5> 
                     </>
                 ) : <h5 className ="mt-4">You have no viewers currently in your book. <FaBook /></h5>
