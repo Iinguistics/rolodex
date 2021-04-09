@@ -8,6 +8,8 @@ import axios from 'axios';
 import { Link, Element } from 'react-scroll';
 import PersonalityDescriptions from '../components/PersonalityDescriptions';
 import GoBack from '../components/GoBack';
+import ScrollToTop from '../components/ScrollToTop';
+
 
 const ViewerEditScreen = ({ history, match, userInfo }) => {
     const [name, setName] = useState("");
@@ -70,7 +72,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         if(!userInfo){
          history.push('/login');
         }
-            
+         ScrollToTop(); 
          fetchViewer();
             
     },[viewer, history, match.params.id])

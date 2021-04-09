@@ -7,6 +7,7 @@ import GoBack from '../components/GoBack';
 import { AiFillStar, AiOutlineDelete } from 'react-icons/ai';
 import Loader from '../components/bootstrapHelpers/Loader';
 import { useToasts } from 'react-toast-notifications';
+import ScrollToTop from '../components/ScrollToTop';
 
 
 const ViewerDetailScreen = ({ userInfo, match, history }) => {
@@ -80,7 +81,8 @@ const ViewerDetailScreen = ({ userInfo, match, history }) => {
         if(!userInfo){
          history.push('/login');
         }
-            
+        
+         ScrollToTop();
          fetchViewer();
             
     },[viewer, history, match.params.id, userInfo])
