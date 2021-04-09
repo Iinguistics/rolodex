@@ -90,9 +90,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
 
       // create list viewers by name & store in state
       const listViewersSortedByName = ()=>{
-         
         getAllViewersName();
-        
         const temp = [];
             if(sortedViewersName){
             for(let i = 0; i < listViewers.length; i++){
