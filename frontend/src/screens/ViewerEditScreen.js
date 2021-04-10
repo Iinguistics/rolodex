@@ -122,8 +122,8 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
     return (
         <Fragment>
         <GoBack />
-        {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}edit view error</Message> }
-        {fetchViewerError && <Message variant="danger">{fetchViewerError}viewererror</Message> }
+        {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}</Message> }
+        {fetchViewerError && <Message variant="danger">{fetchViewerError}</Message> }
         <FormContainer>
         <h1 className="mb-4">Update Viewer</h1>
 

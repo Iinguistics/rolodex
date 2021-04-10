@@ -177,7 +177,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         fetchViewers(keyword, pageNumber);
 
         fetchCaptures();
-
+        // console.log(userInfo.token)
 
         if(createdViewerSuccess){
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
