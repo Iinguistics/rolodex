@@ -4,6 +4,9 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
+import Loader from '../components/bootstrapHelpers/Loader';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { useToasts } from 'react-toast-notifications';
 
 
 const ProfileSettingScreen = ({ userInfo, history }) => {
@@ -14,6 +17,11 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState("");
     const [userUpdateSuccess, setUserUpdateSuccess] = useState(false);
+    const [userRemoveSuccess, setUserRemoveSuccess] = useState(false);
+    const [userRemoveError, setUserRemoveError] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const { addToast } = useToasts();
 
 
 
@@ -37,7 +45,7 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     }
 }
 
-const submitHandler = async(e)=>{
+const updateHandler = async(e)=>{
     e.preventDefault();
     setName(name.toLowerCase());
     if(password !== verifyPassword){
@@ -50,7 +58,7 @@ const submitHandler = async(e)=>{
                 }
             }
 
-            const { data } = await axios.post('/api/users/register', {name, email, password}, config)
+            const { data } = await axios.put('/api/users/register', {name, email, password}, config)
 
             setUserUpdateSuccess(true);
            
@@ -61,9 +69,55 @@ const submitHandler = async(e)=>{
 }
 
 
+const removeHandler = async()=>{
+    try{
+        const config = {
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.delete(`/api/users/remove/${userInfo._id}`, config);
+
+        setUserRemoveSuccess(true);
+
+       
+    }catch(error){
+        setUserRemoveError(error.message);
+    }
+}
+
+
+const removeSubmitHandler = (e)=>{
+    e.preventDefault();
+      removeHandler();
+      setLoading(true);
+        setTimeout(()=>{
+            if(!userRemoveError){
+                setLoading(false);
+                addToast('Account has been removed', {
+                    appearance: 'danger'
+                });
+                localStorage.removeItem('userInfo');
+                console.log('ran')
+                history.push('/');
+                window.location.reload();
+                }
+        }, 2000)
+}
+
+
+
+
+
+
     return (
         <div className="my-5">
-            settings screen
+         { loading && <Loader /> }
+
+            <Button className="btn-danger btn my-3" onClick={ (e)=> removeSubmitHandler(e) }>
+                    Delete Account <AiOutlineDelete />
+                </Button>
         </div>
     )
 }

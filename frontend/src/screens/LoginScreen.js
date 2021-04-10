@@ -45,7 +45,7 @@ const LoginScreen = ({ location, history, userInfo}) => {
             
         }catch(error){
          setLoading(false);
-         setError(error.message);
+         setError('Invalid email or password');
         }
     }
 
