@@ -5,6 +5,7 @@ import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 import Loader from '../components/bootstrapHelpers/Loader';
+import GoBack from '../components/GoBack';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useToasts } from 'react-toast-notifications';
 
@@ -35,7 +36,6 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     if(userUpdateSuccess){
         window.location.reload();
     }
-      console.log(userInfo._id + 'token: ' + userInfo.token)
    }, [userInfo, history, userUpdateSuccess]);
 
 
@@ -96,14 +96,18 @@ const removeSubmitHandler = (e)=>{
             if(!userRemoveError){
                 setLoading(false);
                 addToast('Account has been removed', {
-                    appearance: 'danger'
+                    appearance: 'success'
                 });
+                }
+        }, 2000);
+
+        setTimeout(()=>{
+            if(!userRemoveError){
                 localStorage.removeItem('userInfo');
-                console.log('ran')
                 history.push('/');
                 window.location.reload();
                 }
-        }, 2000)
+        }, 3500);
 }
 
 
@@ -114,6 +118,7 @@ const removeSubmitHandler = (e)=>{
     return (
         <div className="my-5">
          { loading && <Loader /> }
+         <GoBack /><br />
 
             <Button className="btn-danger btn my-3" onClick={ (e)=> removeSubmitHandler(e) }>
                     Delete Account <AiOutlineDelete />
