@@ -18,7 +18,6 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState("");
     const [userUpdateSuccess, setUserUpdateSuccess] = useState(false);
-    const [userRemoveSuccess, setUserRemoveSuccess] = useState(false);
     const [userRemoveError, setUserRemoveError] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -78,10 +77,7 @@ const removeHandler = async()=>{
             }
         }
         await axios.delete(`/api/users/remove/${userInfo._id}`, config);
-
-        setUserRemoveSuccess(true);
-
-       
+    
     }catch(error){
         setUserRemoveError(error.message);
     }
