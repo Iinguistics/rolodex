@@ -63,6 +63,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
+        // do I want to send over a new token?
         token: generateToken(updatedUser._id)
     });
     }else{
@@ -130,11 +131,9 @@ const deleteUser = asyncHandler(async(req,res)=>{
     if(!user){
         res.status(404)
         throw new Error('User not found');
-
-    }else{
-        res.json({ user });
     }
 });
+
 
 
 // GET user by ID 
