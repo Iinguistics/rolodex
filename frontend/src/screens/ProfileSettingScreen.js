@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
@@ -212,11 +212,27 @@ const removeSubmitHandler = (e)=>{
         </Button>
         </Form>
       </FormContainer>
+      
+       <FormContainer>
+       <h1 className="my-5">Danger Zone</h1>
+       <Card className="border border-danger ">
+         <Card.Body className="bg-dark">
+          <Row>
+            <Col className="text-light m-auto">
+             Delete my account
+            </Col>
 
+            <Col className="m-auto"> 
+            <Button className="btn-danger btn" onClick={ (e)=> removeSubmitHandler(e) }>
+           Delete Account <AiOutlineDelete />
+         </Button>
+         </Col>
+        </Row>
+       </Card.Body>
+      </Card>
+    </FormContainer>
 
-            <Button className="btn-danger btn my-3" onClick={ (e)=> removeSubmitHandler(e) }>
-                    Delete Account <AiOutlineDelete />
-                </Button>
+                
         </div>
     )
 }
