@@ -185,14 +185,14 @@ div{
 }
 
 
-#user-settings{
+.user-settings a{
   color: #FFFFFF;
   text-decoration: none;
 }
 
 
-.testing a:hover{
-  color: #3F729B !important;
+.user-settings a:hover{
+  color: #3F729B;
   transition: 0.3s;
 }
 
