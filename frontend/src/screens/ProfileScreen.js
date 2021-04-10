@@ -12,6 +12,7 @@ import { FaBook } from 'react-icons/fa';
 import TMI from '../components/TMI';
 import { useToasts } from 'react-toast-notifications';
 import Loader from '../components/bootstrapHelpers/Loader';
+import { FiSettings } from 'react-icons/fi';
 
 
 const ProfileScreen = ({ userInfo, history, match }) => {
@@ -317,6 +318,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         <div className="my-5 container">
             <div>
                 <h1>Dashboard</h1>
+                <div className="mb-4 testing"><Link id="user-settings"><FiSettings /> Settings</Link></div> 
                 <h2 className="my-3">Welcome {userInfo && userInfo.name}</h2>
                 {twitchGeneralDataLoading && <Loader />}
                 {renderGeneralTwitchData()}

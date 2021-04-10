@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ViewerEditScreen from '../screens/ViewerEditScreen';
 import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
+import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 
 //git push heroku main
 
@@ -53,7 +54,7 @@ function App({ history }) {
         <Route path="/" exact component={()=> <HomeScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/login"  component={()=> <LoginScreen  userInfo={userInfo} history={history} />} />
         <Route path= "/register"  component={()=> <RegisterScreen  userInfo={userInfo} history={history} />} />
-
+        <Route path= "/profile/settings" exact  component={()=> <ProfileSettingScreen  userInfo={userInfo} history={history} />} />
         <Route
           path='/profile' exact
           render={(props) => (

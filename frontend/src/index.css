@@ -185,6 +185,16 @@ div{
 }
 
 
+#user-settings{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+.testing a:hover{
+  color: #3F729B !important;
+  transition: 0.3s;
+}
 
 
 @media (max-width: 767.98px) {
