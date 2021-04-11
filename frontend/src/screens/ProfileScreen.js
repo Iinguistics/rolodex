@@ -183,6 +183,9 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
         }
 
+        console.log(userInfo)
+
+
     }, [userInfo, history, createdViewerSuccess, createdViewer, fetchViewersSuccess, keyword, pageNumber, removedRan ]);
 
 

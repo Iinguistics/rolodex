@@ -1,12 +1,11 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col, Card, Modal } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
 import Loader from '../components/bootstrapHelpers/Loader';
 import GoBack from '../components/GoBack';
-import { AiOutlineDelete } from 'react-icons/ai';
 import { useToasts } from 'react-toast-notifications';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import DeleteModal from '../components/bootstrapHelpers/DeleteModal';
@@ -27,11 +26,6 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     const [fetchUserError, setFetchUserError] = useState(false);
     const [userUpdateSuccess, setUserUpdateSuccess] = useState(false);
     
-    // Delete account modal
-    // const [modalShow, setModalShow] = useState(false);
-    // const handleClose = () => setModalShow(false);
-    // const handleShow = () => setModalShow(true);
-
 
     const { addToast } = useToasts();
 
@@ -91,9 +85,10 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
                 }
             }
 
-            await axios.put('/api/users/profile', { name, email, password }, config);
+           const { data } = await axios.put('/api/users/profile', { name, email, password }, config);
 
             if(!userUpdateError){
+                localStorage.setItem('userInfo', JSON.stringify(data));
                 setLoading(false);
                 addToast('Account has been updated', {
                     appearance: 'success'
