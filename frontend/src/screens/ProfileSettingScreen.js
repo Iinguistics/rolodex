@@ -182,7 +182,6 @@ const removeSubmitHandler = (e)=>{
             Update Password <RiLockPasswordFill />
         </Button> <br />
 
-
          {updatePassword && (
              <>
              <Form.Group controlId="password">
