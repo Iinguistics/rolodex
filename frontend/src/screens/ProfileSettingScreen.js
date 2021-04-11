@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card, Modal } from 'react-bootstrap';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import axios from 'axios';
@@ -9,6 +9,8 @@ import GoBack from '../components/GoBack';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useToasts } from 'react-toast-notifications';
 import { RiLockPasswordFill } from 'react-icons/ri';
+import DeleteModal from '../components/bootstrapHelpers/DeleteModal';
+
 
 const ProfileSettingScreen = ({ userInfo, history }) => {
     const [name, setName] = useState("");
@@ -20,14 +22,15 @@ const ProfileSettingScreen = ({ userInfo, history }) => {
     const [passwordError, setPasswordError] = useState(false);
     const [updatePassword, setUpdatePassword] = useState(false);
 
-
     const [userUpdateError, setUserUpdateError] = useState(false);
-
     const [userRemoveError, setUserRemoveError] = useState(false);
-
     const [fetchUserError, setFetchUserError] = useState(false);
-
     const [userUpdateSuccess, setUserUpdateSuccess] = useState(false);
+    
+    // Delete account modal
+    // const [modalShow, setModalShow] = useState(false);
+    // const handleClose = () => setModalShow(false);
+    // const handleShow = () => setModalShow(true);
 
 
     const { addToast } = useToasts();
@@ -223,16 +226,35 @@ const removeSubmitHandler = (e)=>{
             </Col>
 
             <Col className="m-auto"> 
-            <Button className="btn-danger btn" onClick={ (e)=> removeSubmitHandler(e) }>
-           Delete Account <AiOutlineDelete />
-         </Button>
+           
+            <DeleteModal submitDelete = {(e)=> removeSubmitHandler(e)} 
+            buttonText={'Delete Account '} 
+            title={'Delete Account'} 
+            body={'this is irreversible, are you sure you want to delete your account?'}
+            />  
+        
          </Col>
         </Row>
        </Card.Body>
       </Card>
     </FormContainer>
 
-                
+            {/* <Modal show={modalShow} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>Delete Account</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Close
+            </Button>
+            <Button variant="primary" onClick={(e)=> removeSubmitHandler(e)}>
+                Save Changes
+            </Button>
+            </Modal.Footer>
+            </Modal> */}
+
+
         </div>
     )
 }
