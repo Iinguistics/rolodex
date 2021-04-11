@@ -178,7 +178,7 @@ const removeSubmitHandler = (e)=>{
             onChange={(e)=> setEmail(e.target.value)} />
         </Form.Group>
          
-        <Button variant="info" className="mb-5" onClick={ ()=> setUpdatePassword(true) }>
+        <Button variant="info" className="mb-4" onClick={ ()=> setUpdatePassword(true) }>
             Update Password <RiLockPasswordFill />
         </Button> <br />
 
@@ -205,7 +205,7 @@ const removeSubmitHandler = (e)=>{
          }
         
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mb-5">
             Save Changes
         </Button>
         </Form>
