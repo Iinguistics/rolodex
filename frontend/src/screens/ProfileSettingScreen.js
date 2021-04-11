@@ -130,8 +130,8 @@ const removeHandler = async()=>{
 
 const removeSubmitHandler = (e)=>{
     e.preventDefault();
-      removeHandler();
       setLoading(true);
+      removeHandler();
         setTimeout(()=>{
             if(!userRemoveError){
                 setLoading(false);
@@ -226,34 +226,16 @@ const removeSubmitHandler = (e)=>{
             </Col>
 
             <Col className="m-auto"> 
-           
             <DeleteModal submitDelete = {(e)=> removeSubmitHandler(e)} 
             buttonText={'Delete Account '} 
             title={'Delete Account'} 
-            body={'this is irreversible, are you sure you want to delete your account?'}
+            body={'This is irreversible, are you sure you want to delete your account?'}
             />  
-        
          </Col>
         </Row>
        </Card.Body>
       </Card>
     </FormContainer>
-
-            {/* <Modal show={modalShow} onHide={handleClose}>
-            <Modal.Header closeButton>
-            <Modal.Title>Delete Account</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={(e)=> removeSubmitHandler(e)}>
-                Save Changes
-            </Button>
-            </Modal.Footer>
-            </Modal> */}
-
 
         </div>
     )

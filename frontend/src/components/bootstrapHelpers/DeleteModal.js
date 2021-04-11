@@ -9,9 +9,9 @@ const DeleteModal = ({ submitDelete, buttonText, title, body }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const submit = ()=>{
+  const submit = (e)=>{
       handleClose();
-      submitDelete();
+      submitDelete(e);
   }
 
 
@@ -32,7 +32,7 @@ const DeleteModal = ({ submitDelete, buttonText, title, body }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={submit}>
+          <Button variant="danger" onClick={ (e)=> submit(e) }>
             Delete
           </Button>
         </Modal.Footer>

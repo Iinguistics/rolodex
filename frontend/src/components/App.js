@@ -43,7 +43,6 @@ function App({ history }) {
         
   }, [])
 
-//console.log(userTwitchToken)
 
   return (
     <>
