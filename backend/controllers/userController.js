@@ -63,7 +63,6 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
-        // do I want to send over a new token?
         token: generateToken(updatedUser._id)
     });
     }else{

@@ -15,7 +15,6 @@ const fetchGeneralData = asyncHandler(async(req,res)=>{
 
         const config = {
             headers:{
-                 // 'Content-Type': 'application/json',
                   Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
                  'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
             }
@@ -45,7 +44,6 @@ const fetchLiveData = asyncHandler(async(req,res)=>{
 
         const config = {
             headers:{
-                 // 'Content-Type': 'application/json',
                   Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
                  'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
             }
