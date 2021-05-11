@@ -154,8 +154,8 @@ const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
     return (
         <Fragment>
         { viewerCreated ? <Button className="btn-danger btn my-5" onClick={(e)=> removeSubmitHandler(e)}>
-                   Cancel
-                </Button> : <GoBack />} 
+                           Cancel
+                         </Button> : <GoBack /> } 
         {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}</Message> }
         {fetchViewerError && <Message variant="danger">{fetchViewerError}</Message> }
         <FormContainer>
