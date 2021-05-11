@@ -12,7 +12,7 @@ import ViewerDetailScreen from '../screens/ViewerDetailScreen';
 import ViewerCaptureScreen from '../screens/ViewerCaptureScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 
-/// git push heroku main
+// git push heroku main
 
 function App({ history }) {
   const [userInfo, setUserInfo] = useState(null);
