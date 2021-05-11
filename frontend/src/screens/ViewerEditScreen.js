@@ -11,7 +11,7 @@ import GoBack from '../components/GoBack';
 import ScrollToTop from '../components/ScrollToTop';
 
 
-const ViewerEditScreen = ({ history, match, userInfo }) => {
+const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
     const [name, setName] = useState("");
     const [rating, setRating] = useState(Number);
     const [followingSince, setFollowingSince] = useState("");
@@ -34,7 +34,7 @@ const ViewerEditScreen = ({ history, match, userInfo }) => {
         }
     }
 
-
+    console.log(viewerCreated);
 
     const fetchViewer = async()=>{
         

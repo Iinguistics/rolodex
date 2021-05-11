@@ -16,6 +16,7 @@ import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 
 function App({ history }) {
   const [userInfo, setUserInfo] = useState(null);
+  const [viewerCreated, setViewerCreated] = useState(false);
   //const [userTwitchToken, setUserTwitchToken] = useState(null);
 
   // const fetchTwitchToken = async()=>{
@@ -39,9 +40,18 @@ function App({ history }) {
       //  if(!userTwitchToken){
       //   fetchTwitchToken();
       //  }
-
         
-  }, [])
+  }, []);
+
+
+  // to render cancel button on viewer edit screen
+  const viewerCreatedHandler = ()=>{
+    setViewerCreated(true);
+  }
+
+  const viewerCreatedHandlerReset = ()=>{
+    setViewerCreated(false);
+  }
 
 
   return (
@@ -57,7 +67,7 @@ function App({ history }) {
         <Route
           path='/profile' exact
           render={(props) => (
-            <ProfileScreen {...props} userInfo={userInfo} />
+            <ProfileScreen {...props} userInfo={userInfo} viewerCreatedHandler={viewerCreatedHandler} viewerCreatedHandlerReset={viewerCreatedHandlerReset}/>
           )}
         />
         <Route
@@ -83,7 +93,7 @@ function App({ history }) {
         <Route
           path='/profile/viewer/edit/:id'
           render={(props) => (
-            <ViewerEditScreen {...props} userInfo={userInfo} />
+            <ViewerEditScreen {...props} userInfo={userInfo} viewerCreated={viewerCreated} />
           )}
         />
 

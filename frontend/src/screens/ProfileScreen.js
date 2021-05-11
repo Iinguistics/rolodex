@@ -15,7 +15,7 @@ import Loader from '../components/bootstrapHelpers/Loader';
 import { FiSettings } from 'react-icons/fi';
 
 
-const ProfileScreen = ({ userInfo, history, match }) => {
+const ProfileScreen = ({ userInfo, history, match, viewerCreatedHandler, viewerCreatedHandlerReset }) => {
     const [createViewerError, setCreateViewerError] = useState("");
     const [createdViewer, setCreatedViewer] = useState({});
     const [createdViewerSuccess, setCreatedViewerSuccess] = useState(false);
@@ -177,7 +177,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
         fetchViewers(keyword, pageNumber);
 
         fetchCaptures();
-        // console.log(userInfo.token)
+         //console.log(userInfo.token)
 
         if(createdViewerSuccess){
             history.push(`/profile/viewer/edit/${createdViewer._id}`)
@@ -201,6 +201,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             const { data } = await axios.post('/api/viewers', {}, config)
             setCreatedViewer(data);
             setCreatedViewerSuccess(true);
+            viewerCreatedHandler();
 
         }catch(error){
             setCreateViewerError(error.message);
@@ -234,7 +235,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
             return listViewers.map((viewer)=>{
                 return(
                         <Col className="mb-5" sm key={viewer._id}>
-                         <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
+                         <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline" onClick={viewerCreatedHandlerReset()}>
                             <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
                             <Card.Body>
                             <Card.Title className="viewer-name">{viewer.name}</Card.Title>
@@ -260,7 +261,7 @@ const ProfileScreen = ({ userInfo, history, match }) => {
                 return listViewersByName.map((viewer)=>{
                     return(
                             <Col className="mb-5" sm key={viewer.createAt}>
-                            <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline">
+                            <Link to={`/profile/viewer/detail/${viewer._id}`} className="no-underline" onClick={viewerCreatedHandlerReset()}>
                                 <Card style={{ width: '16rem', height: '12rem'}} className="card-border profile-description-cards">
                                 <Card.Body>
                                 <Card.Title className="viewer-name">{viewer.name}</Card.Title>
@@ -312,7 +313,6 @@ const ProfileScreen = ({ userInfo, history, match }) => {
            return <h5>Not currently streaming</h5>
         }
     }
-
 
 
 

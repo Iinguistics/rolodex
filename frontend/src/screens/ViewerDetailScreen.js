@@ -10,7 +10,7 @@ import { useToasts } from 'react-toast-notifications';
 import ScrollToTop from '../components/ScrollToTop';
 
 
-const ViewerDetailScreen = ({ userInfo, match, history }) => {
+const ViewerDetailScreen = ({ userInfo, match, history, viewerCreatedHandlerReset }) => {
     const [rating, setRating] = useState(Number);
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
