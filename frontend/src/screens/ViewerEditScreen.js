@@ -24,6 +24,7 @@ const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
     const [fetchEditViewerError, setFetchEditViewerError] = useState("");
     const [personalityDescription, setPersonalityDescription] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [removedViewerError, setRemovedViewerError] = useState("");
 
     const { addToast } = useToasts();
 
@@ -34,7 +35,7 @@ const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
         }
     }
 
-    console.log(viewerCreated);
+    //console.log(viewerCreated);
 
     const fetchViewer = async()=>{
         
@@ -116,12 +117,45 @@ const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
     }
 
 
+    const removeHandler = async()=>{
+        try{
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+              await axios.delete(`/api/viewers/remove/${match.params.id}`, config)
+           
+        }catch(error){
+            setRemovedViewerError(error.message);
+        }
+    }
+
+
+    const removeSubmitHandler = (e)=>{
+        e.preventDefault();
+          removeHandler();
+          setLoading(true);
+            setTimeout(()=>{
+                if(!removedViewerError){
+                    addToast(`${viewer.name} has been removed`, {
+                        appearance: 'success'
+                    });
+                    history.push('/profile');
+                    }
+            }, 2000)
+    }
+
+
 
 
 
     return (
         <Fragment>
-        <GoBack />
+        { viewerCreated ? <Button className="btn-danger btn my-5" onClick={(e)=> removeSubmitHandler(e)}>
+                   Cancel
+                </Button> : <GoBack />} 
         {fetchEditViewerError && <Message variant="danger">{fetchEditViewerError}</Message> }
         {fetchViewerError && <Message variant="danger">{fetchViewerError}</Message> }
         <FormContainer>
