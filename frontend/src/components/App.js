@@ -17,12 +17,6 @@ import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 function App({ history }) {
   const [userInfo, setUserInfo] = useState(null);
   const [viewerCreated, setViewerCreated] = useState(false);
-  //const [userTwitchToken, setUserTwitchToken] = useState(null);
-
-  // const fetchTwitchToken = async()=>{
-  //   const { data } = await axios.get('/api/twitchdata/token');
-  //   localStorage.setItem('userTwitchToken', JSON.stringify(data));
-  // }
 
   useEffect(()=>{
 
@@ -30,16 +24,6 @@ function App({ history }) {
         localStorage.getItem('userInfo') ? JSON.parse
         (localStorage.getItem('userInfo')) : null
        );
-       
-
-      //  setUserTwitchToken(
-      //   localStorage.getItem('userTwitchToken') ? JSON.parse
-      //   (localStorage.getItem('userTwitchToken')) : null
-      //  );
-
-      //  if(!userTwitchToken){
-      //   fetchTwitchToken();
-      //  }
         
   }, []);
 
@@ -110,8 +94,6 @@ function App({ history }) {
             <ViewerCaptureScreen {...props} userInfo={userInfo} />
           )}
         />
-
-
 
         </ToastProvider>
       </Container>

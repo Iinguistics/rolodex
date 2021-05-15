@@ -35,7 +35,6 @@ const ViewerEditScreen = ({ history, match, userInfo, viewerCreated }) => {
         }
     }
 
-    //console.log(viewerCreated);
 
     const fetchViewer = async()=>{
         

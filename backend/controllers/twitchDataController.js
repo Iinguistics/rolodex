@@ -85,7 +85,4 @@ const fetchToken = asyncHandler(async(req,res)=>{
 
 
 
-
-
-
 module.exports =  { fetchLiveData, fetchToken, fetchGeneralData} 
