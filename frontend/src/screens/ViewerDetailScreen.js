@@ -10,7 +10,7 @@ import { useToasts } from 'react-toast-notifications';
 import ScrollToTop from '../components/ScrollToTop';
 
 
-const ViewerDetailScreen = ({ userInfo, match, history, viewerCreatedHandlerReset }) => {
+const ViewerDetailScreen = ({ userInfo, match, history }) => {
     const [rating, setRating] = useState(Number);
     const [viewer, setViewer] = useState({});
     const [fetchViewerError, setFetchViewerError] = useState("");
@@ -176,7 +176,9 @@ const ViewerDetailScreen = ({ userInfo, match, history, viewerCreatedHandlerRese
             </Table>
 
             <Card className="personality-description-cards" text="light" >
-                    <Card.Header className="text-light">Notes <FaPencilAlt className="ml-1"/></Card.Header>
+                    <Card.Header className="text-light">Notes <Link to={`/profile/viewer/edit/${viewer._id}`}>
+                    <FaPencilAlt className="ml-1 text-light"/>
+                    </Link></Card.Header>
                     <Card.Body>
                     <Card.Text>
                      {viewer.notes}
