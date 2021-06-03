@@ -1,205 +1,194 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #12141D;
+  background: #12141d;
 }
 /* good card color background: #252525;   good black color: #37352F; */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-
-#home-screen{
+#home-screen {
   height: 88vh;
 }
 
-
-.navbar{
-  background: #12141D;
+.navbar {
+  background: #12141d;
 }
 
-.navbar a{
-  color: #FFFFFF90 !important;
+.navbar a {
+  color: #ffffff90 !important;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background: none;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   transition: 0.6s;
 }
-.dropdown-item{
+.dropdown-item {
   background: none !important;
 }
 
-
-input, textarea{
+input,
+textarea {
   caret-color: blue;
 }
 
-
-h1,h2,h3,h4,h5{
-  color: #FFFFFF90;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #ffffff90;
 }
 
-label{
-  color: #FFFFFF;
+label {
+  color: #ffffff;
 }
 
-
-p{
+p {
   font-size: 16px;
-  color: #FFFFFF95;
+  color: #ffffff95;
 }
 
-div{
+div {
   color: #353535 !important;
 }
 
-.green{
+.green {
   color: #00ff00;
 }
 
-.red{
+.red {
   color: #ff0000;
 }
 
-.divider{
+.divider {
   background: #595959;
   height: 1px;
   margin-bottom: 6rem !important;
 }
 
-
-
-.scroll-link:hover{
-   cursor: pointer;
+.scroll-link:hover {
+  cursor: pointer;
 }
 
+.view-desc {
+  color: #009cdc;
+}
+.view-desc:hover {
+  color: #8ebbcc;
+}
 
-.full-description p{
+.full-description p {
   font-size: 19px;
   line-height: 32px;
 }
 
-
-.up-arrow:hover{
+.up-arrow:hover {
   cursor: pointer;
 }
 
-
-.no-underline{
+.no-underline {
   text-decoration: none !important;
   color: #444444;
 }
-.no-underline:hover{
+.no-underline:hover {
   color: #444444;
-
 }
-.no-underline:hover .viewer-name{
-  color: #3F729B !important;
+.no-underline:hover .viewer-name {
+  color: #009cdc !important;
   transition: 0.3s;
 }
-.card-border:hover{
-  border-color: #3F729B;
+.card-border:hover {
+  border-color: #009cdc;
 }
-.viewer-name{
-  color: #FFFFFF !important;
+.viewer-name {
+  color: #ffffff !important;
 }
 
-.cap-type{
+.cap-type {
   text-transform: capitalize;
 }
 
-
-.main-jumbo-bg{
-  background-image: linear-gradient(
-  90deg
-  , #5132c0, #8f2df0);
+.main-jumbo-bg {
+  background-image: linear-gradient(90deg, #5132c0, #8f2df0);
   border-radius: 6px;
 }
 
-
-.card-jumbo-bg{
+.card-jumbo-bg {
   background: #212121;
   border-radius: 6px;
 }
 
-
-.personality-description-cards{
-  background-color: #37352F;
+.personality-description-cards {
+  background-color: #37352f;
   border-radius: 6px;
 }
-.personality-description-cards p, h1, div{
-  color: #FFFFFF ;
+.personality-description-cards p,
+h1,
+div {
+  color: #ffffff;
 }
 
-
-.shadow-lgg{
-  -webkit-box-shadow: 0px 0px 3px 5px #292929; 
-  -moz-box-shadow: 0px 0px 3px 5px #292929; 
-  box-shadow: 0px 0px 3px 5px #292929;  
+.shadow-lgg {
+  -webkit-box-shadow: 0px 0px 3px 5px #292929;
+  -moz-box-shadow: 0px 0px 3px 5px #292929;
+  box-shadow: 0px 0px 3px 5px #292929;
 }
 
-
-.profile-description-cards{
+.profile-description-cards {
   background-color: #252525;
   border-radius: 6px;
 }
-.profile-description-cards p, h1 {
-  color: #FFFFFF;
+.profile-description-cards p,
+h1 {
+  color: #ffffff;
 }
 
-
-.home-title{
+.home-title {
   font-size: 4rem;
 }
 
-
-#hamburger{
-  background: #FFFFFF;
+#hamburger {
+  background: #ffffff;
 }
 
-#home-title-sub{
-  color: #FFFFFF;
+#home-title-sub {
+  color: #ffffff;
 }
 
-
-.login-text{
+.login-text {
   font-size: 14px;
 }
-.register-text{
-  color: #3F729B;
+.register-text {
+  color: #009cdc;
 }
-.register-text:hover{
-  color: #3F729B;
+.register-text:hover {
+  color: #009cdc;
 }
 
-
-#test{
+#test {
   background: #252525;
 }
 
-
-.user-settings a{
-  color: #FFFFFF;
+.user-settings a {
+  color: #ffffff;
   text-decoration: none;
 }
 
-
-.user-settings a:hover{
-  color: #3F729B;
+.user-settings a:hover {
+  color: #009cdc;
   transition: 0.3s;
 }
 
-
 @media (max-width: 767.98px) {
-  .home-title{
+  .home-title {
     font-size: 2rem;
   }
-
 }
