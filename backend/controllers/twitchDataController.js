@@ -1,88 +1,81 @@
-const asyncHandler = require('express-async-handler');
-const axios = require('axios');
-
-
+const asyncHandler = require("express-async-handler");
+const axios = require("axios");
 
 // fetch twitch profile data / for profile img
 //@route  POST api/twitchdata/generaldata
 //@access Have to be logged in
-const fetchGeneralData = asyncHandler(async(req,res)=>{
-    const { name } = req.body;
+const fetchGeneralData = asyncHandler(async (req, res) => {
+  const { name } = req.body;
 
-    //const testChannel = 'contv'
-    
-        try{
+  //const testChannel = 'contv'
 
-        const config = {
-            headers:{
-                  Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
-                 'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
-            }
-        }
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${process.env.TWITCH_TOKEN}`,
+        "Client-ID": `${process.env.TWITCH_CLIENT_ID}`,
+      },
+    };
 
-        // get specified users info
-        const { data } = await axios.get(`https://api.twitch.tv/helix/users?login=${name}&login=${name}`, config);
+    // get specified users info
+    const { data } = await axios.get(
+      `https://api.twitch.tv/helix/users?login=${name}&login=${name}`,
+      config
+    );
 
-        res.status(200).json(data);
-        
-         }catch(error){
-            res.status(404).json(error.message);
-        }
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(404).json(error.message);
+    console.log(error);
+  }
 });
-
-
 
 // fetch twitch user data
 //@route  POST api/twitchdata/livedata
 //@access Have to be logged in
-const fetchLiveData = asyncHandler(async(req,res)=>{
-    const { name } = req.body;
+const fetchLiveData = asyncHandler(async (req, res) => {
+  const { name } = req.body;
 
-    //const testChannel = 'contv';
-    
-        try{
+  //const testChannel = 'contv';
 
-        const config = {
-            headers:{
-                  Authorization : `Bearer ${process.env.TWITCH_TOKEN}`,
-                 'Client-ID': `${process.env.TWITCH_CLIENT_ID}`
-            }
-        }
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${process.env.TWITCH_TOKEN}`,
+        "Client-ID": `${process.env.TWITCH_CLIENT_ID}`,
+      },
+    };
 
-        // get specified users info, including their user_id & viewer_count
-        const { data } = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${name}`, config);
+    // get specified users info, including their user_id & viewer_count
+    const { data } = await axios.get(
+      `https://api.twitch.tv/helix/streams?user_login=${name}`,
+      config
+    );
 
-        res.status(200).json(data);
-        //console.log(data);
-        
-         }catch(error){
-            res.status(404).json(error.message);
-        }
+    res.status(200).json(data);
+    //console.log(data);
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
 });
-
 
 // Gen new token
 //@route  GET api/twitchdata/token
 //@access Have to be logged in
-const fetchToken = asyncHandler(async(req,res)=>{
-      
-         try{
+const fetchToken = asyncHandler(async (req, res) => {
+  try {
+    //get token
+    const tokenData = await axios.post(
+      `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`
+    );
+    tokenData.data.access_token;
 
-         //get token
-        const tokenData = await axios.post(`https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`);
-        tokenData.data.access_token
- 
-        const twitchToken = tokenData.data.access_token;
- 
-         res.status(200).json(twitchToken);
-         
-          }catch(error){
-             res.status(404).json(error.message);
-         }
- });
+    const twitchToken = tokenData.data.access_token;
 
+    res.status(200).json(twitchToken);
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+});
 
-
-
-
-module.exports =  { fetchLiveData, fetchToken, fetchGeneralData} 
+module.exports = { fetchLiveData, fetchToken, fetchGeneralData };
